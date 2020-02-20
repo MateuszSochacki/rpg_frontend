@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -21,18 +21,17 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import Radio from "@material-ui/core/Radio";
 import {fade} from '@material-ui/core/styles/colorManipulator';
+import {url} from './../../Constants';
+import axios from 'axios';
+import LazyLoad from 'react-lazyload';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+
 
 
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
-    },
-    expansionPanel: {
-        margin: 0,
-        '&$expanded': {
-            margin: 0,
-        },
-
     },
 
     search: {
@@ -107,6 +106,27 @@ const StyledTableCell = withStyles(theme => ({
 
     }
 }))(TableCell);
+const StyledTableCellDiffColor = withStyles(theme => ({
+    head: {
+        height: 0,
+        border: "1px solid",
+        borderColor: theme.palette.common.black,
+        padding: 0,
+
+    },
+    body: {
+        fontSize: 14,
+        color: theme.palette.common.white,
+
+        height: 0,
+        border: "1px solid",
+        padding: 0,
+    },
+    root: {
+        textAlign: "center",
+
+    }
+}))(TableCell);
 const StyledTableRow = withStyles(theme => ({
     root: {
         '&:nth-of-type(odd)': {
@@ -115,6 +135,12 @@ const StyledTableRow = withStyles(theme => ({
         },
 
     },
+}))(TableRow);
+const StyledTableRowDiffColor = withStyles(theme => ({
+    root: {
+            backgroundColor: '#1f1f1e',
+    },
+
 }))(TableRow);
 const Panel = withStyles({
     root: {
@@ -132,7 +158,6 @@ const Panel = withStyles({
     },
     expanded: {},
 })(ExpansionPanel);
-
 const PanelSummary = withStyles({
     root: {
         // backgroundColor: 'rgba(0, 0, 0, .03)',
@@ -152,16 +177,121 @@ const PanelSummary = withStyles({
 })(ExpansionPanelSummary);
 
 
-
-
-export default function Mutations() {
+function Mutations() {
     const classes = useStyles();
-    const [value, setValue] = React.useState(0);
+    const [isLoading,setIsLoading] = useState(true);
+    const [value, setValue] = useState("ALL");
+    const [searchValue, setSearchValue] = useState(0);
+    const [allMutations, setAllMutations] = useState([]);
+    const [currentMutations, setCurrentMutations] = useState([]);
+    const [currentMutationsAfterSearch, setCurrentMutationsAfterSearch] = useState([]);
+    const [searchMutation, setSearchMutations] = useState([]);
+    const [nurgleMutations, setNurgleMutations] = useState([]);
+    const [slaaneshMutations, setSlaaneshMutations] = useState([]);
+    const [khornMutations, setKhornMutations] = useState([]);
+    const [tzeentchMutations, setTzeentchMutations] = useState([]);
+
 
     const handleChange = (event) => {
         setValue(event.target.value);
+        showMutation(event.target.value);
+        setSearchValue("");
     };
 
+
+    const filterMutationList = (event)=>{
+        setSearchValue(event.target.value);
+        let filteredList = currentMutations;
+        filteredList = filteredList.filter((item)=>{
+            return item.name.toString().toLowerCase().search(
+                event.target.value.toString().toLowerCase()
+            )!==-1;
+        });
+        setCurrentMutationsAfterSearch(filteredList);
+    };
+    const showMutation=(String)=>{
+        switch(String){
+            case "NURGLE":{
+                setCurrentMutations(nurgleMutations);
+                setCurrentMutationsAfterSearch(nurgleMutations);
+                break;
+            }
+            case "KHORN":{
+                setCurrentMutations(khornMutations);
+                setCurrentMutationsAfterSearch(khornMutations);
+                break;
+            }
+            case "SLAANESH":{
+                setCurrentMutations(slaaneshMutations);
+                setCurrentMutationsAfterSearch(slaaneshMutations);
+                break;
+            }
+            case "TZEENTCH":{
+                setCurrentMutations(tzeentchMutations);
+                setCurrentMutationsAfterSearch(tzeentchMutations);
+                break;
+            }case "ALL":{
+                setCurrentMutations(allMutations);
+                setCurrentMutationsAfterSearch(allMutations);
+                break;
+            }
+            default: console.log("sie zjebalo");
+
+
+
+        }
+
+    };
+
+    const filterMutation=()=>{
+
+
+        allMutations.map((mutation)=>{
+            switch (mutation.god) {
+                case "Khorn":{
+
+                    return khornMutations.push(mutation);
+                }
+                case "Nurgle":{
+                    return nurgleMutations.push(mutation);
+                }
+                case "Slaanesh":{
+                    return slaaneshMutations.push(mutation);
+                }
+                case "Tzeentch": {
+                    return tzeentchMutations.push(mutation);
+                }
+
+                default: {
+                    return allMutations}
+
+
+            }
+        })
+    };
+
+    useEffect(() => {
+
+        let didCancel = false;
+        async function fetchMutation() {
+            await axios.get(url + "/mutation/all").then(async (response) => {
+                const mutations = response.data;
+                setAllMutations(mutations.mutationDtos);
+                setCurrentMutationsAfterSearch(currentMutations);
+                if(!didCancel){
+                    showMutation(value);
+                    filterMutation();
+                    setIsLoading(false);
+                }
+
+            }).catch(error => {
+                console.log(error)
+            });
+        }
+        fetchMutation();
+        return () =>{didCancel = true;};
+
+    }, [isLoading]);
     return (
 
 
@@ -220,8 +350,8 @@ export default function Mutations() {
                                 <SearchIcon/>
                             </div>
                             <InputBase
-                                // onChange={}
-                                // value={}
+                                onChange={filterMutationList}
+                                value={searchValue}
                                 placeholder="Wyszukaj.."
                                 classes={{
                                     root: classes.inputRoot,
@@ -233,200 +363,143 @@ export default function Mutations() {
                 </Grid>
             </Grid>
 
+            {isLoading!==true?
 
-            <Panel TransitionProps={{unmountOnExit: true}} className={classes.expansionPanel}>
-                <PanelSummary key={1} className={classes.expansionPanelContent}>
-                    <Grid container justify="flex-start">
-                        <Grid item xs={10}>
-                            <Typography gutterBottom variant="h5" component="h5" align={"left"}>
-                                001-005 Albinos
-                            </Typography>
+                <>
+            {currentMutationsAfterSearch.map((mutation, key) => (
+                <LazyLoad height={'100%'}>
+                <Panel TransitionProps={{unmountOnExit: true}} className={classes.expansionPanel} key={key}>
+                    <PanelSummary key={key} className={classes.expansionPanelContent}>
+                        <Grid container justify="flex-start">
+                            <Grid item xs={10}>
+                                <Typography gutterBottom variant="h5" component="h5" align={"left"}>
+                                    {mutation.dice} {mutation.name}
+                                </Typography>
 
+                            </Grid>
+                            <Grid item xs={2}>
+                                <Typography noWrap gutterBottom variant="h5" component="h5" align={"right"}>
+                                    <b>
+                                        PS: {mutation.fearPoints}
+                                    </b>
+                                </Typography>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={2}>
-                            <Typography noWrap gutterBottom variant="h5" component="h5" align={"right"}>
-                                <b>
-                                    PS: 0
-                                </b>
-                            </Typography>
+
+                    </PanelSummary>
+                    <ExpansionPanelDetails key={key}>
+                        <Grid container direction="row" justify="flex-start">
+                            <Grid item xs={7}>
+                                <Typography align={"left"}>
+                                    <b>Bóg:</b> {mutation.god!==null? mutation.god : "Brak"}
+                                </Typography>
+                                <Typography align={"left"}>
+                                    <b>Typ:</b> {mutation.type}
+                                </Typography>
+                                <Typography align={"left"}>
+                                    <b>Opis:</b> {mutation.description}
+                                </Typography>
+                                <br/>
+                                {mutation.variants !== null ?
+                                    <Typography align={"left"}>
+                                        <b>Wariant:</b> {mutation.variants}
+                                    </Typography>
+                                    : null}
+                                <Typography/>
+
+                                {mutation.comments !== null ?
+                                    <Typography align={"left"}>
+                                        <b>Komentarz:</b> Komentarz
+                                    </Typography>
+                                    : null}
+                                <Typography/>
+                            </Grid>
+                            <Grid item xs={5}>
+                                {/* if mutationeffects is not null then*/}
+                                {mutation.mutationEffects !== null ?
+
+
+                                    <TableContainer component={Paper}>
+                                        <Table className={classes.table} aria-label="customized table">
+                                            <TableHead>
+                                                <TableRow>
+                                                    <StyledTableCell>Rzut</StyledTableCell>
+                                                    <StyledTableCell align="right">Lokacja</StyledTableCell>
+                                                    <StyledTableCell align="right">Efekt</StyledTableCell>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                {/*{mutation.mutationEffects.map((effect, key) => (*/}
+
+
+                                                {/*    <StyledTableRow key={key}>*/}
+                                                {/*        <StyledTableCell component="th" scope="row">*/}
+                                                {/*            {effect.dice}*/}
+                                                {/*        </StyledTableCell>*/}
+                                                {/*        <StyledTableCell*/}
+                                                {/*            align="right">{effect.location}</StyledTableCell>*/}
+
+                                                {/*        {effect.effect !== null ?*/}
+                                                {/*            <StyledTableCell*/}
+                                                {/*                align="right">{effect.effect}</StyledTableCell>*/}
+                                                {/*            : <StyledTableCell*/}
+                                                {/*                align="right"></StyledTableCell>}*/}
+                                                {/*    </StyledTableRow>*/}
+
+                                                {/*))}*/}
+
+
+                                                {mutation.mutationEffects.map((effect, key) => {
+
+                                                    {if (effect.effect !== "1" ){
+                                                        return(
+                                                            <StyledTableRow key={key}>
+                                                                <StyledTableCell component="th" scope="row">
+                                                                    {effect.dice}
+                                                                </StyledTableCell>
+                                                                <StyledTableCell
+                                                                    align="right">{effect.location}</StyledTableCell>
+
+                                                                <StyledTableCell
+                                                                    align="right">{effect.effect !== "1" ? effect.effect : null}</StyledTableCell>
+
+                                                            </StyledTableRow>
+                                                        );
+                                                    }else{return(
+                                                        <StyledTableRowDiffColor key={key}>
+                                                            <StyledTableCellDiffColor component="th" scope="row">
+                                                                {effect.dice}
+                                                            </StyledTableCellDiffColor>
+                                                            <StyledTableCellDiffColor
+                                                                align="right">{effect.location}</StyledTableCellDiffColor>
+
+                                                            <StyledTableCellDiffColor
+                                                                align="right">{effect.effect !== "1" ? effect.effect : null}</StyledTableCellDiffColor>
+
+                                                        </StyledTableRowDiffColor>
+                                                    )}}
+
+
+
+                                                })}
+                                            </TableBody>
+
+
+                                        </Table>
+                                    </TableContainer>
+                                    : null}
+
+
+                            </Grid>
                         </Grid>
-                    </Grid>
-
-                </PanelSummary>
-                <ExpansionPanelDetails key={1}>
-                    <Grid container direction="row" justify="flex-start">
-                        <Grid item xs={7}>
-                            <Typography align={"left"}>
-                                <b>Bóg:</b> Brak
-                            </Typography>
-                            <Typography align={"left"}>
-                                <b>Typ:</b> Pojedyńcza.
-                            </Typography>
-                            <Typography align={"left"}>
-                                <b>Opis:</b> Twoja skóra staje się mlecznobiała, a oczy czerwone. Tracisz 1k10 punktów
-                                Odpornośi otrzymujesz modyfikator -5 do testów spostrzegawczości związanych ze wzrokiem,
-                                wykonywanych w jasnym świetle.
-                            </Typography>
-                            <br/>
-                            {/*if variant then*/}
-                            <Typography align={"left"}>
-                                <b>Wariant:</b> Topens kekens
-                            </Typography>
-                            <Typography/>
-                            {/*}*/}
-                            {/*if comment then*/}
-                            <Typography align={"left"}>
-                                <b>Komentarz:</b> Komentarz
-                            </Typography>
-                            <Typography/>
-                            {/*}*/}
-                        </Grid>
-                        <Grid item xs={5}>
-                            {/* if mutationeffects is not null then*/}
+                    </ExpansionPanelDetails>
 
 
-                            <TableContainer component={Paper}>
-                                <Table className={classes.table} aria-label="customized table">
-                                    <TableHead>
-                                        <TableRow>
-                                            <StyledTableCell>Rzut</StyledTableCell>
-                                            <StyledTableCell align="right">Lokacja</StyledTableCell>
-                                            <StyledTableCell align="right">Efekt</StyledTableCell>
+                </Panel>
+                </LazyLoad>
+            ))}
 
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {/* map for list */}
-                                        <StyledTableRow key={1}>
-                                            <StyledTableCell component="th" scope="row">
-                                                001-100
-                                            </StyledTableCell>
-                                            <StyledTableCell align="right">Głowa</StyledTableCell>
-                                            <StyledTableCell align="right">Pęcznieje</StyledTableCell>
-                                        </StyledTableRow>
-                                        <StyledTableRow key={1}>
-                                            <StyledTableCell component="th" scope="row">
-                                                001-100
-                                            </StyledTableCell>
-                                            <StyledTableCell align="right">Głowa</StyledTableCell>
-                                            <StyledTableCell align="right">Pęcznieje</StyledTableCell>
-                                        </StyledTableRow>
-                                        <StyledTableRow key={1}>
-                                            <StyledTableCell component="th" scope="row">
-                                                001-100
-                                            </StyledTableCell>
-                                            <StyledTableCell align="right">Głowa</StyledTableCell>
-                                            <StyledTableCell align="right">Pęcznieje</StyledTableCell>
-                                        </StyledTableRow>
-                                        {/*end map*/}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-
-
-                        </Grid>
-                    </Grid>
-                </ExpansionPanelDetails>
-
-
-            </Panel>
-            <Panel TransitionProps={{unmountOnExit: true}} className={classes.expansionPanel}>
-                <PanelSummary key={1} className={classes.expansionPanelContent}>
-                    <Grid container justify="flex-start">
-                        <Grid item xs={10}>
-                            <Typography gutterBottom variant="h5" component="h5" align={"left"}>
-                                001-005 Albinos
-                            </Typography>
-
-                        </Grid>
-                        <Grid item xs={2}>
-                            <Typography noWrap gutterBottom variant="h5" component="h5" align={"right"}>
-                                <b>
-                                    PS: 0
-                                </b>
-                            </Typography>
-                        </Grid>
-                    </Grid>
-
-                </PanelSummary>
-                <ExpansionPanelDetails key={1}>
-                    <Grid container direction="row" justify="flex-start">
-                        <Grid item xs={7}>
-                            <Typography align={"left"}>
-                                <b>Bóg:</b> Brak
-                            </Typography>
-                            <Typography align={"left"}>
-                                <b>Typ:</b> Pojedyńcza.
-                            </Typography>
-                            <Typography align={"left"}>
-                                <b>Opis:</b> Twoja skóra staje się mlecznobiała, a oczy czerwone. Tracisz 1k10 punktów
-                                Odpornośi otrzymujesz modyfikator -5 do testów spostrzegawczości związanych ze wzrokiem,
-                                wykonywanych w jasnym świetle.
-                            </Typography>
-                            <br/>
-                            {/*if variant then*/}
-                            <Typography align={"left"}>
-                                <b>Wariant:</b> Topens kekens
-                            </Typography>
-                            <Typography/>
-                            {/*}*/}
-                            {/*if comment then*/}
-                            <Typography align={"left"}>
-                                <b>Komentarz:</b> Komentarz
-                            </Typography>
-                            <Typography/>
-                            {/*}*/}
-                        </Grid>
-                        <Grid item xs={5}>
-                            {/* if mutationeffects is not null then*/}
-
-
-                            <TableContainer component={Paper}>
-                                <Table className={classes.table} aria-label="customized table">
-                                    <TableHead>
-                                        <TableRow>
-                                            <StyledTableCell>Rzut</StyledTableCell>
-                                            <StyledTableCell align="right">Lokacja</StyledTableCell>
-                                            <StyledTableCell align="right">Efekt</StyledTableCell>
-
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {/* map for list */}
-                                        <StyledTableRow key={1}>
-                                            <StyledTableCell component="th" scope="row">
-                                                001-100
-                                            </StyledTableCell>
-                                            <StyledTableCell align="right">Głowa</StyledTableCell>
-                                            <StyledTableCell align="right">Pęcznieje</StyledTableCell>
-                                        </StyledTableRow>
-                                        <StyledTableRow key={1}>
-                                            <StyledTableCell component="th" scope="row">
-                                                001-100
-                                            </StyledTableCell>
-                                            <StyledTableCell align="right">Głowa</StyledTableCell>
-                                            <StyledTableCell align="right">Pęcznieje</StyledTableCell>
-                                        </StyledTableRow>
-                                        <StyledTableRow key={1}>
-                                            <StyledTableCell component="th" scope="row">
-                                                001-100
-                                            </StyledTableCell>
-                                            <StyledTableCell align="right">Głowa</StyledTableCell>
-                                            <StyledTableCell align="right">Pęcznieje</StyledTableCell>
-                                        </StyledTableRow>
-                                        {/*end map*/}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-
-
-                        </Grid>
-                    </Grid>
-                </ExpansionPanelDetails>
-
-
-            </Panel>
-
+                </>: <CircularProgress />}
 
             {/*<Tabs*/}
             {/*    value={value}*/}
@@ -443,3 +516,5 @@ export default function Mutations() {
         </Paper>
     )
 }
+
+export default Mutations;
