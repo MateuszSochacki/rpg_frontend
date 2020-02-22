@@ -62,7 +62,6 @@ export default function Weapons(props) {
 
                                         </Tooltip>
 
-
                                     );})}
                                 </TableCell>
 

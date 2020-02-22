@@ -10,6 +10,7 @@ import Box from "@material-ui/core/Box";
 import Weapons from './Weapons';
 import API from "../../../API";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Armors from "./Armors";
 
 
 const useStyles = makeStyles({
@@ -51,10 +52,10 @@ export default function Equipment() {
 
     const classes = useStyles();
     const [value, setValue] = useState(0);
-    const [weapon,setWeapon] = useState([]);
-    const [armor,setArmor] = useState([]);
-    const [other,setOther] = useState([]);
-    const [isLoading,setIsLoading]= useState(true);
+    const [weapon, setWeapon] = useState([]);
+    const [armor, setArmor] = useState([]);
+    const [other, setOther] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
 
     const handleChange = (event, newValue) => {
@@ -65,19 +66,26 @@ export default function Equipment() {
 
         let didCancel = false;
 
-
         async function fetchEquipment() {
 
             await API.get("weapon/all").then(async (response) => {
 
-
                 if (!didCancel) {
                     const weapons = response.data;
-                    setWeapon(weapons.weaponDtos);
+                    setWeapon(weapons.weapons);
                     setIsLoading(false);
                 }
+            }).catch(error => {
+                console.log(error)
+            });
 
+            await API.get("armor/all").then(async (response) => {
 
+                if (!didCancel) {
+                    const armors = response.data;
+                    setArmor(armors.armors);
+                    setIsLoading(false);
+                }
             }).catch(error => {
                 console.log(error)
             });
@@ -114,7 +122,12 @@ export default function Equipment() {
 
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Item Two
+                {isLoading
+                    ?
+                    <CircularProgress/>
+                    :
+                    <Armors armors={armor}/>
+                }
             </TabPanel>
             <TabPanel value={value} index={2}>
                 Item Three
