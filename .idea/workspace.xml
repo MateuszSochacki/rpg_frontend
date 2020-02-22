@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22cff0d3-770e-4e53-b09b-7a9d3779a994" name="Default Changelist" comment="" />
-    <list id="23cc9928-5ad3-40f4-8bd5-f282c7519166" name="added fetch using axios, search input works just fine, radio buttons filter by god, loading icon before fetch is completed, tables should be good," comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="22cff0d3-770e-4e53-b09b-7a9d3779a994" name="Default Changelist" comment="armors fetching">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Constants.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/book/BookCover.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/book/BookCover.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/book/books/Mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/book/books/Mutations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/book/books/equipment/Armors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/book/books/equipment/Armors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/book/books/equipment/Equipment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/book/books/equipment/Equipment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/book/books/equipment/Others.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/book/books/equipment/Others.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/book/books/equipment/Weapons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/book/books/equipment/Weapons.js" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list id="23cc9928-5ad3-40f4-8bd5-f282c7519166" name="added fetch using axios, search input works just fine, radio buttons filter by god, loading icon before fetch is completed, tables should be good," comment="" />
+    <list id="4dbcbca9-1c31-44df-9f9a-c57cf14d6c51" name="armors fetching" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +27,38 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/.idea/workspace.xml">
+      <ranges>
+        <range start1="3" end1="7" start2="3" end2="8" changelist="22cff0d3-770e-4e53-b09b-7a9d3779a994" />
+        <range start1="8" end1="14" start2="9" end2="9" changelist="22cff0d3-770e-4e53-b09b-7a9d3779a994" />
+        <range start1="15" end1="16" start2="10" end2="10" changelist="22cff0d3-770e-4e53-b09b-7a9d3779a994" />
+        <range start1="30" end1="30" start2="24" end2="46" changelist="22cff0d3-770e-4e53-b09b-7a9d3779a994" />
+        <range start1="32" end1="32" start2="48" end2="53" changelist="22cff0d3-770e-4e53-b09b-7a9d3779a994" />
+        <range start1="46" end1="46" start2="67" end2="68" changelist="22cff0d3-770e-4e53-b09b-7a9d3779a994" />
+        <range start1="52" end1="64" start2="74" end2="74" changelist="22cff0d3-770e-4e53-b09b-7a9d3779a994" />
+        <range start1="83" end1="83" start2="93" end2="94" changelist="22cff0d3-770e-4e53-b09b-7a9d3779a994" />
+        <range start1="94" end1="95" start2="105" end2="106" changelist="22cff0d3-770e-4e53-b09b-7a9d3779a994" />
+        <range start1="117" end1="118" start2="128" end2="136" changelist="22cff0d3-770e-4e53-b09b-7a9d3779a994" />
+        <range start1="140" end1="141" start2="158" end2="160" changelist="22cff0d3-770e-4e53-b09b-7a9d3779a994" />
+        <range start1="143" end1="144" start2="162" end2="163" changelist="4dbcbca9-1c31-44df-9f9a-c57cf14d6c51" />
+        <range start1="146" end1="148" start2="165" end2="167" changelist="4dbcbca9-1c31-44df-9f9a-c57cf14d6c51" />
+        <range start1="150" end1="152" start2="169" end2="171" changelist="4dbcbca9-1c31-44df-9f9a-c57cf14d6c51" />
+        <range start1="154" end1="156" start2="173" end2="175" changelist="4dbcbca9-1c31-44df-9f9a-c57cf14d6c51" />
+        <range start1="158" end1="160" start2="177" end2="179" changelist="4dbcbca9-1c31-44df-9f9a-c57cf14d6c51" />
+        <range start1="162" end1="163" start2="181" end2="182" changelist="4dbcbca9-1c31-44df-9f9a-c57cf14d6c51" />
+        <range start1="167" end1="168" start2="186" end2="187" changelist="4dbcbca9-1c31-44df-9f9a-c57cf14d6c51" />
+        <range start1="170" end1="172" start2="189" end2="191" changelist="22cff0d3-770e-4e53-b09b-7a9d3779a994" />
+        <range start1="174" end1="175" start2="193" end2="194" changelist="22cff0d3-770e-4e53-b09b-7a9d3779a994" />
+      </ranges>
+    </file>
+  </component>
   <component name="ProjectId" id="1XrLk08g6bpxTu7TGs5i5TOcdia" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -44,23 +73,12 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\bjarn\IdeaProjects\rpg_frontend\src\component\book\books\equipment" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
@@ -81,6 +99,7 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="22cff0d3-770e-4e53-b09b-7a9d3779a994" name="Default Changelist" comment="" />
       <changelist id="23cc9928-5ad3-40f4-8bd5-f282c7519166" name="added fetch using axios, search input works just fine, radio buttons filter by god, loading icon before fetch is completed, tables should be good," comment="" />
+      <changelist id="4dbcbca9-1c31-44df-9f9a-c57cf14d6c51" name="armors fetching" comment="" />
       <created>1581799405171</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -92,7 +111,7 @@
       <workItem from="1582201116755" duration="11438000" />
       <workItem from="1582331624930" duration="7156000" />
       <workItem from="1582373527801" duration="6513000" />
-      <workItem from="1582400173014" duration="2619000" />
+      <workItem from="1582400173014" duration="3813000" />
     </task>
     <task id="LOCAL-00001" summary="added router, main layout for components, added constants&#10;changed tabs to expansion panel, added radio buttons and search bar. Added example data just to visualise how it looks">
       <created>1582062642890</created>
@@ -115,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582402735135</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="armors fetching">
+      <created>1582402829679</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582402829679</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,29 +164,30 @@
     <MESSAGE value="added router, added main layout for components, added example component" />
     <MESSAGE value="added router, main layout for components, added constants&#10;changed tabs to expansion panel, added radio buttons and search bar. Added example data just to visualise how it looks" />
     <MESSAGE value="added fetch using axios,&#10;search input works just fine,&#10;radio buttons filter by god,&#10;loading icon before fetch is completed,&#10;tables should be good," />
-    <option name="LAST_COMMIT_MESSAGE" value="added fetch using axios,&#10;search input works just fine,&#10;radio buttons filter by god,&#10;loading icon before fetch is completed,&#10;tables should be good," />
+    <MESSAGE value="armors fetching" />
+    <option name="LAST_COMMIT_MESSAGE" value="armors fetching" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="75" key="CommitChangelistDialog2" timestamp="1582402733646">
+    <state x="585" y="75" key="CommitChangelistDialog2" timestamp="1582402846856">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="75" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582402733646" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1582402761361">
+    <state x="585" y="75" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582402846856" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1582403931688">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582402761361" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1582402761361">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582403931688" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1582403931688">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582402761361" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1582402761361">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582403931688" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1582403931688">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582402761361" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1582402761361">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582403931688" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1582403931688">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582402761361" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582403931688" />
     <state x="540" y="263" key="IDE.errors.dialog" timestamp="1582387621069">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -168,10 +195,10 @@
     <state x="807" y="436" key="VCS.ChangelistChooser" timestamp="1582402784940">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="807" y="436" key="VCS.ChangelistChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1582402784940" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1582402758530">
+    <state x="807" y="436" key="VCS.ChangelistChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1582402866993" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1582403029122">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1582402758530" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1582403029122" />
   </component>
 </project>

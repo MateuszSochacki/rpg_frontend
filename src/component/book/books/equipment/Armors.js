@@ -7,8 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Typography from "@material-ui/core/Typography";
-import {Tooltip} from "@material-ui/core";
 
 const useStyles = makeStyles({
     table: {
@@ -17,6 +15,7 @@ const useStyles = makeStyles({
 });
 
 export default function Armors(props) {
+
     const classes = useStyles();
 
     return (
@@ -35,9 +34,9 @@ export default function Armors(props) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {props.armors.map((armor,key) => (
+                        {props.others.map((armor, key) => (
                             <TableRow key={key}>
-                                <TableCell component="th" scope="row">
+                                <TableCell align="center" component="th" scope="row">
                                     {armor.type}
                                 </TableCell>
                                 <TableCell align="center">{armor.name}</TableCell>

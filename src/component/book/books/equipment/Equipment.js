@@ -11,6 +11,7 @@ import Weapons from './Weapons';
 import API from "../../../API";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Armors from "./Armors";
+import Others from "./Others";
 
 
 const useStyles = makeStyles({
@@ -89,6 +90,17 @@ export default function Equipment() {
             }).catch(error => {
                 console.log(error)
             });
+
+            await API.get("equipment/all").then(async (response) => {
+
+                if (!didCancel) {
+                    const eq = response.data;
+                    setOther(eq.equipments);
+                    setIsLoading(false);
+                }
+            }).catch(error => {
+                console.log(error)
+            });
         }
 
 
@@ -126,11 +138,16 @@ export default function Equipment() {
                     ?
                     <CircularProgress/>
                     :
-                    <Armors armors={armor}/>
+                    <Armors others={armor}/>
                 }
             </TabPanel>
             <TabPanel value={value} index={2}>
-                Item Three
+                {isLoading
+                    ?
+                    <CircularProgress/>
+                    :
+                    <Others others={other}/>
+                }
             </TabPanel>
         </Paper>
     );
