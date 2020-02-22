@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22cff0d3-770e-4e53-b09b-7a9d3779a994" name="Default Changelist" comment="added router, added main layout for components, added example component">
-      <change afterPath="$PROJECT_DIR$/src/component/Constants.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/book/BookCover.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/book/books/Mutations.js" afterDir="false" />
+    <list default="true" id="22cff0d3-770e-4e53-b09b-7a9d3779a994" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/component/API.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/book/books/equipment/Armors.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/book/books/equipment/Equipment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/book/books/equipment/Others.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/book/books/equipment/Weapons.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Constants.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/book/BookCover.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/book/BookCover.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/book/books/Mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/book/books/Mutations.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +46,11 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bjarn\IdeaProjects\rpg_frontend\src\component\book\books\equipment" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -78,8 +88,27 @@
       <updated>1581799405171</updated>
       <workItem from="1581904251780" duration="189000" />
       <workItem from="1581969194341" duration="8823000" />
-      <workItem from="1582047542569" duration="10612000" />
+      <workItem from="1582047542569" duration="15573000" />
+      <workItem from="1582111910630" duration="13763000" />
+      <workItem from="1582201116755" duration="11438000" />
+      <workItem from="1582331624930" duration="7156000" />
+      <workItem from="1582373527801" duration="6513000" />
     </task>
+    <task id="LOCAL-00001" summary="added router, main layout for components, added constants&#10;changed tabs to expansion panel, added radio buttons and search bar. Added example data just to visualise how it looks">
+      <created>1582062642890</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1582062642890</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added fetch using axios,&#10;search input works just fine,&#10;radio buttons filter by god,&#10;loading icon before fetch is completed,&#10;tables should be good,">
+      <created>1582239173519</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582239173520</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,6 +129,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added router, added main layout for components, added example component" />
-    <option name="LAST_COMMIT_MESSAGE" value="added router, added main layout for components, added example component" />
+    <MESSAGE value="added router, main layout for components, added constants&#10;changed tabs to expansion panel, added radio buttons and search bar. Added example data just to visualise how it looks" />
+    <MESSAGE value="added fetch using axios,&#10;search input works just fine,&#10;radio buttons filter by god,&#10;loading icon before fetch is completed,&#10;tables should be good," />
+    <option name="LAST_COMMIT_MESSAGE" value="added fetch using axios,&#10;search input works just fine,&#10;radio buttons filter by god,&#10;loading icon before fetch is completed,&#10;tables should be good," />
   </component>
 </project>

@@ -18,8 +18,8 @@ const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
     },
-    link :{
-      textDecoration:'none',
+    link: {
+        textDecoration: 'none',
     },
 
     drawer: {
@@ -64,6 +64,12 @@ export default function BookCover(props) {
                         <ListItem button key={"Mutacje"}>
                             {/*<ListItemIcon></ListItemIcon>*/}
                             <ListItemText primary={"Mutacje"}/>
+                        </ListItem>
+                    </Link>
+                    <Link to={"/equipment"} className={classes.link}>
+                        <ListItem button key={"Ekwipunek"}>
+                            {/*<ListItemIcon></ListItemIcon>*/}
+                            <ListItemText primary={"Ekwipunek"}/>
                         </ListItem>
                     </Link>
 
