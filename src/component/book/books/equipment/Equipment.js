@@ -138,7 +138,7 @@ export default function Equipment() {
                     ?
                     <CircularProgress/>
                     :
-                    <Armors others={armor}/>
+                    <Armors armors={armor}/>
                 }
             </TabPanel>
             <TabPanel value={value} index={2}>

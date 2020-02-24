@@ -176,7 +176,7 @@ function Mutations() {
     const classes = useStyles();
     const [isLoading, setIsLoading] = useState(true);
     const [value, setValue] = useState("ALL");
-    const [searchValue, setSearchValue] = useState(0);
+    const [searchValue, setSearchValue] = useState("");
     const [allMutations, setAllMutations] = useState([]);
     const [currentMutations, setCurrentMutations] = useState([]);
     const [currentMutationsAfterSearch, setCurrentMutationsAfterSearch] = useState([]);
@@ -378,13 +378,13 @@ function Mutations() {
                                 <PanelSummary key={key} className={classes.expansionPanelContent}>
                                     <Grid container justify="flex-start">
                                         <Grid item xs={10}>
-                                            <Typography gutterBottom variant="h5" component="h5" align={"left"}>
+                                            <Typography  variant="h5" component="h5" align={"left"}>
                                                 {mutation.dice} {mutation.name}
                                             </Typography>
 
                                         </Grid>
                                         <Grid item xs={2}>
-                                            <Typography noWrap gutterBottom variant="h5" component="h5" align={"right"}>
+                                            <Typography noWrap  variant="h5" component="h5" align={"right"}>
                                                 <b>
                                                     PS: {mutation.fearPoints}
                                                 </b>
