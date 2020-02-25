@@ -1,55 +1,36 @@
 import React, {useState, useEffect} from "react";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import {ExpansionPanel, withStyles} from "@material-ui/core";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import API from "../../API";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import {makeStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import SearchIcon from '@material-ui/icons/Search';
+import InputBase from "@material-ui/core/InputBase";
+import {SearchInputStyle} from './../../styles/SearchInputStyle';
+import {Panel,PanelSummary} from "../../styles/expansionPanel/Panel";
 
-const useStyles = makeStyles({
-    root: {
-        flexGrow: 1,
-    },
-});
-const Panel = withStyles({
-    root: {
-        border: '1px solid rgba(0, 0, 0, .125)',
-        boxShadow: 'none',
-        '&:not(:last-child)': {
-            borderBottom: 0,
-        },
-        '&:before': {
-            display: 'none',
-        },
-        '&$expanded': {
-            margin: 'auto',
-        },
-    },
-    expanded: {},
-})(ExpansionPanel);
-const PanelSummary = withStyles({
-    root: {
-        // backgroundColor: 'rgba(0, 0, 0, .03)',
-        borderBottom: '1px solid rgba(0, 0, 0, .125)',
-        marginBottom: -1,
-        minHeight: 56,
-        '&$expanded': {
-            minHeight: 56,
-        },
-    },
-    content: {
-        '&$expanded': {
-            margin: '12px 0',
-        },
-    },
-    expanded: {},
-})(ExpansionPanelSummary);
+
+
 export default function Ability() {
-    const classes = useStyles();
+    const classes = SearchInputStyle();
+    const [allAbility, setAllAbility] = useState([]);
     const [ability, setAbility] = useState([]);
+    const [searching, setSearching] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    const filterList = (event) => {
+        setSearching(event.target.value);
+        let filteredList = allAbility;
+        filteredList = filteredList.filter((item) => {
+            return item.name.toString().toLowerCase().search(
+                event.target.value.toString().toLowerCase()
+            ) !== -1;
+        });
+        setAbility(filteredList);
+
+    };
+
     useEffect(() => {
 
         let didCancel = false;
@@ -61,6 +42,7 @@ export default function Ability() {
 
                 if (!didCancel) {
                     const abilities = response.data;
+                    setAllAbility(abilities.abilities);
                     setAbility(abilities.abilities);
                     setIsLoading(false);
                 }
@@ -80,6 +62,29 @@ export default function Ability() {
 
     return (
         <Paper className={classes.root}>
+            <Grid container alignItems={"center"} justify={"flex-start"}>
+                <Grid item xs={9}>
+                </Grid>
+                <Grid item xs={3}>
+                    <Grid container>
+
+                        <div className={classes.search}>
+                            <div className={classes.searchIcon}>
+                                <SearchIcon/>
+                            </div>
+                            <InputBase
+                                onChange={filterList}
+                                value={searching}
+                                placeholder="Wyszukaj.."
+                                classes={{
+                                    root: classes.inputRoot,
+                                    input: classes.inputInput,
+                                }}
+                            />
+                        </div>
+                    </Grid>
+                </Grid>
+            </Grid>
             {isLoading === true ?
                 <CircularProgress/> :
                 <>

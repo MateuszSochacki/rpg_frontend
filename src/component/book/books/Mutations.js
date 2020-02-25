@@ -1,14 +1,10 @@
 import React, {useEffect, useState} from "react";
 import Paper from "@material-ui/core/Paper";
-import {ExpansionPanel} from "@material-ui/core";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import {withStyles, makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
@@ -18,162 +14,16 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import Radio from "@material-ui/core/Radio";
-import {fade} from '@material-ui/core/styles/colorManipulator';
 import API from '../../API';
 import LazyLoad from 'react-lazyload';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-    },
-
-    search: {
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.45),
-        '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.45),
-        },
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(),
-            width: 'auto',
-        },
-    },
-    searchIcon: {
-        width: theme.spacing(9),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    inputRoot: {
-        color: 'inherit',
-        width: '100%',
-    },
-    inputInput: {
-        paddingTop: theme.spacing(),
-        paddingRight: theme.spacing(),
-        paddingBottom: theme.spacing(),
-        paddingLeft: theme.spacing(10),
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.down('sm')]: {
-            width: 0,
-            '&:focus': {
-                width: 220,
-            },
-        },
-        [theme.breakpoints.up('md')]: {
-            width: 0,
-            '&:focus': {
-                width: 120,
-            },
-        },
-
-    },
-
-}));
-const StyledTableCell = withStyles(theme => ({
-    head: {
-        backgroundColor: theme.palette.common.black,
-        // backgroundColor: "#5a5a5a",
-        color: theme.palette.common.white,
-        height: 0,
-        border: "1px solid",
-        borderColor: theme.palette.common.black,
-        padding: 0,
-
-    },
-    body: {
-        fontSize: 14,
-        height: 0,
-        border: "1px solid",
-        padding: 0,
-    },
-    root: {
-        textAlign: "center",
-
-    }
-}))(TableCell);
-const StyledTableCellDiffColor = withStyles(theme => ({
-    head: {
-        height: 0,
-        border: "1px solid",
-        borderColor: theme.palette.common.black,
-        padding: 0,
-
-    },
-    body: {
-        fontSize: 14,
-        color: theme.palette.common.white,
-
-        height: 0,
-        border: "1px solid",
-        padding: 0,
-    },
-    root: {
-        textAlign: "center",
-
-    }
-}))(TableCell);
-const StyledTableRow = withStyles(theme => ({
-    root: {
-        '&:nth-of-type(odd)': {
-            backgroundColor: theme.palette.background.default,
-
-        },
-
-    },
-}))(TableRow);
-const StyledTableRowDiffColor = withStyles(() => ({
-    root: {
-        backgroundColor: '#1f1f1e',
-    },
-
-}))(TableRow);
-const Panel = withStyles({
-    root: {
-        border: '1px solid rgba(0, 0, 0, .125)',
-        boxShadow: 'none',
-        '&:not(:last-child)': {
-            borderBottom: 0,
-        },
-        '&:before': {
-            display: 'none',
-        },
-        '&$expanded': {
-            margin: 'auto',
-        },
-    },
-    expanded: {},
-})(ExpansionPanel);
-const PanelSummary = withStyles({
-    root: {
-        // backgroundColor: 'rgba(0, 0, 0, .03)',
-        borderBottom: '1px solid rgba(0, 0, 0, .125)',
-        marginBottom: -1,
-        minHeight: 56,
-        '&$expanded': {
-            minHeight: 56,
-        },
-    },
-    content: {
-        '&$expanded': {
-            margin: '12px 0',
-        },
-    },
-    expanded: {},
-})(ExpansionPanelSummary);
+import {SearchInputStyle} from './../../styles/SearchInputStyle';
+import {Panel,PanelSummary} from "../../styles/expansionPanel/Panel";
+import {StyledTableCell,StyledTableCellDiffColor,StyledTableRowDiffColor,StyledTableRow} from "../../styles/expansionPanel/Table";
 
 
 function Mutations() {
-    const classes = useStyles();
+    const classes = SearchInputStyle();
     const [isLoading, setIsLoading] = useState(true);
     const [value, setValue] = useState("ALL");
     const [searchValue, setSearchValue] = useState("");

@@ -78,6 +78,18 @@ export default function BookCover(props) {
                             <ListItemText primary={"Zdolności"}/>
                         </ListItem>
                     </Link>
+                    <Link to={"/skill"} className={classes.link}>
+                        <ListItem button key={"Umiejętności"}>
+                            {/*<ListItemIcon></ListItemIcon>*/}
+                            <ListItemText primary={"Umiejętności"}/>
+                        </ListItem>
+                    </Link>
+                    <Link to={"/spell"} className={classes.link}>
+                        <ListItem button key={"Zaklęcia"}>
+                            {/*<ListItemIcon></ListItemIcon>*/}
+                            <ListItemText primary={"Zaklęcia"}/>
+                        </ListItem>
+                    </Link>
 
                 </List>
             </Drawer>

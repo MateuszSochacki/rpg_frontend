@@ -5,6 +5,8 @@ import Mutations from '../component/book/books/Mutations'
 import Equipment from '../component/book/books/equipment/Equipment'
 import Ability from "../component/book/books/Ability";
 import './App.css';
+import Skills from "../component/book/books/Skills";
+import Spells from "../component/book/books/Spells";
 
 function App() {
     return (
@@ -20,6 +22,8 @@ function App() {
                     {/*<Route path="/bestiary" component={Mutations}/>*/}
                     <Route path="/equipment" component={Equipment}/>
                     <Route path="/ability" component={Ability}/>
+                    <Route path="/skill" component={Skills}/>
+                    <Route path="/spell" component={Spells}/>
                 </BookCover>
 
             </BrowserRouter>
