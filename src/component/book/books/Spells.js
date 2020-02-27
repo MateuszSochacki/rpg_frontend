@@ -15,9 +15,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import {
     StyledTableCell,
-    StyledTableCellDiffColor,
     StyledTableRow,
-    StyledTableRowDiffColor
 } from "../../styles/expansionPanel/Table";
 import TableBody from "@material-ui/core/TableBody";
 

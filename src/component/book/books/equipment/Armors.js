@@ -53,7 +53,7 @@ export default function Armors(props) {
                                 </TableHead>
                                 <TableBody>
                                     {props.armors.map((armor, key) => {
-                                        if (armor.type===cat)
+                                        if (armor.type===cat){
                                         return (
                                         <TableRow key={key}>
                                             <TableCell align="center">{armor.name}</TableCell>
@@ -63,7 +63,7 @@ export default function Armors(props) {
                                             <TableCell align="center">{armor.armorPoints}</TableCell>
                                             <TableCell align="center">{armor.accessibility}</TableCell>
                                         </TableRow>
-                                        )})}
+                                        )}return ("")})}
                                 </TableBody>
                             </Table>
                         </TableContainer>

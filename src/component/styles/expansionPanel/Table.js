@@ -17,6 +17,8 @@ export const StyledTableCell = withStyles(theme => ({
         fontSize: 14,
         height: 0,
         border: "1px solid",
+        borderColor: theme.palette.common.black,
+
         padding: 0,
     },
     root: {
@@ -35,6 +37,7 @@ export const StyledTableCellDiffColor = withStyles(theme => ({
     body: {
         fontSize: 14,
         color: theme.palette.common.white,
+        borderColor: theme.palette.common.black,
 
         height: 0,
         border: "1px solid",

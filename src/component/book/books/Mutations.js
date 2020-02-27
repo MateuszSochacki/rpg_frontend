@@ -285,29 +285,11 @@ function Mutations() {
                                                             </TableRow>
                                                         </TableHead>
                                                         <TableBody>
-                                                            {/*{mutation.mutationEffects.map((effect, key) => (*/}
-
-
-                                                            {/*    <StyledTableRow key={key}>*/}
-                                                            {/*        <StyledTableCell component="th" scope="row">*/}
-                                                            {/*            {effect.dice}*/}
-                                                            {/*        </StyledTableCell>*/}
-                                                            {/*        <StyledTableCell*/}
-                                                            {/*            align="right">{effect.location}</StyledTableCell>*/}
-
-                                                            {/*        {effect.effect !== null ?*/}
-                                                            {/*            <StyledTableCell*/}
-                                                            {/*                align="right">{effect.effect}</StyledTableCell>*/}
-                                                            {/*            : <StyledTableCell*/}
-                                                            {/*                align="right"></StyledTableCell>}*/}
-                                                            {/*    </StyledTableRow>*/}
-
-                                                            {/*))}*/}
 
 
                                                             {mutation.mutationEffects.map((effect, key) => {
 
-                                                                {
+
                                                                     if (effect.effect !== "1") {
                                                                         return (
                                                                             <StyledTableRow key={key}>
@@ -339,7 +321,7 @@ function Mutations() {
                                                                             </StyledTableRowDiffColor>
                                                                         )
                                                                     }
-                                                                }
+
 
 
                                                             })}
