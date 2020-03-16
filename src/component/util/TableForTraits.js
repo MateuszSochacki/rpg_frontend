@@ -16,8 +16,8 @@ const Papirus = withStyles({
     },
 })(Paper);
 
-export default function TableForTraits(props){
-    return(
+export default function TableForTraits(props) {
+    return (
         <Papirus>
 
             <Typography align={"center"}>
@@ -51,23 +51,23 @@ export default function TableForTraits(props){
                             <StyledTableCell component="th"
                                              scope="row"
                                              align="center">
-                                {props.mainTraits.fighting}
+                                {props.mainTraits.fighting===null? "-" : props.mainTraits.fighting}
                             </StyledTableCell>
                             <StyledTableCell
-                                align="center">{props.mainTraits.shooting}</StyledTableCell>
+                                align="center">{props.mainTraits.shooting===null? "-" :props.mainTraits.shooting}</StyledTableCell>
 
                             <StyledTableCell
-                                align="center">{props.mainTraits.vigor}</StyledTableCell>
+                                align="center">{props.mainTraits.vigor===null? "-" :props.mainTraits.vigor}</StyledTableCell>
                             <StyledTableCell
-                                align="center">{props.mainTraits.resistance}</StyledTableCell>
+                                align="center">{props.mainTraits.resistance===null? "-" :props.mainTraits.resistance}</StyledTableCell>
                             <StyledTableCell
-                                align="center">{props.mainTraits.agility}</StyledTableCell>
+                                align="center">{props.mainTraits.agility===null? "-" :props.mainTraits.agility}</StyledTableCell>
                             <StyledTableCell
-                                align="center">{props.mainTraits.intelligence}</StyledTableCell>
+                                align="center">{props.mainTraits.intelligence===null? "-" :props.mainTraits.intelligence}</StyledTableCell>
                             <StyledTableCell
-                                align="center">{props.mainTraits.willpower}</StyledTableCell>
+                                align="center">{props.mainTraits.willpower===null? "-" :props.mainTraits.willpower}</StyledTableCell>
                             <StyledTableCell
-                                align="center">{props.mainTraits.charisma}</StyledTableCell>
+                                align="center">{props.mainTraits.charisma===null? "-" :props.mainTraits.charisma}</StyledTableCell>
 
 
                         </StyledTableRow>
@@ -82,7 +82,7 @@ export default function TableForTraits(props){
                 Cechy Drugorzędne
             </Typography>
             <TableContainer>
-                <Table  aria-label="customized table">
+                <Table aria-label="customized table">
 
                     <TableHead>
 
@@ -106,23 +106,23 @@ export default function TableForTraits(props){
                             <StyledTableCell component="th"
                                              scope="row"
                                              align="center">
-                                {props.secondaryTraits.attack}
+                                {props.secondaryTraits.attack ===null? "-" :props.secondaryTraits.attack}
                             </StyledTableCell>
                             <StyledTableCell
-                                align="center">{props.secondaryTraits.health}</StyledTableCell>
+                                align="center">{props.secondaryTraits.health ===null? "-" :props.secondaryTraits.health}</StyledTableCell>
 
                             <StyledTableCell
-                                align="center">{props.secondaryTraits.strength}</StyledTableCell>
+                                align="center">{props.secondaryTraits.strength ===null? "-" :props.secondaryTraits.strength}</StyledTableCell>
                             <StyledTableCell
-                                align="center">{props.secondaryTraits.endurance}</StyledTableCell>
+                                align="center">{props.secondaryTraits.endurance ===null? "-" :props.secondaryTraits.endurance}</StyledTableCell>
                             <StyledTableCell
-                                align="center">{props.secondaryTraits.speed}</StyledTableCell>
+                                align="center">{props.secondaryTraits.speed ===null? "-" :props.secondaryTraits.speed}</StyledTableCell>
                             <StyledTableCell
-                                align="center">{props.secondaryTraits.magic}</StyledTableCell>
+                                align="center">{props.secondaryTraits.magic ===null? "-" :props.secondaryTraits.magic}</StyledTableCell>
                             <StyledTableCell
-                                align="center">{props.secondaryTraits.insanity}</StyledTableCell>
+                                align="center">{props.secondaryTraits.insanity ===null? "-" :props.secondaryTraits.insanity}</StyledTableCell>
                             <StyledTableCell
-                                align="center">{props.secondaryTraits.fatePoints}</StyledTableCell>
+                                align="center">{props.secondaryTraits.fatePoints ===null? "-" :props.secondaryTraits.fatePoints}</StyledTableCell>
 
 
                         </StyledTableRow>

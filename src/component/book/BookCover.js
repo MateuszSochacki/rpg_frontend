@@ -96,6 +96,12 @@ export default function BookCover(props) {
                             <ListItemText primary={"Bestiariusz"}/>
                         </ListItem>
                     </Link>
+                    <Link to={"/profession"} className={classes.link}>
+                        <ListItem button key={"Profesje"}>
+                            {/*<ListItemIcon></ListItemIcon>*/}
+                            <ListItemText primary={"Profesje"}/>
+                        </ListItem>
+                    </Link>
 
                 </List>
             </Drawer>

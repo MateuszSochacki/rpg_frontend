@@ -8,6 +8,7 @@ import './App.css';
 import Skills from "../component/book/books/Skills";
 import Spells from "../component/book/books/Spells";
 import Beasts from "../component/book/books/Beasts";
+import Professions from "../component/book/books/Professions";
 
 function App() {
     return (
@@ -26,6 +27,8 @@ function App() {
                     <Route path="/skill" component={Skills}/>
                     <Route path="/spell" component={Spells}/>
                     <Route path="/beast" component={Beasts}/>
+                    <Route path="/profession" component={Professions}/>
+
                 </BookCover>
 
             </BrowserRouter>

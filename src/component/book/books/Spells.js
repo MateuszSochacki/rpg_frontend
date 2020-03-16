@@ -39,15 +39,11 @@ export default function Spells() {
             ) !== -1;
         });
         setCategory(CategoryFromList(filteredList));
-
         setCurrentSpell(filteredList);
-
     };
 
     useEffect(() => {
         let didCancel = false;
-
-
         async function fetchSpell() {
 
             await API.get("spell/all").then(async (response) => {
@@ -55,21 +51,14 @@ export default function Spells() {
                 if (!didCancel) {
                     const spells = response.data;
                     setAllSpell(spells.spellDtos);
-
                     setCurrentSpell(spells.spellDtos);
-
                     setCategory(CategoryFromList(spells.spellDtos));
-
                     setIsLoading(false);
-
                 }
             }).catch(error => {
                 console.log(error)
             });
-
         }
-
-
         fetchSpell();
         return () => {
             didCancel = true;
