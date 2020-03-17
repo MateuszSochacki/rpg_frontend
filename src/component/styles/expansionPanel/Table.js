@@ -18,7 +18,7 @@ export const StyledTableCell = withStyles(theme => ({
         height: 0,
         border: "1px solid",
         borderColor: theme.palette.common.black,
-
+        width:"12.5%",
         padding: 0,
     },
     root: {

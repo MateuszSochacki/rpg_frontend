@@ -39,13 +39,13 @@ export const SearchInputStyle = makeStyles(theme=>({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.down('sm')]: {
-            width: 0,
+            width: 120,
             '&:focus': {
                 width: 220,
             },
         },
         [theme.breakpoints.up('md')]: {
-            width: 0,
+            width: 120,
             '&:focus': {
                 width: 120,
             },

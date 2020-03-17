@@ -10,6 +10,7 @@ import TableForTraits from "../../util/TableForTraits";
 import Paper from "@material-ui/core/Paper";
 import {SearchInputStyle} from "../../styles/SearchInputStyle";
 import API from "../../API";
+import Button from "@material-ui/core/Button";
 
 export default function Professions() {
     const classes = SearchInputStyle();
@@ -29,6 +30,27 @@ export default function Professions() {
         });
         setCurrentProf(filteredList);
 
+    };
+    const filterListByName = (name) => {
+        setSearching(name);
+        let filteredList = allProf;
+        filteredList = filteredList.filter((item) => {
+            return item.name.toString().toLowerCase().search(
+                name.toString().toLowerCase()
+            ) !== -1;
+        });
+        setCurrentProf(filteredList);
+
+    };
+    const searchFor=(arr)=>{
+        let comp=[];
+        for (let i=0;i<arr.length;i++){
+            comp[i]=<Button onClick={()=>{filterListByName(arr[i])}} key={i}>{arr[i] }</Button>;
+
+
+            // console.log(arr[i])
+        }
+        return comp
     };
 
     useEffect(() => {
@@ -143,14 +165,18 @@ export default function Professions() {
 
                                                     <Typography align={"left"}>
                                                         <b>Profesje wstępne: </b>
-                                                        {prof.inputProf.join(", ")}.
+                                                        {searchFor(prof.inputProf)}
+
+                                                        {/*{prof.inputProf.join(", ")}.*/}
 
                                                     </Typography>
                                                     <br/>
 
                                                     <Typography align={"left"}>
                                                         <b>Profesje wyjściowe: </b>
-                                                        {prof.outputProf.join(", ")}.
+
+                                                        {searchFor(prof.outputProf)}
+                                                        {/*{prof.outputProf.join(", ")}.*/}
                                                     </Typography>
                                                     <br/>
 
