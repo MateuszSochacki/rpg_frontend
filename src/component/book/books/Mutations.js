@@ -22,6 +22,7 @@ import {Panel,PanelSummary} from "../../styles/expansionPanel/Panel";
 import {StyledTableCell,StyledTableCellDiffColor,StyledTableRowDiffColor,StyledTableRow} from "../../styles/expansionPanel/Table";
 
 
+
 function Mutations() {
     const classes = SearchInputStyle();
     const [isLoading, setIsLoading] = useState(true);

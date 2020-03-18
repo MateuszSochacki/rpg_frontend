@@ -112,10 +112,7 @@ export default function Beasts() {
                                         {beast.skillList !== null ?
 
                                             <Typography align={"left"}>
-                                                <b>Umiejętności:</b> {beast.skillList.map((skill) => (
-
-                                                {skill}
-                                            ))}
+                                                <b>Umiejętności:</b> {beast.skillList.join(", ")}.
                                             </Typography>
                                             : <Typography align={"left"}>
                                                 <b>Umiejętności:</b> Brak
@@ -126,9 +123,7 @@ export default function Beasts() {
 
                                             <Typography align={"left"}>
                                                 <b>Zdolności: </b>
-                                                {beast.abilityList.map(ability => {
-                                                    return ability + ", "
-                                                })}
+                                                {beast.abilityList.join(", ")}.
 
 
                                             </Typography>
@@ -162,8 +157,7 @@ export default function Beasts() {
                                         {beast.armorList !== null ?
 
                                             <Typography align={"left"}>
-                                                <b>Zbroja:</b> {beast.armorList.map((armor, keys) => {
-                                                return (armor + ", ")
+                                                <b>Zbroja:</b> {beast.armorList.join(", ")}.
 
                                             })}
                                             </Typography>
@@ -188,14 +182,10 @@ export default function Beasts() {
                                         {beast.weapon !== null ?
 
                                             <Typography align={"left"}>
-                                                <b>Broń:</b> {beast.weapon.map((wpn) => (
-
-                                                wpn + " "
-
-                                            ))}
+                                                <b>Broń:</b> {beast.weapon.join(", ")}.
                                             </Typography>
                                             : <Typography align={"left"}>
-                                                <b>Zbroja:</b> Brak
+                                                <b>Broń:</b> Brak
                                             </Typography>
                                         }
 

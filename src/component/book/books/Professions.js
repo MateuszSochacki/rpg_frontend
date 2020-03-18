@@ -10,7 +10,18 @@ import TableForTraits from "../../util/TableForTraits";
 import Paper from "@material-ui/core/Paper";
 import {SearchInputStyle} from "../../styles/SearchInputStyle";
 import API from "../../API";
-import Button from "@material-ui/core/Button";
+import {SlimButton} from './../../styles/Styles'
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function Professions() {
     const classes = SearchInputStyle();
@@ -19,6 +30,19 @@ export default function Professions() {
     const [currentProf, setCurrentProf] = useState([]);
     const [searching, setSearching] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [moreInfo,setMoreInfo]= useState("");
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = (name) => {
+        fetchAbilityByName(name);
+
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setMoreInfo("");
+        setOpen(false);
+    };
 
     const filterList = (event) => {
         setSearching(event.target.value);
@@ -42,16 +66,50 @@ export default function Professions() {
         setCurrentProf(filteredList);
 
     };
-    const searchFor=(arr)=>{
-        let comp=[];
-        for (let i=0;i<arr.length;i++){
-            comp[i]=<Button onClick={()=>{filterListByName(arr[i])}} key={i}>{arr[i] }</Button>;
-
-
-            // console.log(arr[i])
+    const searchFor = (arr) => {
+        let components = [];
+        for (let i = 0; i < arr.length; i++) {
+            components[i] = <SlimButton onClick={() => {
+                filterListByName(arr[i])
+            }} key={i}>{arr[i]}</SlimButton>;
         }
-        return comp
+        return components
     };
+    const lookForAbility = (arr) => {
+        let components = [];
+        let index = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].toLowerCase().includes("albo")) {
+                let temp = arr[i].split(" albo ");
+
+                components[index] = <SlimButton key={"FirstChoice" + i} onClick={()=>{handleClickOpen(temp[0])}}> {temp[0]}</SlimButton>;
+                index++;
+                components[index] = " albo ";
+                index++;
+                components[index] = <SlimButton key={"SecondChoice" + i} onClick={()=>{handleClickOpen(temp[1])}}> {temp[1]}</SlimButton>;
+                index++;
+            } else {
+                components[index] = <SlimButton key={i} onClick={()=>{handleClickOpen(arr[i])}}> {arr[i]}</SlimButton>;
+                index++;
+            }
+        }
+        return components;
+
+    };
+
+
+    async function fetchAbilityByName(name) {
+
+        await API.post("ability/name",{name}).then(async (response) => {
+
+
+            const protip = response.data;
+            setMoreInfo(protip);
+        }).catch(error => {
+            console.log(error)
+        });
+
+    }
 
     useEffect(() => {
 
@@ -74,6 +132,7 @@ export default function Professions() {
             });
 
         }
+
         fetchProfs();
         return () => {
             didCancel = true;
@@ -81,8 +140,24 @@ export default function Professions() {
 
     }, [isLoading]);
 
-    return(
+    return (
         <>
+            <Dialog
+                open={open}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-slide-title"
+                aria-describedby="alert-dialog-slide-description"
+            >
+                <DialogTitle id="alert-dialog-slide-title">{moreInfo===""?"Pusto lol": moreInfo.name}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-description">
+                        {moreInfo.description}
+                    </DialogContentText>
+                </DialogContent>
+
+            </Dialog>
             <Paper className={classes.root}>
                 <Grid container alignItems={"center"} justify={"flex-start"}>
                     <Grid item xs={9}>
@@ -139,7 +214,8 @@ export default function Professions() {
                                                     <img src={prof.img} alt={""} width={"100%"}/>
                                                 </Grid>
                                                 <Grid item xs={6}>
-                                                    <TableForTraits mainTraits={prof.mainTraits} secondaryTraits={prof.secondaryTraits}/>
+                                                    <TableForTraits mainTraits={prof.mainTraits}
+                                                                    secondaryTraits={prof.secondaryTraits}/>
 
                                                     <br/>
                                                     <Typography align={"left"}>
@@ -151,9 +227,11 @@ export default function Professions() {
 
                                                     <Typography align={"left"}>
                                                         <b>Zdolności: </b>
-                                                        {prof.abilityList.join(", ")}.
 
+                                                        {lookForAbility(prof.abilityList)}
+                                                        {/*{prof.abilityList.join(", ")}.*/}
                                                     </Typography>
+
                                                     <br/>
 
                                                     <Typography align={"left"}>
@@ -184,7 +262,6 @@ export default function Professions() {
                                             </Grid>
 
 
-
                                             <Typography align={"left"}>
                                                 <b>Uwagi: </b> {prof.comment}
                                             </Typography>
@@ -202,6 +279,6 @@ export default function Professions() {
                 }
             </Paper>
 
-            </>
+        </>
     )
 }
