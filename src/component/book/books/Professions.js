@@ -10,7 +10,7 @@ import TableForTraits from "../../util/TableForTraits";
 import Paper from "@material-ui/core/Paper";
 import {SearchInputStyle} from "../../styles/SearchInputStyle";
 import API from "../../API";
-import {SlimButton} from './../../styles/Styles'
+import {AlboButton, SlimButton} from './../../styles/Styles'
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -30,17 +30,35 @@ export default function Professions() {
     const [currentProf, setCurrentProf] = useState([]);
     const [searching, setSearching] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [moreInfo,setMoreInfo]= useState("");
+    const [moreInfo,setMoreInfo]= useState({
+        name:"",
+        type:"",
+        trait:"",
+        description:"",
+        relAbility:""
+    });
+    const [skill,setSkill] = useState(false);
     const [open, setOpen] = React.useState(false);
 
-    const handleClickOpen = (name) => {
-        fetchAbilityByName(name);
-
+    const handleClickOpen = (type,name) => {
+        if (type==="ability") {
+            fetchAbilityByName(name);
+            setSkill(false);
+        }else{
+            fetchSkillByName(name);
+            setSkill(true);
+        }
         setOpen(true);
     };
 
     const handleClose = () => {
-        setMoreInfo("");
+        setMoreInfo({
+            name:"",
+            type:"",
+            trait:"",
+            description:"",
+            relAbility:""
+        });
         setOpen(false);
     };
 
@@ -82,14 +100,14 @@ export default function Professions() {
             if (arr[i].toLowerCase().includes("albo")) {
                 let temp = arr[i].split(" albo ");
 
-                components[index] = <SlimButton key={"FirstChoice" + i} onClick={()=>{handleClickOpen(temp[0])}}> {temp[0]}</SlimButton>;
+                components[index] = <SlimButton key={"FirstChoice" + i} onClick={()=>{handleClickOpen("ability",temp[0])}}> {temp[0]}</SlimButton>;
                 index++;
-                components[index] = " albo ";
+                components[index] = <AlboButton key={"Albo"+i} disabled={true}> albo </AlboButton>;
                 index++;
-                components[index] = <SlimButton key={"SecondChoice" + i} onClick={()=>{handleClickOpen(temp[1])}}> {temp[1]}</SlimButton>;
+                components[index] = <SlimButton key={"SecondChoice" + i} onClick={()=>{handleClickOpen("ability",temp[1])}}>{temp[1]}</SlimButton>;
                 index++;
             } else {
-                components[index] = <SlimButton key={i} onClick={()=>{handleClickOpen(arr[i])}}> {arr[i]}</SlimButton>;
+                components[index] = <SlimButton key={i} onClick={()=>{handleClickOpen("ability",arr[i])}}> {arr[i]}</SlimButton>;
                 index++;
             }
         }
@@ -97,6 +115,39 @@ export default function Professions() {
 
     };
 
+    const lookForSkill = (arr) => {
+        let components = [];
+        let index = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].toLowerCase().includes("(")) {
+                let temp = arr[i].substring(0,arr[i].indexOf("("));
+
+                components[index] = <SlimButton key={"FirstChoice" + i} onClick={()=>{handleClickOpen("skill",temp[i])}}> {temp}</SlimButton>;
+                index++;
+                components[index] = <AlboButton key={"AlboButton" + i} disabled={true}> {arr[i].substr(arr[i].indexOf("("),arr[i].indexOf(")"))}</AlboButton>;
+                index++;
+            } else {
+                components[index] = <SlimButton key={i} onClick={()=>{handleClickOpen("skill",arr[i])}}> {arr[i]}</SlimButton>;
+                index++;
+            }
+        }
+        return components;
+
+    };
+
+    async function fetchSkillByName(name) {
+
+        await API.post("skill/name",{name}).then(async (response) => {
+
+
+            const protip = response.data;
+            setMoreInfo(protip);
+
+        }).catch(error => {
+            console.log(error)
+        });
+
+    }
 
     async function fetchAbilityByName(name) {
 
@@ -153,7 +204,12 @@ export default function Professions() {
                 <DialogTitle id="alert-dialog-slide-title">{moreInfo===""?"Pusto lol": moreInfo.name}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        {moreInfo.description}
+                        {skill?<Typography component={"span"}><b>Typ: </b>{moreInfo.type}<br/></Typography>:null}
+                        {skill?<Typography component={"span"}><b>Cecha: </b>{moreInfo.trait}<br/></Typography>:null}
+
+
+                        <Typography component={"span"}><b>Opis: </b>{moreInfo.description}</Typography><br/>
+                        {skill?<Typography component={"span"}><b>Zdolności pokrewne: </b>{moreInfo.relAbility}<br/></Typography>:null}
                     </DialogContentText>
                 </DialogContent>
 
@@ -220,7 +276,9 @@ export default function Professions() {
                                                     <br/>
                                                     <Typography align={"left"}>
                                                         <b>Umiejętności: </b>
-                                                        {prof.skillList.join(", ")}.
+                                                        {lookForSkill(prof.skillList)}
+
+                                                        {/*{prof.skillList.join(", ")}.*/}
 
                                                     </Typography>
                                                     <br/>
