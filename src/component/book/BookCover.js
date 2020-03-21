@@ -49,12 +49,20 @@ export default function BookCover(props) {
                 anchor="left"
             >
 
+
                 <List>
-                    <Link to={"/mutation"} className={classes.link}>
+                    <Link to={"/login"} className={classes.link}>
 
                         <ListItem button key={"Login"}>
                             {/*<ListItemIcon></ListItemIcon>*/}
                             <ListItemText primary={"Login"}/>
+                        </ListItem>
+                    </Link>
+                    <Link to={"/register"} className={classes.link}>
+
+                        <ListItem button key={"Zarejestruj"}>
+                            {/*<ListItemIcon></ListItemIcon>*/}
+                            <ListItemText primary={"Zarejestruj"}/>
                         </ListItem>
                     </Link>
                 </List>

@@ -99,7 +99,9 @@ export default function Ability() {
                         </PanelSummary>
                         <ExpansionPanelDetails key={key}>
 
-                            {ability.description}
+                            <Typography align={"left"}>
+                            <b>Opis: </b>{ability.description}
+                            </Typography>
                         </ExpansionPanelDetails>
 
 

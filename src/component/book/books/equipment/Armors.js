@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import CategoryFromList from "./CategoryFromList";
 import {Panel,PanelSummary} from "../../../styles/expansionPanel/Panel";
+import {StyledTableCell} from "../../../styles/expansionPanel/Table";
 
 const useStyles = makeStyles({
     table: {
@@ -43,12 +44,12 @@ export default function Armors(props) {
                             <Table className={classes.table} size="small" aria-label="a dense table" key={key}>
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell align="center">Nazwa</TableCell>
-                                        <TableCell align="center">Cena</TableCell>
-                                        <TableCell align="center">Waga</TableCell>
-                                        <TableCell align="center">Lokacja</TableCell>
-                                        <TableCell align="center">Punkty zbroi</TableCell>
-                                        <TableCell align="center">Dostępność</TableCell>
+                                        <StyledTableCell align="center">Nazwa</StyledTableCell>
+                                        <StyledTableCell align="center">Cena</StyledTableCell>
+                                        <StyledTableCell align="center">Waga</StyledTableCell>
+                                        <StyledTableCell align="center">Lokacja</StyledTableCell>
+                                        <StyledTableCell align="center">Punkty zbroi</StyledTableCell>
+                                        <StyledTableCell align="center">Dostępność</StyledTableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -56,12 +57,12 @@ export default function Armors(props) {
                                         if (armor.type===cat){
                                         return (
                                         <TableRow key={key}>
-                                            <TableCell align="center">{armor.name}</TableCell>
-                                            <TableCell align="center">{armor.price}</TableCell>
-                                            <TableCell align="center">{armor.weight}</TableCell>
-                                            <TableCell align="center">{armor.location}</TableCell>
-                                            <TableCell align="center">{armor.armorPoints}</TableCell>
-                                            <TableCell align="center">{armor.accessibility}</TableCell>
+                                            <StyledTableCell align="center">{armor.name}</StyledTableCell>
+                                            <StyledTableCell align="center">{armor.price}</StyledTableCell>
+                                            <StyledTableCell align="center">{armor.weight}</StyledTableCell>
+                                            <StyledTableCell align="center">{armor.location}</StyledTableCell>
+                                            <StyledTableCell align="center">{armor.armorPoints}</StyledTableCell>
+                                            <StyledTableCell align="center">{armor.accessibility}</StyledTableCell>
                                         </TableRow>
                                         )}return ("")})}
                                 </TableBody>

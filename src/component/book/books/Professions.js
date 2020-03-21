@@ -321,7 +321,9 @@ export default function Professions() {
 
 
                                             <Typography align={"left"}>
-                                                <b>Uwagi: </b> {prof.comment}
+                                                {prof.comment !==""?<>
+                                                    <b>Uwagi: </b> {prof.comment}</>
+                                                :null}
                                             </Typography>
 
 

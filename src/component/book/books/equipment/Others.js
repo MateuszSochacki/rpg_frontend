@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import CategoryFromList from "./CategoryFromList";
 import {Panel,PanelSummary} from "../../../styles/expansionPanel/Panel";
+import {StyledTableCell} from "../../../styles/expansionPanel/Table";
 
 const useStyles = makeStyles({
     table: {
@@ -39,10 +40,10 @@ export default function Others(props) {
                 <Table className={classes.table} size="small" aria-label="a dense table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center">Nazwa</TableCell>
-                            <TableCell align="center">Cena</TableCell>
-                            <TableCell align="center">Waga</TableCell>
-                            <TableCell align="center">Dostępność</TableCell>
+                            <StyledTableCell align="center">Nazwa</StyledTableCell>
+                            <StyledTableCell align="center">Cena</StyledTableCell>
+                            <StyledTableCell align="center">Waga</StyledTableCell>
+                            <StyledTableCell align="center">Dostępność</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -51,10 +52,10 @@ export default function Others(props) {
                                 return (
                             <TableRow key={key}>
 
-                                <TableCell align="center">{other.name}</TableCell>
-                                <TableCell align="center">{other.price}</TableCell>
-                                <TableCell align="center">{other.weight}</TableCell>
-                                <TableCell align="center">{other.accessibility}</TableCell>
+                                <StyledTableCell align="center">{other.name}</StyledTableCell>
+                                <StyledTableCell align="center">{other.price}</StyledTableCell>
+                                <StyledTableCell align="center">{other.weight}</StyledTableCell>
+                                <StyledTableCell align="center">{other.accessibility}</StyledTableCell>
                             </TableRow>
                         )}return ("")})}
                     </TableBody>

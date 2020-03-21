@@ -23,6 +23,9 @@ export const StyledTableCell = withStyles(theme => ({
     },
     root: {
         textAlign: "center",
+        "&:last-child": {
+            paddingRight: 0
+        }
 
     }
 }))(TableCell);

@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from "@material-ui/core/Typography";
 import {Tooltip} from "@material-ui/core";
+import {StyledTableCell} from "../../../styles/expansionPanel/Table";
 
 
 
@@ -28,32 +29,32 @@ export default function Weapons(props) {
                 <Table className={classes.table} size="small" aria-label="a dense table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center">Nazwa</TableCell>
-                            <TableCell align="center">Cena</TableCell>
-                            <TableCell align="center">Waga</TableCell>
-                            <TableCell align="center">Kategoria Broni</TableCell>
-                            <TableCell align="center">Zasięg minimalny</TableCell>
-                            <TableCell align="center">Zasięg maksymalny</TableCell>
-                            <TableCell align="center">Czas przeładowania</TableCell>
-                            <TableCell align="center">Siła uderzenia</TableCell>
-                            <TableCell align="center">Cechy Broni</TableCell>
-                            <TableCell align="center">Dostępność</TableCell>
+                            <StyledTableCell align="center">Nazwa</StyledTableCell>
+                            <StyledTableCell align="center">Cena</StyledTableCell>
+                            <StyledTableCell align="center">Waga</StyledTableCell>
+                            <StyledTableCell align="center">Kategoria Broni</StyledTableCell>
+                            <StyledTableCell align="center">Zasięg minimalny</StyledTableCell>
+                            <StyledTableCell align="center">Zasięg maksymalny</StyledTableCell>
+                            <StyledTableCell align="center">Czas przeładowania</StyledTableCell>
+                            <StyledTableCell align="center">Siła uderzenia</StyledTableCell>
+                            <StyledTableCell align="center">Cechy Broni</StyledTableCell>
+                            <StyledTableCell align="center">Dostępność</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {props.weapons.map((weapon,key) => (
                             <TableRow key={key}>
-                                <TableCell component="th" scope="row">
+                                <StyledTableCell component="th" scope="row">
                                     {weapon.name}
-                                </TableCell>
-                                <TableCell align="center">{weapon.price}</TableCell>
-                                <TableCell align="center">{weapon.weight}</TableCell>
-                                <TableCell align="center">{weapon.category}</TableCell>
-                                <TableCell align="center">{weapon.rangeMin}</TableCell>
-                                <TableCell align="center">{weapon.rangeMax}</TableCell>
-                                <TableCell align="center">{weapon.reload!==null? weapon.reload : "Brak"}</TableCell>
-                                <TableCell align="center">{weapon.strength}</TableCell>
-                                <TableCell align="center" >{weapon.weaponTrait.map(currentTrait=> {
+                                </StyledTableCell>
+                                <StyledTableCell align="center">{weapon.price}</StyledTableCell>
+                                <StyledTableCell align="center">{weapon.weight}</StyledTableCell>
+                                <StyledTableCell align="center">{weapon.category}</StyledTableCell>
+                                <StyledTableCell align="center">{weapon.rangeMin}</StyledTableCell>
+                                <StyledTableCell align="center">{weapon.rangeMax}</StyledTableCell>
+                                <StyledTableCell align="center">{weapon.reload!==null? weapon.reload : "Brak"}</StyledTableCell>
+                                <StyledTableCell align="center">{weapon.strength}</StyledTableCell>
+                                <StyledTableCell align="center" >{weapon.weaponTrait.map(currentTrait=> {
                                     return(
                                         <Tooltip title={currentTrait.description} key={key}>
                                             <Typography key={key}>
@@ -63,9 +64,9 @@ export default function Weapons(props) {
                                         </Tooltip>
 
                                     );})}
-                                </TableCell>
+                                </StyledTableCell>
 
-                                <TableCell align="center">{weapon.accessibility}</TableCell>
+                                <StyledTableCell align="center">{weapon.accessibility}</StyledTableCell>
 
                             </TableRow>
                         ))}
