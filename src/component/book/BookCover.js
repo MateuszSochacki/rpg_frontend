@@ -68,43 +68,43 @@ export default function BookCover(props) {
                 </List>
                 <Divider/>
                 <List>
-                    <Link to={"/mutation"} className={classes.link}>
+                    <Link to={"/book/mutation"} className={classes.link}>
                         <ListItem button key={"Mutacje"}>
                             {/*<ListItemIcon></ListItemIcon>*/}
                             <ListItemText primary={"Mutacje"}/>
                         </ListItem>
                     </Link>
-                    <Link to={"/equipment"} className={classes.link}>
+                    <Link to={"/book/equipment"} className={classes.link}>
                         <ListItem button key={"Ekwipunek"}>
                             {/*<ListItemIcon></ListItemIcon>*/}
                             <ListItemText primary={"Ekwipunek"}/>
                         </ListItem>
                     </Link>
-                    <Link to={"/ability"} className={classes.link}>
+                    <Link to={"/book/ability"} className={classes.link}>
                         <ListItem button key={"Zdolności"}>
                             {/*<ListItemIcon></ListItemIcon>*/}
                             <ListItemText primary={"Zdolności"}/>
                         </ListItem>
                     </Link>
-                    <Link to={"/skill"} className={classes.link}>
+                    <Link to={"/book/skill"} className={classes.link}>
                         <ListItem button key={"Umiejętności"}>
                             {/*<ListItemIcon></ListItemIcon>*/}
                             <ListItemText primary={"Umiejętności"}/>
                         </ListItem>
                     </Link>
-                    <Link to={"/spell"} className={classes.link}>
+                    <Link to={"/book/spell"} className={classes.link}>
                         <ListItem button key={"Zaklęcia"}>
                             {/*<ListItemIcon></ListItemIcon>*/}
                             <ListItemText primary={"Zaklęcia"}/>
                         </ListItem>
                     </Link>
-                    <Link to={"/beast"} className={classes.link}>
+                    <Link to={"/book/beast"} className={classes.link}>
                         <ListItem button key={"Bestiariusz"}>
                             {/*<ListItemIcon></ListItemIcon>*/}
                             <ListItemText primary={"Bestiariusz"}/>
                         </ListItem>
                     </Link>
-                    <Link to={"/profession"} className={classes.link}>
+                    <Link to={"/book/profession"} className={classes.link}>
                         <ListItem button key={"Profesje"}>
                             {/*<ListItemIcon></ListItemIcon>*/}
                             <ListItemText primary={"Profesje"}/>

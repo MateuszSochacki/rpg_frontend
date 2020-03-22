@@ -9,11 +9,9 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import TableForTraits from "../../util/TableForTraits";
 import Paper from "@material-ui/core/Paper";
 import {SearchInputStyle} from "../../styles/SearchInputStyle";
-import API from "../../API";
+import ApiForBook from "../../ApiForBook";
 import {AlboButton, SlimButton} from './../../styles/Styles'
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -137,7 +135,7 @@ export default function Professions() {
 
     async function fetchSkillByName(name) {
 
-        await API.post("skill/name",{name}).then(async (response) => {
+        await ApiForBook.post("skill/name",{name}).then(async (response) => {
 
 
             const protip = response.data;
@@ -151,7 +149,7 @@ export default function Professions() {
 
     async function fetchAbilityByName(name) {
 
-        await API.post("ability/name",{name}).then(async (response) => {
+        await ApiForBook.post("ability/name",{name}).then(async (response) => {
 
 
             const protip = response.data;
@@ -169,7 +167,7 @@ export default function Professions() {
 
         async function fetchProfs() {
 
-            await API.get("profession/all").then(async (response) => {
+            await ApiForBook.get("profession/all").then(async (response) => {
 
                 if (!didCancel) {
                     const prof = response.data;

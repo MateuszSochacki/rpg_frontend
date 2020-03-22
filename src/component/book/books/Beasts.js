@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Paper from "@material-ui/core/Paper";
 import {SearchInputStyle} from "../../styles/SearchInputStyle";
-import API from "../../API";
+import ApiForBook from "../../ApiForBook";
 import TableForTraits from "../../util/TableForTraits";
 
 
@@ -40,7 +40,7 @@ export default function Beasts() {
 
         async function fetchBeasts() {
 
-            await API.get("beast/all").then(async (response) => {
+            await ApiForBook.get("beast/all").then(async (response) => {
 
                 if (!didCancel) {
                     const beasts = response.data;

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Panel,PanelSummary} from "../../styles/expansionPanel/Panel";
 import {SearchInputStyle} from "../../styles/SearchInputStyle";
-import API from "../../API";
+import ApiForBook from "../../ApiForBook";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import SearchIcon from '@material-ui/icons/Search';
@@ -37,7 +37,7 @@ export default function Skills() {
 
         async function fetchSkills() {
 
-            await API.get("skill/all").then(async (response) => {
+            await ApiForBook.get("skill/all").then(async (response) => {
 
                 if (!didCancel) {
                     const skill = response.data;

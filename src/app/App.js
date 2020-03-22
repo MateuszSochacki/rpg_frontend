@@ -29,14 +29,14 @@ function App() {
                     <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>
                     {/*!TODO*/}
-                    <Route path="/mutation" component={Mutations}/>
+                    <Route path="/book/mutation" component={Mutations}/>
                     {/*<Route path="/bestiary" component={Mutations}/>*/}
-                    <Route path="/equipment" component={Equipment}/>
-                    <Route path="/ability" component={Ability}/>
-                    <Route path="/skill" component={Skills}/>
-                    <Route path="/spell" component={Spells}/>
-                    <Route path="/beast" component={Beasts}/>
-                    <Route path="/profession" component={Professions}/>
+                    <Route path="/book/equipment" component={Equipment}/>
+                    <Route path="/book/ability" component={Ability}/>
+                    <Route path="/book/skill" component={Skills}/>
+                    <Route path="/book/spell" component={Spells}/>
+                    <Route path="/book/beast" component={Beasts}/>
+                    <Route path="/book/profession" component={Professions}/>
 
                 </BookCover>
 
