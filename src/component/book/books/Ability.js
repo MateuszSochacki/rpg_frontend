@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ApiForBook from "../../ApiForBook";
+import API from "../../API/API";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -38,7 +38,7 @@ export default function Ability() {
 
         async function fetchAbility() {
 
-            await ApiForBook.get("ability/all").then(async (response) => {
+            await API.get("book/ability/all").then(async (response) => {
 
                 if (!didCancel) {
                     const abilities = response.data;

@@ -1,9 +1,11 @@
 import React from "react";
+import { useHistory } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
+import API from "../../API/API";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -23,12 +25,27 @@ const useStyles = makeStyles(theme => ({
         marginTop: 25
     }
 }));
-export default function Login() {
+
+export default function Login(props) {
+    const history=useHistory();
     const classes = useStyles();
     const [cred, setCred] = React.useState({
-        name:"",
-        password:""
+        email:"bjarni123@gmail.com",
+        password:"haslo123"
     });
+    const signIn = ()=>{
+
+
+        API.post("login",cred).then((res)=>{
+            const token= res.headers.authorization;
+            sessionStorage.setItem("jwt",token);
+            props.setIsAuthenticated(true);
+            history.push("/");
+        }).catch((error)=>{
+
+        });
+
+    };
     const handleChange = name => event => {
         setCred({...cred, [name]: event.target.value});
 
@@ -43,10 +60,10 @@ export default function Login() {
                             <Paper elevation={4} className={classes.login}>
                                 <form className={classes.root} noValidate autoComplete="off">
                                     <TextField
-                                        id="outlined-name"
-                                        label="Nazwa użytkownika"
-                                        value={cred.name}
-                                        onChange={handleChange("name")}
+                                        id="outlined-email"
+                                        label="Email"
+                                        value={cred.email}
+                                        onChange={handleChange("email")}
                                         variant="outlined"
                                     /><br/>
                                     <TextField
@@ -57,7 +74,7 @@ export default function Login() {
                                         variant="outlined"
                                     />
                                 </form>
-                                <Button className={classes.button} variant="contained" color="primary">
+                                <Button className={classes.button} variant="contained" color="primary" onClick={signIn}>
                                     Zaloguj
                                 </Button>
                             </Paper>

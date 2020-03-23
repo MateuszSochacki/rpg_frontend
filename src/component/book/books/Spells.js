@@ -3,7 +3,6 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Paper from "@material-ui/core/Paper";
 import CategoryFromList from "./equipment/CategoryFromList";
 import {Panel, PanelSummary} from "../../styles/expansionPanel/Panel";
-import ApiForBook from "../../ApiForBook";
 import Grid from "@material-ui/core/Grid";
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from "@material-ui/core/InputBase";
@@ -13,6 +12,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import API from "../../API/API";
 import {
     StyledTableCell,
     StyledTableRow,
@@ -46,7 +46,7 @@ export default function Spells() {
         let didCancel = false;
         async function fetchSpell() {
 
-            await ApiForBook.get("spell/all").then(async (response) => {
+            await API.get("book/spell/all").then(async (response) => {
 
                 if (!didCancel) {
                     const spells = response.data;

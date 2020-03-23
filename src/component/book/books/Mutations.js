@@ -14,7 +14,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import Radio from "@material-ui/core/Radio";
-import ApiForBook from '../../ApiForBook';
+import API from "../../API/API";
 import LazyLoad from 'react-lazyload';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {SearchInputStyle} from './../../styles/SearchInputStyle';
@@ -124,7 +124,7 @@ function Mutations() {
 
         async function fetchMutation() {
 
-            await ApiForBook.get("mutation/all").then(async (response) => {
+            await API.get("book/mutation/all").then(async (response) => {
 
 
                 if (!didCancel) {

@@ -1,5 +1,5 @@
-import React from 'react';
-import {Route, BrowserRouter} from 'react-router-dom';
+import React, {useState} from 'react';
+import {Route,Redirect, BrowserRouter} from 'react-router-dom';
 import BookCover from '../component/book/BookCover';
 import Mutations from '../component/book/books/Mutations'
 import Equipment from '../component/book/books/equipment/Equipment'
@@ -11,9 +11,18 @@ import Beasts from "../component/book/books/Beasts";
 import Professions from "../component/book/books/Professions";
 import Login from "../component/book/login/Login";
 import Register from "../component/book/login/Register";
+import Logout from "../component/book/login/Logout";
 
 
-function App() {
+function App(props) {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+        <Route {...rest} render={(props) => (
+            isAuthenticated === true
+                ? <Component {...rest} {...props} />
+                : <Redirect to='/login' />
+        )} />
+    );
     return (
         <div className="App">
             <BrowserRouter>
@@ -22,11 +31,10 @@ function App() {
                     App.js dostal swoj folder *SadPepe*
                 */}
 
-                <BookCover>
+                <BookCover isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}>
 
                     {/*visible only if authenticated*/}
-
-                    <Route path="/login" component={Login}/>
+                    <Route path="/login" render={(props)=><Login {...props} setIsAuthenticated={setIsAuthenticated}/>}/>
                     <Route path="/register" component={Register}/>
                     {/*!TODO*/}
                     <Route path="/book/mutation" component={Mutations}/>

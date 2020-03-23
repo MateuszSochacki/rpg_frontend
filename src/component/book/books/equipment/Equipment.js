@@ -8,11 +8,10 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Weapons from './Weapons';
-import ApiForBook from "../../../ApiForBook";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Armors from "./Armors";
 import Others from "./Others";
-
+import API from "../../../API/API";
 
 const useStyles = makeStyles({
     root: {
@@ -69,7 +68,7 @@ export default function Equipment() {
 
         async function fetchEquipment() {
 
-            await ApiForBook.get("weapon/all").then(async (response) => {
+            await API.get("book/weapon/all").then(async (response) => {
 
                 if (!didCancel) {
                     const weapons = response.data;
@@ -80,7 +79,7 @@ export default function Equipment() {
                 console.log(error)
             });
 
-            await ApiForBook.get("armor/all").then(async (response) => {
+            await API.get("book/armor/all").then(async (response) => {
 
                 if (!didCancel) {
                     const armors = response.data;
@@ -91,7 +90,7 @@ export default function Equipment() {
                 console.log(error)
             });
 
-            await ApiForBook.get("equipment/all").then(async (response) => {
+            await API.get("book/equipment/all").then(async (response) => {
 
                 if (!didCancel) {
                     const eq = response.data;

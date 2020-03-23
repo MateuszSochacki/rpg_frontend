@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom'
 import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
@@ -35,8 +36,12 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(3),
     },
 }));
+
 export default function BookCover(props) {
     const classes = useStyles();
+
+    const history=useHistory();
+
 
     return (
         <div className={classes.root}>
@@ -50,22 +55,39 @@ export default function BookCover(props) {
             >
 
 
-                <List>
-                    <Link to={"/login"} className={classes.link}>
+                {props.isAuthenticated? <List>
+                        <Link to={"/user"} className={classes.link}>
 
-                        <ListItem button key={"Login"}>
-                            {/*<ListItemIcon></ListItemIcon>*/}
-                            <ListItemText primary={"Login"}/>
-                        </ListItem>
-                    </Link>
-                    <Link to={"/register"} className={classes.link}>
+                            <ListItem button key={"Karta Postaci"}>
+                                {/*<ListItemIcon></ListItemIcon>*/}
+                                <ListItemText primary={"Karta Postaci"}/>
+                            </ListItem>
+                        </Link>
+                        {/*<Link to={"/logout"} className={classes.link}>*/}
 
-                        <ListItem button key={"Zarejestruj"}>
-                            {/*<ListItemIcon></ListItemIcon>*/}
-                            <ListItemText primary={"Zarejestruj"}/>
-                        </ListItem>
-                    </Link>
-                </List>
+                        {/*    <ListItem button key={"Wyloguj"}>*/}
+                        {/*        /!*<ListItemIcon></ListItemIcon>*!/*/}
+                        {/*        <ListItemText primary={"Wyloguj"}/>*/}
+                        {/*    </ListItem>*/}
+                        {/*</Link>*/}
+                    </List>
+
+                :<List>
+                        <Link to={"/login"} className={classes.link}>
+
+                            <ListItem button key={"Login"}>
+                                {/*<ListItemIcon></ListItemIcon>*/}
+                                <ListItemText primary={"Login"}/>
+                            </ListItem>
+                        </Link>
+                        <Link to={"/register"} className={classes.link}>
+
+                            <ListItem button key={"Zarejestruj"}>
+                                {/*<ListItemIcon></ListItemIcon>*/}
+                                <ListItemText primary={"Zarejestruj"}/>
+                            </ListItem>
+                        </Link>
+                    </List>}
                 <Divider/>
                 <List>
                     <Link to={"/book/mutation"} className={classes.link}>

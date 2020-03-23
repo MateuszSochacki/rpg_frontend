@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Panel,PanelSummary} from "../../styles/expansionPanel/Panel";
 import {SearchInputStyle} from "../../styles/SearchInputStyle";
-import ApiForBook from "../../ApiForBook";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import SearchIcon from '@material-ui/icons/Search';
@@ -9,6 +8,7 @@ import InputBase from "@material-ui/core/InputBase";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import API from "../../API/API";
 
 export default function Skills() {
 
@@ -37,7 +37,7 @@ export default function Skills() {
 
         async function fetchSkills() {
 
-            await ApiForBook.get("skill/all").then(async (response) => {
+            await API.get("book/skill/all").then(async (response) => {
 
                 if (!didCancel) {
                     const skill = response.data;
