@@ -13,7 +13,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import {Link} from 'react-router-dom';
 
 
-const drawerWidth = 210;
+const drawerWidth = 160;
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -56,7 +56,7 @@ export default function BookCover(props) {
 
 
                 {props.isAuthenticated? <List>
-                        <Link to={"/user"} className={classes.link}>
+                        <Link to={"/user/sheet"} className={classes.link}>
 
                             <ListItem button key={"Karta Postaci"}>
                                 {/*<ListItemIcon></ListItemIcon>*/}

@@ -40,7 +40,7 @@ export default function Login(props) {
             const token= res.headers.authorization;
             sessionStorage.setItem("jwt",token);
             props.setIsAuthenticated(true);
-            history.push("/");
+            history.push("/user/sheet");
         }).catch((error)=>{
 
         });

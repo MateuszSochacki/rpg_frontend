@@ -9,7 +9,8 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Paper from "@material-ui/core/Paper";
 import {SearchInputStyle} from "../../styles/SearchInputStyle";
 import API from "../../API/API";
-import TableForTraits from "../../util/TableForTraits";
+import TableForTraits from "./modules/TableForTraits";
+
 
 
 

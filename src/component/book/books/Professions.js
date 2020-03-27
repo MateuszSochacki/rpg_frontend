@@ -6,7 +6,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import {Panel, PanelSummary} from "../../styles/expansionPanel/Panel";
 import Typography from "@material-ui/core/Typography";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import TableForTraits from "../../util/TableForTraits";
+import TableForTraits from "./modules/TableForTraits";
 import Paper from "@material-ui/core/Paper";
 import {SearchInputStyle} from "../../styles/SearchInputStyle";
 import API from "../../API/API";

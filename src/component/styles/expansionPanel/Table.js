@@ -41,6 +41,7 @@ export const StyledTableCellDiffColor = withStyles(theme => ({
         fontSize: 14,
         color: theme.palette.common.white,
         borderColor: theme.palette.common.black,
+        width:"12.5%",
 
         height: 0,
         border: "1px solid",
@@ -65,4 +66,52 @@ export const StyledTableRowDiffColor = withStyles(() => ({
         backgroundColor: '#1f1f1e',
     },
 
+}))(TableRow);
+
+
+
+
+
+//--------------------------------------------------------
+
+
+
+
+
+export const HeroTableCell = withStyles(theme => ({
+    head: {
+        // backgroundColor: theme.palette.common.black,
+        // backgroundColor: "#5a5a5a",
+        color: theme.palette.common.black,
+        height: 0,
+        // border: "1px solid",
+        borderColor: theme.palette.common.black,
+        padding: 0,
+        lineHeight:1.7
+
+    },
+    body: {
+        fontSize: 14,
+        height: 0,
+        border: "1px solid",
+        borderColor: theme.palette.common.black,
+        width:"11.111111111111%",
+        padding: 0,
+    },
+    root: {
+        textAlign: "center",
+        "&:last-child": {
+            paddingRight: 0
+        }
+
+    }
+}))(TableCell);
+export const HeroTableRow = withStyles(theme => ({
+    root: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.background.default,
+
+        },
+
+    },
 }))(TableRow);
