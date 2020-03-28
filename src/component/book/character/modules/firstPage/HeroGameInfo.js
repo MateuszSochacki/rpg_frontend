@@ -6,10 +6,10 @@ import {
     HeroPanelSummary,
     HeroText,
     HeroTextField
-} from "../../../styles/expansionPanel/Panel";
+} from "../../../../styles/expansionPanel/Panel";
 import Grid from "@material-ui/core/Grid";
 
-export default function HeroMovement() {
+export default function HeroGameInfo() {
 
     return(
         <>
@@ -17,21 +17,20 @@ export default function HeroMovement() {
                 <HeroPanel expanded={true} >
                     <HeroPanelSummary>
                         <HeroText align={"center"} >
-                            ruch w walce
+                            gracz
                         </HeroText>
                     </HeroPanelSummary>
                     <HeroPanelDetails>
                         <>
                             <Grid container>
-                                <Grid item xs={3} style={{borderRight:"1px solid",}}>
-                                    <HeroTextField id="movement" label="Ruch/odwrót:" value={"25m"} />
+                                <Grid item xs={6} style={{borderRight:"1px solid",}}>
+                                    <HeroTextField id="name" label="Imię:" value={"Mateusz"} style={{borderBottom:"1px solid",}}/>
+                                    <HeroTextField id="campaign" label="Kampania:" value={"Wrzesniowa"} />
 
                                 </Grid>
-                                <Grid item xs={3} style={{borderLeft:"1px solid",borderRight:"1px solid"}}>
-                                    <HeroTextField id="strike" label="Szarża:" value={"34m"} />
-                                </Grid>
-                                <Grid item xs={3} style={{borderLeft:"1px solid",}}>
-                                    <HeroTextField id="run" label="Bieg:" value={"40m"} />
+                                <Grid item xs={6} style={{borderLeft:"1px solid",}}>
+                                    <HeroTextField id="gameMaster" label="Mistrz gry:" value={"Sochacki"} style={{borderBottom:"1px solid",}}/>
+                                    <HeroTextField id="yearOfCampaign" label="Rok kampanii:" value={"2020"} />
                                 </Grid>
                             </Grid>
 
@@ -40,7 +39,7 @@ export default function HeroMovement() {
                     </HeroPanelDetails>
                 </HeroPanel>
             </Paper>
-        </>
+            </>
     )
 
 }

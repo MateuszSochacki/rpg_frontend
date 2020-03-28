@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Route,Redirect, BrowserRouter} from 'react-router-dom';
 import BookCover from '../component/book/BookCover';
 import Mutations from '../component/book/books/Mutations'
-import Equipment from '../component/book/books/equipment/Equipment'
+import Equipment from '../component/book/books/Equipment'
 import Ability from "../component/book/books/Ability";
 import './App.css';
 import Skills from "../component/book/books/Skills";

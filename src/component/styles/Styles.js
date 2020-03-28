@@ -1,5 +1,6 @@
 import {withStyles} from "@material-ui/core/styles";
 import {Button} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 export const SlimButton = withStyles({
 
@@ -35,3 +36,19 @@ export const AlboButton = withStyles({
         padding:0
     }
 })(Button);
+
+export const SmallLetters = withStyles({
+
+    root:{
+        fontSize:11
+    }
+
+})(Typography);
+
+export const HeroSkillsLetters = withStyles({
+
+    root:{
+        fontSize:13
+    }
+
+})(Typography);

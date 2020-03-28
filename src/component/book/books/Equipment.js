@@ -7,11 +7,11 @@ import Tab from '@material-ui/core/Tab';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Weapons from './Weapons';
+import Weapons from './equipment/Weapons';
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Armors from "./Armors";
-import Others from "./Others";
-import API from "../../../API/API";
+import Armors from "./equipment/Armors";
+import Others from "./equipment/Others";
+import API from "../../API/API";
 
 const useStyles = makeStyles({
     root: {

@@ -5,11 +5,11 @@ import {
     HeroPanelDetails,
     HeroPanelSummary,
     HeroText,
-} from "../../../styles/expansionPanel/Panel";
+} from "../../../../styles/expansionPanel/Panel";
 import Grid from "@material-ui/core/Grid";
 import {Paper} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-import Silhouette from './../../../util/img/charsheet1.png';
+import Silhouette from './../../../../util/img/charsheet1.png';
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
