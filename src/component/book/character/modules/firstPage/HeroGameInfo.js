@@ -24,7 +24,7 @@ export default function HeroGameInfo() {
                         <>
                             <Grid container>
                                 <Grid item xs={6} style={{borderRight:"1px solid",}}>
-                                    <HeroTextField id="name" label="Imię:" value={"Mateusz"} style={{borderBottom:"1px solid",}}/>
+                                    <HeroTextField id="gameMasterName" label="Imię:" value={"Mateusz"} style={{borderBottom:"1px solid",}}/>
                                     <HeroTextField id="campaign" label="Kampania:" value={"Wrzesniowa"} />
 
                                 </Grid>

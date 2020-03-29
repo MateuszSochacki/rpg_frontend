@@ -29,19 +29,19 @@ export default function HeroSpells() {
 
                         </Grid>
                         <Grid item xs={6}>
-                            <HeroTextField id="spellName" label="Nazwa czaru:"
-                                           value={"Porażenie piorunem"}/>
-                            <Grid container>
-                                <Grid item xs={6}>
-                                    <HeroTextField id="powerLevel" label="Wymagany poziom mocy:"
-                                                   value={"4"}/>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <HeroTextField id="castTime" label="Czas rzucania:" value={"2"}/>
-                                </Grid>
-                                <HeroTextField id="ingredient" label="Składnik:" value={"Przewodnik"}/>
-                                <HeroTextField id="description" label="Opis:" value={"Brak"}/>
-                            </Grid>
+                            {/*<HeroTextField id="spellName" label="Nazwa czaru:"*/}
+                            {/*               value={"Porażenie piorunem"}/>*/}
+                            {/*<Grid container>*/}
+                            {/*    <Grid item xs={6}>*/}
+                            {/*        <HeroTextField id="powerLevel" label="Wymagany poziom mocy:"*/}
+                            {/*                       value={"4"}/>*/}
+                            {/*    </Grid>*/}
+                            {/*    <Grid item xs={6}>*/}
+                            {/*        <HeroTextField id="castTime" label="Czas rzucania:" value={"2"}/>*/}
+                            {/*    </Grid>*/}
+                            {/*    <HeroTextField id="ingredient" label="Składnik:" value={"Przewodnik"}/>*/}
+                            {/*    <HeroTextField id="description" label="Opis:" value={"Brak"}/>*/}
+                            {/*</Grid>*/}
 
                         </Grid>
                     </Grid>

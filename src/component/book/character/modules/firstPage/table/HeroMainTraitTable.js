@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
-export default function HeroMainTraitTable() {
+export default function HeroMainTraitTable(props) {
 
     const classes= useStyles();
     return (
@@ -40,28 +40,28 @@ export default function HeroMainTraitTable() {
                         </TableHead>
                         <TableBody>
 
-                            <HeroTableRow key={1}>
+                            <HeroTableRow key={props.key}>
                                 <HeroTableCell component="th" scope="row" align={"center"} className={classes.borderless}> Początkowa: </HeroTableCell>
-                                <HeroTableCell align="center"> 43 </HeroTableCell>
-                                <HeroTableCell align="center">30</HeroTableCell>
-                                <HeroTableCell align="center"> 40</HeroTableCell>
-                                <HeroTableCell align="center"> 55</HeroTableCell>
-                                <HeroTableCell align="center"> 30</HeroTableCell>
-                                <HeroTableCell align="center"> 20</HeroTableCell>
-                                <HeroTableCell align="center"> 18</HeroTableCell>
-                                <HeroTableCell align="center"> 31</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.fighting} </HeroTableCell>
+                                <HeroTableCell align="center">{props.mainTraits.shooting}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.vigor}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.resistance}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.agility}</HeroTableCell>
+                                <HeroTableCell align="center">{props.mainTraits.intelligence}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.willpower}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.charisma}</HeroTableCell>
 
                             </HeroTableRow>
                             <HeroTableRow key={2}>
                                 <HeroTableCell component="th" scope="row" align={"center"} className={classes.borderless}>Schemat rozwoju:</HeroTableCell>
-                                <HeroTableCell align="center"> +5 </HeroTableCell>
-                                <HeroTableCell align="center">+2</HeroTableCell>
-                                <HeroTableCell align="center"> 0</HeroTableCell>
-                                <HeroTableCell align="center"> 0</HeroTableCell>
-                                <HeroTableCell align="center"> 0</HeroTableCell>
-                                <HeroTableCell align="center"> 0</HeroTableCell>
-                                <HeroTableCell align="center"> 0</HeroTableCell>
-                                <HeroTableCell align="center"> +20</HeroTableCell>
+                                <HeroTableCell align="center"> {props.prof.fighting!==null? props.prof.fighting:0} </HeroTableCell>
+                                <HeroTableCell align="center">{props.prof.shooting!==null? props.prof.shooting:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.prof.vigor!==null? props.prof.vigor:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.prof.resistance!==null?props.prof.resistance :0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.prof.agility!==null? props.prof.agility:0}</HeroTableCell>
+                                <HeroTableCell align="center">{props.prof.intelligence!==null? props.prof.intelligence:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.prof.willpower!==null? props.prof.willpower:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.prof.charisma!==null? props.prof.charisma:0}</HeroTableCell>
 
                             </HeroTableRow>
                             <HeroTableRow key={3}>

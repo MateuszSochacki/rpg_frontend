@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
-export default function HeroSecondaryTraitTable() {
+export default function HeroSecondaryTraitTable(props) {
 
     const classes= useStyles();
     return (
@@ -42,26 +42,26 @@ export default function HeroSecondaryTraitTable() {
 
                             <HeroTableRow key={1}>
                                 <HeroTableCell component="th" scope="row" align={"center"} className={classes.borderless}> Początkowa: </HeroTableCell>
-                                <HeroTableCell align="center"> 43 </HeroTableCell>
-                                <HeroTableCell align="center">30</HeroTableCell>
-                                <HeroTableCell align="center"> 40</HeroTableCell>
-                                <HeroTableCell align="center"> 55</HeroTableCell>
-                                <HeroTableCell align="center"> 30</HeroTableCell>
-                                <HeroTableCell align="center"> 20</HeroTableCell>
-                                <HeroTableCell align="center"> 18</HeroTableCell>
-                                <HeroTableCell align="center"> 31</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.attack} </HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.health}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.strength}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.endurance}</HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.speed}</HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.magic}</HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.insanity}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.fatePoints}</HeroTableCell>
 
                             </HeroTableRow>
                             <HeroTableRow key={2}>
                                 <HeroTableCell component="th" scope="row" align={"center"} className={classes.borderless}>Schemat rozwoju:</HeroTableCell>
-                                <HeroTableCell align="center"> +5 </HeroTableCell>
-                                <HeroTableCell align="center">+2</HeroTableCell>
-                                <HeroTableCell align="center"> 0</HeroTableCell>
-                                <HeroTableCell align="center"> 0</HeroTableCell>
-                                <HeroTableCell align="center"> 0</HeroTableCell>
-                                <HeroTableCell align="center"> 0</HeroTableCell>
-                                <HeroTableCell align="center"> 0</HeroTableCell>
-                                <HeroTableCell align="center"> +20</HeroTableCell>
+                                <HeroTableCell align="center"> {props.prof.attack!==null? props.prof.attack:0} </HeroTableCell>
+                                <HeroTableCell align="center">{props.prof.health!==null? props.prof.health:0}</HeroTableCell>
+                                <HeroTableCell align="center">{props.prof.strength!==null? props.prof.strength:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.prof.endurance!==null? props.prof.endurance:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.prof.speed!==null? props.prof.speed:0}</HeroTableCell>
+                                <HeroTableCell align="center">{props.prof.magic!==null? props.prof.magic:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.prof.insanity!==null? props.prof.insanity:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.prof.fatePoints!==null? props.prof.fatePoints:0}</HeroTableCell>
 
                             </HeroTableRow>
                             <HeroTableRow key={3}>

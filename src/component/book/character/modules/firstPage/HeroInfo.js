@@ -9,11 +9,13 @@ import {
 import Grid from "@material-ui/core/Grid";
 import {Paper} from "@material-ui/core";
 
-export default function HeroInfo() {
+export default function HeroInfo(props) {
 
     return(
+
         <Paper elevation={8}>
-        <HeroPanel expanded={true} >
+
+            <HeroPanel expanded={true} >
             <HeroPanelSummary>
                 <HeroText align={"center"} >
                     Bohater
@@ -23,10 +25,10 @@ export default function HeroInfo() {
                 <>
                     <Grid container>
                         <Grid item xs={12}>
-                            <HeroTextField id="name" label="Imię:" value={"Bjorn"} />
-                            <HeroTextField id="race" label="Rasa:" value={"Elf"} />
-                            <HeroTextField id="currentProfession" label="Obecna profesja:" value={"Cyrulik"} />
-                            <HeroTextField id="previousProfession" label="Poprzednia profesja:" value={"Ciura obozowa"} />
+                            <HeroTextField id="heroName" label="Imię:" value={props.info.name} />
+                            <HeroTextField id="race" label="Rasa:" value={props.info.race} />
+                            <HeroTextField id="currentProfession" label="Obecna profesja:" value={props.info.currentProfession} />
+                            <HeroTextField id="previousProfession" label="Poprzednia profesja:" value={props.info.previousProfession} />
                         </Grid>
                     </Grid>
 

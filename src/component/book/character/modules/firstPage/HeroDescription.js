@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import {Paper} from "@material-ui/core";
 
 
-export default function HeroDescription() {
+export default function HeroDescription(props) {
 
     return(
         <Paper elevation={8}>
@@ -25,20 +25,20 @@ export default function HeroDescription() {
                     <Grid item xs={12}>
                         <Grid container>
                             <Grid item xs={6} style={{borderRight:"1px solid",}}>
-                                <HeroTextField id="age" label="Wiek: " value={"22"} />
-                                <HeroTextField id="eyeColor" label="Kolor oczu:" value={"Niebieskie"} />
-                                <HeroTextField id="hairColor" label="Kolor włosów:" value={"Białe"} />
-                                <HeroTextField id="starSign" label="Znak gwiezdny:" value={"łuk"} />
+                                <HeroTextField id="age" label="Wiek: " value={props.description.age} />
+                                <HeroTextField id="eyeColor" label="Kolor oczu:" value={props.description.eyeColor} />
+                                <HeroTextField id="hairColor" label="Kolor włosów:" value={props.description.hairColor} />
+                                <HeroTextField id="starSign" label="Znak gwiezdny:" value={props.description.starSign} />
 
                             </Grid>
                             <Grid item xs={6}>
-                                <HeroTextField id="sex" label="Płeć: " value={"Kobieta"} />
-                                <HeroTextField id="weight" label="Waga: " value={"46Kg"} />
-                                <HeroTextField id="height" label="Wzrost: " value={"167cm"} />
-                                <HeroTextField id="family" label="Rodzeństwo: " value={"Brak"} />
+                                <HeroTextField id="sex" label="Płeć: " value={props.description.sex} />
+                                <HeroTextField id="weight" label="Waga: " value={props.description.weight} />
+                                <HeroTextField id="height" label="Wzrost: " value={props.description.height} />
+                                <HeroTextField id="family" label="Rodzeństwo: " value={props.description.family} />
                             </Grid>
-                            <HeroTextField id="placeOfBirth" label="Miejsce urodzenia: " value={"Nieznana wieś"} />
-                            <HeroTextField id="distinguishMark" label="Znaki szczególne: " value={"Blada cera"} />
+                            <HeroTextField id="placeOfBirth" label="Miejsce urodzenia: " value={props.description.placeOfBirth} />
+                            <HeroTextField id="distinguishMark" label="Znaki szczególne: " value={props.description.distinguishingMarks} />
                         </Grid>
                     </Grid>
                 </Grid>

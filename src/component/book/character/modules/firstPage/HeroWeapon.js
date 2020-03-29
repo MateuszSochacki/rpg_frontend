@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
     HeroPanel,
     HeroPanelDetails,
@@ -6,7 +6,7 @@ import {
     HeroText,
 } from "../../../../styles/expansionPanel/Panel";
 import Grid from "@material-ui/core/Grid";
-import {Paper} from "@material-ui/core";
+import {Paper, Tooltip} from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
@@ -14,6 +14,8 @@ import {HeroTableCell, HeroTableRow} from "../../../../styles/expansionPanel/Tab
 import TableBody from "@material-ui/core/TableBody";
 import TableContainer from "@material-ui/core/TableContainer";
 import {makeStyles} from "@material-ui/core/styles";
+import API from "../../../../API/API";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
     borderless: {
@@ -25,68 +27,121 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function HeroWeapon() {
+export default function HeroWeapon(props) {
     const classes = useStyles();
+    const [weapons, setWeapons] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
+
+    useEffect(() => {
+
+
+        let didCancel = false;
+
+        async function fetchWeapon(name) {
+
+
+            await API.post("book/weapon/name",{name}).then(async (response) => {
+
+                if (!didCancel) {
+                    const prof = response.data;
+                    weapons.push(prof);
+
+                }
+            }).catch(error => {
+                console.log(error)
+            });
+
+        };
+
+
+
+        let promise =props.weapons.map((weapon)=>{
+
+            fetchWeapon(weapon);
+
+        });
+        Promise.all(promise).then(()=>{
+            setIsLoading(false);
+
+        })
+        return () => {
+            didCancel = true;
+        };
+
+    }, [isLoading]);
     return (
         <Paper elevation={8}>
-            <HeroPanel expanded={true}>
-                <HeroPanelSummary>
-                    <HeroText>
-                        Broń
-                    </HeroText>
-                </HeroPanelSummary>
-                <HeroPanelDetails>
-                    <Grid container>
-                        <Grid item xs={12}>
+            {isLoading ? null :
+                <HeroPanel expanded={true}>
+                    <HeroPanelSummary>
+                        <HeroText>
+                            Broń
+                        </HeroText>
+                    </HeroPanelSummary>
+                    <HeroPanelDetails>
+                        <Grid container>
+                            <Grid item xs={12}>
 
-                            <TableContainer>
-                                <Table aria-label="customized table">
+                                <TableContainer>
+                                    <Table aria-label="customized table">
 
-                                    <TableHead>
-                                        <TableRow>
-                                            <HeroTableCell align={"left"}
-                                                           className={classes.borderless}>Nazwa</HeroTableCell>
-                                            <HeroTableCell align={"left"}
-                                                           className={classes.borderless}>Obc.</HeroTableCell>
-                                            <HeroTableCell align={"left"}
-                                                           className={classes.borderless}>Kategoria</HeroTableCell>
-                                            <HeroTableCell align={"left"} className={classes.borderless}>Siła
-                                                broni</HeroTableCell>
-                                            <HeroTableCell align={"left"}
-                                                           className={classes.borderless}>Zasięg</HeroTableCell>
-                                            <HeroTableCell align={"left"}
-                                                           className={classes.borderless}>Przeład.</HeroTableCell>
-                                            <HeroTableCell align={"left"} className={classes.borderless}>Cechy
-                                                oręża</HeroTableCell>
-
-
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-
-                                        <HeroTableRow key={1}>
-                                            <HeroTableCell align="center"> Korbacz </HeroTableCell>
-                                            <HeroTableCell align="center">30</HeroTableCell>
-                                            <HeroTableCell align="center"> Mocarne</HeroTableCell>
-                                            <HeroTableCell align="center"> S-1</HeroTableCell>
-                                            <HeroTableCell align="center"> 0</HeroTableCell>
-                                            <HeroTableCell align="center"> 0</HeroTableCell>
-                                            <HeroTableCell align="center"> Podwójny chuj</HeroTableCell>
+                                        <TableHead>
+                                            <TableRow>
+                                                <HeroTableCell align={"left"}
+                                                               className={classes.borderless}>Nazwa</HeroTableCell>
+                                                <HeroTableCell align={"left"}
+                                                               className={classes.borderless}>Obc.</HeroTableCell>
+                                                <HeroTableCell align={"left"}
+                                                               className={classes.borderless}>Kategoria</HeroTableCell>
+                                                <HeroTableCell align={"left"} className={classes.borderless}>Siła
+                                                    broni</HeroTableCell>
+                                                <HeroTableCell align={"left"}
+                                                               className={classes.borderless}>Zasięg</HeroTableCell>
+                                                <HeroTableCell align={"left"}
+                                                               className={classes.borderless}>Przeład.</HeroTableCell>
+                                                <HeroTableCell align={"left"} className={classes.borderless}>Cechy
+                                                    oręża</HeroTableCell>
 
 
-                                        </HeroTableRow>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {weapons.map((weapon, key) => (
+                                                <HeroTableRow key={key}>
+                                                    <HeroTableCell align="center"> {weapon.name} </HeroTableCell>
+                                                    <HeroTableCell align="center">{weapon.weight}</HeroTableCell>
+                                                    <HeroTableCell align="center"> {weapon.category}</HeroTableCell>
+                                                    <HeroTableCell align="center"> {weapon.strength}</HeroTableCell>
+                                                    <HeroTableCell align="center"> {weapon.rangeMin} - {weapon.rangeMax}</HeroTableCell>
+                                                    <HeroTableCell align="center"> {weapon.reload===null? <>Brak</> : weapon.reload}</HeroTableCell>
+                                                    <HeroTableCell align="center"> {weapon.weaponTrait.map((trait,key)=>{
+                                                        return(
+                                                            <Tooltip title={trait.description} key={key}>
+                                                                <Typography key={key}>
+                                                                    <i>{trait.name}</i>
+                                                                </Typography>
 
-                                    </TableBody>
+                                                            </Tooltip>
+
+                                                        );})}</HeroTableCell>
 
 
-                                </Table>
-                            </TableContainer>
+                                                </HeroTableRow>
+                                            ))}
 
+
+                                        </TableBody>
+
+
+                                    </Table>
+                                </TableContainer>
+
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </HeroPanelDetails>
-            </HeroPanel>
+                    </HeroPanelDetails>
+                </HeroPanel>
+            }
         </Paper>
     )
 }
