@@ -1,62 +1,26 @@
 import React, {useEffect, useState} from "react";
 import Grid from "@material-ui/core/Grid";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import Paper from "@material-ui/core/Paper";
-import {makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import PropTypes from "prop-types";
-import FirstPage from "./modules/FirstPage";
-import SecondPage from "./modules/SecondPage";
-import ThirdPage from "./modules/ThirdPage";
-import FourthPage from "./modules/ForuthPage";
 import API from "../../API/API";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import {Panel, PanelSummary} from "../../styles/expansionPanel/Panel";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import PageSelector from "./modules/PageSelector";
+import {makeStyles} from "@material-ui/core/styles";
+
 
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
     },
 });
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <Typography
-            component="div"
-            role="tabpanel"
-            hidden={value !== index}
-            id={`scrollable-prevent-tabpanel-${index}`}
-            aria-labelledby={`scrollable-prevent-tab-${index}`}
-            {...other}
-        >
-            {value === index && <Box p={3}>{children}</Box>}
-        </Typography>
-    );
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
-};
-function a11yProps(index) {
-    return {
-        id: `scrollable-prevent-tab-${index}`,
-        'aria-controls': `scrollable-prevent-tabpanel-${index}`,
-    };
-}
 export default function CharacterSheet() {
-    const classes = useStyles();
-    const [value, setValue] = useState(0);
     const [charSheet, setCharSheet] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const classes=useStyles();
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+
 
     useEffect(() => {
 
@@ -79,8 +43,6 @@ export default function CharacterSheet() {
         };
 
 
-
-
         fetchSheets();
         return () => {
             didCancel = true;
@@ -90,43 +52,26 @@ export default function CharacterSheet() {
     return (
         <>
             <Paper className={classes.root}>
+                {isLoading ? <CircularProgress/> :
+                    <Grid container >
+                        <Grid item xs={12}>
 
-            <Grid container spacing={4}>
-                <Grid item xs={12}>
-                    {isLoading ?<CircularProgress/>:
+                            {charSheet.map((character, key) => (
+                                <Panel key={key} >
+                                    <PanelSummary key={key}>
+                                        <Typography variant="h5" component="h5" align={"left"}>
+                                            {character.hero.name}
+                                        </Typography>
+                                    </PanelSummary>
+                                    <ExpansionPanelDetails style={{padding:"0 0 24px"}} key={key}>
+                                            <PageSelector sheet={character}/>
+                                    </ExpansionPanelDetails>
 
-                        <>
-                        <Tabs
-                            value={value}
-                            onChange={handleChange}
-                            indicatorColor="primary"
-                            textColor="primary"
-                            centered
-                        >
-                            <Tab label="Postać" icon={<FavoriteIcon/>} {...a11yProps(0)}/>
-                            <Tab label="Umiejętności/Zdolności" icon={<FavoriteIcon/>} {...a11yProps(1)}/>
-                            <Tab label="Zaklęcia" icon={<FavoriteIcon/>} {...a11yProps(2)}/>
-                            <Tab label="Mutacje" icon={<FavoriteIcon/>} {...a11yProps(3)}/>
-
-                        </Tabs>
-                        < TabPanel value = {value} index={0}>
-                        <FirstPage sheet={charSheet}/>
-
-                        </TabPanel>
-                        <TabPanel value={value} index={1}>
-
-                        <SecondPage/>
-                        </TabPanel>
-                        <TabPanel value={value} index={2}>
-                        <ThirdPage/>
-                        </TabPanel>
-                        <TabPanel value={value} index={3}>
-                        <FourthPage/>
-                        </TabPanel>
-                        </>
-                    }
-                </Grid>
-            </Grid>
+                                </Panel>
+                            ))}
+                        </Grid>
+                    </Grid>
+                }
             </Paper>
 
         </>

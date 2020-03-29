@@ -4,12 +4,12 @@ import {
     HeroPanel,
     HeroPanelDetails,
     HeroPanelSummary,
-    HeroText,
+    HeroText, HeroTextField,
 } from "../../../../styles/expansionPanel/Panel";
 import Grid from "@material-ui/core/Grid";
 import {HeroSkillsLetters} from "../../../../styles/Styles";
 
-export default function HeroAbility() {
+export default function HeroAbility(props) {
 
     return (
         <>
@@ -27,7 +27,7 @@ export default function HeroAbility() {
                                     <Grid item xs={6}>
 
                                         <HeroSkillsLetters><b>Zdolność</b></HeroSkillsLetters>
-                                    <br/>
+                                        <br/>
 
                                     </Grid>
                                     <Grid item xs={6}>
@@ -35,6 +35,25 @@ export default function HeroAbility() {
                                         <br/>
                                     </Grid>
                                 </Grid>
+                                {props.abilities.map((ability, key) => (
+
+                                        <Grid container direction={"row"} spacing={2} key={key} style={{paddingBottom:"26px"}}>
+                                            <Grid item xs={6} >
+
+                                                <HeroTextField value={ability.name}
+                                                               inputProps={{min: 0, style: {textAlign: "center"}}}/>
+
+                                            </Grid>
+                                            <Grid item xs={6} >
+                                                <HeroTextField value={ability.description}
+                                                               inputProps={{min: 0, style: {textAlign: "center"}}}
+                                                               multiline
+                                                />
+                                            </Grid>
+                                        </Grid>
+
+
+                                ))}
 
                             </Grid>
 

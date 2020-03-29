@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
-export default function HeroArmorPoints() {
+export default function HeroArmorPoints(props) {
     const classes= useStyles();
 
     return(
@@ -38,17 +38,17 @@ export default function HeroArmorPoints() {
                                             <Grid container direction={"column"} justify="space-between" alignItems={"center"}  style={{height:"100%"}}>
                                                 <Grid item xs={4} style={{flexBasis:0,maxWidth:"100%"}}>
                                                     <Typography className={classes.miniText}>Głowa</Typography>
-                                                    <HeroMiniField align={"center"} id="head" value={"2"} inputProps={{min:0,style:{textAlign:"center"} }}> </HeroMiniField>
+                                                    <HeroMiniField align={"center"} id="head" value={props.ap.head} inputProps={{min:0,style:{textAlign:"center"} }}> </HeroMiniField>
                                                     <Typography className={classes.miniText}>01-15</Typography>
                                                 </Grid>
                                                 <Grid item xs={4} style={{flexBasis:0,maxWidth:"100%"}}>
                                                     <Typography className={classes.miniText}>Prawa ręka</Typography>
-                                                    <HeroMiniField align={"center"} id="rightHand" value={"2"} inputProps={{min:0,style:{textAlign:"center"} }}> </HeroMiniField>
+                                                    <HeroMiniField align={"center"} id="rightHand" value={props.ap.rightHand} inputProps={{min:0,style:{textAlign:"center"} }}> </HeroMiniField>
                                                     <Typography className={classes.miniText}>16-35</Typography>
                                                 </Grid>
                                                 <Grid item xs={4} style={{flexBasis:0,maxWidth:"100%"}}>
                                                     <Typography className={classes.miniText}>Prawa noga</Typography>
-                                                    <HeroMiniField align={"center"} id="rightLeg" value={"2"} inputProps={{min:0,style:{textAlign:"center"} }}> </HeroMiniField>
+                                                    <HeroMiniField align={"center"} id="rightLeg" value={props.ap.rightLeg} inputProps={{min:0,style:{textAlign:"center"} }}> </HeroMiniField>
                                                     <Typography className={classes.miniText}>81-90</Typography>
                                                 </Grid>
 
@@ -64,17 +64,17 @@ export default function HeroArmorPoints() {
                                             <Grid container direction={"column"} justify={"space-between"} alignItems={"center"} style={{height:"100%"}}>
                                                 <Grid item xs={4} style={{flexBasis:0,maxWidth:"100%"}}>
                                                     <Typography className={classes.miniText}>Korpus</Typography>
-                                                    <HeroMiniField align={"center"} id="body" value={"2"} inputProps={{min:0,style:{textAlign:"center"} }}> </HeroMiniField>
+                                                    <HeroMiniField align={"center"} id="body" value={props.ap.body} inputProps={{min:0,style:{textAlign:"center"} }}> </HeroMiniField>
                                                     <Typography className={classes.miniText}>56-80</Typography>
                                                 </Grid>
                                                 <Grid item xs={4} style={{flexBasis:0,maxWidth:"100%"}}>
                                                     <Typography className={classes.miniText}>Lewa ręka</Typography>
-                                                    <HeroMiniField align={"center"} id="leftHand" value={"2"} inputProps={{min:0,style:{textAlign:"center"} }}> </HeroMiniField>
+                                                    <HeroMiniField align={"center"} id="leftHand" value={props.ap.leftHand} inputProps={{min:0,style:{textAlign:"center"} }}> </HeroMiniField>
                                                     <Typography className={classes.miniText}>36-55</Typography>
                                                 </Grid>
                                                 <Grid item xs={4} style={{flexBasis:0,maxWidth:"100%"}}>
                                                     <Typography className={classes.miniText}>Lewa noga</Typography>
-                                                    <HeroMiniField align={"center"} id="leftLeg" value={"2"} inputProps={{min:0,style:{textAlign:"center"} }}> </HeroMiniField>
+                                                    <HeroMiniField align={"center"} id="leftLeg" value={props.ap.leftLeg} inputProps={{min:0,style:{textAlign:"center"} }}> </HeroMiniField>
                                                     <Typography className={classes.miniText}>91-00</Typography>
                                                 </Grid>
 

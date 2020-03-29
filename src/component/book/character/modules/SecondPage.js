@@ -6,27 +6,23 @@ import HeroEquipment from "./secondPage/HeroEquipment";
 import HeroMoney from "./secondPage/HeroMoney";
 
 
-
-
-
-
-export default function SecondPage() {
+export default function SecondPage(props) {
 
     return (
         <>
             <Grid container spacing={4}>
                 <Grid item xs={6}>
-                    <HeroSkills/>
+                    <HeroSkills skills={props.sheet.skill}/>
 
                 </Grid>
 
-                <Grid item xs={6} >
+                <Grid item xs={6}>
 
-                    <HeroAbility/>
+                    <HeroAbility abilities={props.sheet.ability}/>
                     <br/>
-                    <HeroEquipment/>
+                    <HeroEquipment equipment={props.sheet.equipment}/>
                     <br/>
-                    <HeroMoney/>
+                    <HeroMoney money={props.sheet.money}/>
 
                 </Grid>
             </Grid>

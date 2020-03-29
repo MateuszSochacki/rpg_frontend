@@ -21,7 +21,7 @@ import API from "../../../../API/API";
 export default function HeroArmor(props) {
 
     const [armors, setArmors] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoadingArmor, setIsLoadingArmor] = useState(true);
 
 
     useEffect(() => {
@@ -31,39 +31,43 @@ export default function HeroArmor(props) {
 
         async function fetchArmor(name, type) {
 
+            let armor = "";
 
             await API.post("book/armor/name", {name, type}).then(async (response) => {
 
                 if (!didCancel) {
-                    const armor = response.data;
-                    armors.push(armor);
+                    armor = (response.data);
+
 
                 }
             }).catch(error => {
                 console.log(error)
             });
+            return armor;
 
         };
 
+        async function getAll() {
+            return await Promise.all(props.armors.map(async (armor) => await (await (fetchArmor(armor.name, armor.type)))));
+        }
 
-        props.armors.map((armor) => {
+        getAll().then(data => {
+            setArmors(data);
+            setIsLoadingArmor(false);
 
-            fetchArmor(armor.name, armor.type);
 
         });
 
 
-
-        setIsLoading(false);
         return () => {
             didCancel = true;
         };
 
-    }, [isLoading]);
+    }, [isLoadingArmor]);
 
     return (
         <Paper elevation={8}>
-            {isLoading ? null :
+            {isLoadingArmor ? null :
                 <HeroPanel expanded={true}>
                     <HeroPanelSummary>
                         <HeroText>

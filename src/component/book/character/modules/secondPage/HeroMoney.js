@@ -9,7 +9,7 @@ import {
 import Grid from "@material-ui/core/Grid";
 import {HeroSkillsLetters} from "../../../../styles/Styles";
 
-export default function HeroMoney() {
+export default function HeroMoney(props) {
 
     return (
         <>
@@ -17,16 +17,16 @@ export default function HeroMoney() {
                 <HeroPanel expanded={true}>
                     <HeroPanelSummary>
                         <HeroText align={"center"}>
-                            wyposażenie
+                            Pieniądze
                         </HeroText>
                     </HeroPanelSummary>
                     <HeroPanelDetails>
                         <>
                             <Grid container direction={"column"}>
                                <Grid item xs={12}>
-                                   <HeroTextField style={{borderBottom:"1px solid"}} id="gold" label="Złote korony (zk):" value={"50"} />
-                                   <HeroTextField style={{borderBottom:"1px solid"}} id="silver" label="Srebrne szylingi (s)" value={"20"} />
-                                   <HeroTextField id="copper" label="Mosiężne pensy (p):" value={"14"} />
+                                   <HeroTextField style={{borderBottom:"1px solid"}} inputProps={{min: 0, style: {textAlign: "center"}}} id="gold" label="Złote korony (zk):" value={props.money.gold} />
+                                   <HeroTextField style={{borderBottom:"1px solid"}} inputProps={{min: 0, style: {textAlign: "center"}}} id="silver" label="Srebrne szylingi (s)" value={props.money.silver} />
+                                   <HeroTextField id="copper" inputProps={{min: 0, style: {textAlign: "center"}}} label="Mosiężne pensy (p):" value={props.money.copper} />
 
 
                                </Grid>

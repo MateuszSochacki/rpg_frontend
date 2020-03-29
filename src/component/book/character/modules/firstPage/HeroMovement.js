@@ -9,7 +9,7 @@ import {
 } from "../../../../styles/expansionPanel/Panel";
 import Grid from "@material-ui/core/Grid";
 
-export default function HeroMovement() {
+export default function HeroMovement(props) {
 
     return(
         <>
@@ -24,14 +24,14 @@ export default function HeroMovement() {
                         <>
                             <Grid container>
                                 <Grid item xs={3} style={{borderRight:"1px solid",}}>
-                                    <HeroTextField id="movement" label="Ruch/odwrót:" value={"25m"} />
+                                    <HeroTextField id="movement" label="Ruch/odwrót:" value={props.move.move} />
 
                                 </Grid>
                                 <Grid item xs={3} style={{borderLeft:"1px solid",borderRight:"1px solid"}}>
-                                    <HeroTextField id="strike" label="Szarża:" value={"34m"} />
+                                    <HeroTextField id="strike" label="Szarża:" value={props.move.strike} />
                                 </Grid>
                                 <Grid item xs={3} style={{borderLeft:"1px solid",}}>
-                                    <HeroTextField id="run" label="Bieg:" value={"40m"} />
+                                    <HeroTextField id="run" label="Bieg:" value={props.move.run} />
                                 </Grid>
                             </Grid>
 

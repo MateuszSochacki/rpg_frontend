@@ -4,12 +4,12 @@ import {
     HeroPanel,
     HeroPanelDetails,
     HeroPanelSummary,
-    HeroText,
+    HeroText, HeroTextField,
 } from "../../../../styles/expansionPanel/Panel";
 import Grid from "@material-ui/core/Grid";
 import {HeroSkillsLetters} from "../../../../styles/Styles";
 
-export default function HeroEquipment() {
+export default function HeroEquipment(props) {
 
     return (
         <>
@@ -39,6 +39,29 @@ export default function HeroEquipment() {
                                         <br/>
                                     </Grid>
                                 </Grid>
+                                {props.equipment.map((eq, key) => (
+
+                                        <Grid container direction={"row"} key={key} spacing={2} style={{paddingBottom:"26px"}}>
+                                            <Grid item xs={4}>
+
+                                                <HeroTextField inputProps={{min: 0, style: {textAlign: "center"}}}
+                                                               value={eq.name}/>
+
+                                            </Grid>
+                                            <Grid item xs={2}>
+                                                <HeroTextField inputProps={{min: 0, style: {textAlign: "center"}}}
+                                                               value={eq.weight}/>
+                                            </Grid>
+                                            <Grid item xs={6}>
+                                                <HeroTextField inputProps={{min: 0, style: {textAlign: "center"}}}
+                                                               value={eq.description} multiline
+                                                />
+                                            </Grid>
+
+
+                                        </Grid>
+
+                                ))}
 
                             </Grid>
 

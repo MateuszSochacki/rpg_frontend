@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 export default function HeroWeapon(props) {
     const classes = useStyles();
     const [weapons, setWeapons] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoadingWeapon, setIsLoadingWeapon] = useState(true);
 
 
     useEffect(() => {
@@ -39,40 +39,41 @@ export default function HeroWeapon(props) {
         let didCancel = false;
 
         async function fetchWeapon(name) {
+            let weapon = "";
 
-
-            await API.post("book/weapon/name",{name}).then(async (response) => {
+            await API.post("book/weapon/name", {name}).then(async (response) => {
 
                 if (!didCancel) {
-                    const prof = response.data;
-                    weapons.push(prof);
+                    weapon = (response.data);
+
 
                 }
             }).catch(error => {
                 console.log(error)
             });
+            return weapon;
 
         };
 
+        async function getAll() {
+            return (await Promise.all(props.weapons.map(async (weapon) => await (await (fetchWeapon(weapon))))));
+        }
 
+        getAll().then(data => {
+            setWeapons(data);
+            setIsLoadingWeapon(false);
 
-        let promise =props.weapons.map((weapon)=>{
-
-            fetchWeapon(weapon);
 
         });
-        Promise.all(promise).then(()=>{
-            setIsLoading(false);
 
-        })
         return () => {
             didCancel = true;
         };
 
-    }, [isLoading]);
+    }, [isLoadingWeapon]);
     return (
         <Paper elevation={8}>
-            {isLoading ? null :
+            {isLoadingWeapon ? null :
                 <HeroPanel expanded={true}>
                     <HeroPanelSummary>
                         <HeroText>
@@ -113,18 +114,22 @@ export default function HeroWeapon(props) {
                                                     <HeroTableCell align="center">{weapon.weight}</HeroTableCell>
                                                     <HeroTableCell align="center"> {weapon.category}</HeroTableCell>
                                                     <HeroTableCell align="center"> {weapon.strength}</HeroTableCell>
-                                                    <HeroTableCell align="center"> {weapon.rangeMin} - {weapon.rangeMax}</HeroTableCell>
-                                                    <HeroTableCell align="center"> {weapon.reload===null? <>Brak</> : weapon.reload}</HeroTableCell>
-                                                    <HeroTableCell align="center"> {weapon.weaponTrait.map((trait,key)=>{
-                                                        return(
-                                                            <Tooltip title={trait.description} key={key}>
-                                                                <Typography key={key}>
+                                                    <HeroTableCell
+                                                        align="center"> {weapon.rangeMin} - {weapon.rangeMax}</HeroTableCell>
+                                                    <HeroTableCell
+                                                        align="center"> {weapon.reload === null ? <>Brak</> : weapon.reload}</HeroTableCell>
+                                                    <HeroTableCell
+                                                        align="center"> {weapon.weaponTrait.map((trait, traitKey) => {
+                                                        return (
+                                                            <Tooltip title={trait.description} key={traitKey}>
+                                                                <Typography key={traitKey}>
                                                                     <i>{trait.name}</i>
                                                                 </Typography>
 
                                                             </Tooltip>
 
-                                                        );})}</HeroTableCell>
+                                                        );
+                                                    })}</HeroTableCell>
 
 
                                                 </HeroTableRow>

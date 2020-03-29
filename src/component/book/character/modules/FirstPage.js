@@ -10,9 +10,6 @@ import HeroExperiencePoints from "./firstPage/HeroExperiencePoints";
 import HeroMovement from "./firstPage/HeroMovement";
 import HeroArmorPoints from "./firstPage/HeroArmorPoints";
 import HeroActionSheet from "./firstPage/HeroActionSheet";
-import {Panel, PanelSummary} from "../../../styles/expansionPanel/Panel";
-import Typography from "@material-ui/core/Typography";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 
 
 export default function FirstPage(props) {
@@ -20,50 +17,41 @@ export default function FirstPage(props) {
     return (
         <>
             <Grid container spacing={4}>
-                {props.sheet.map((character, key) => (
-                    <Grid item xs={12} key={key}>
-                        <Panel key={key}>
-                            <PanelSummary key={key}>
-                                <Typography variant="h5" component="h5" align={"left"}>
-                                    {character.hero.name}
-                                </Typography>
-                            </PanelSummary>
-                            <ExpansionPanelDetails key={key}>
-                                <Grid container spacing={4}>
 
-                                    <Grid item xs={6}>
-                                        <HeroInfo info={character.hero} key={key}/>
-                                        <br/>
-                                        <HeroDescription description={character.description}/>
-                                        <br/>
-                                        <HeroTraits traits={character.traits} profession={character.hero.currentProfession}/>
-                                        <br/>
-                                        <HeroWeapon weapons={character.weapon}/>
-                                        <br/>
-                                        <HeroArmor armors={character.armor}/>
+                <Grid item xs={12}>
+                    <Grid container spacing={4}>
 
-                                    </Grid>
+                        <Grid item xs={6}>
+                            <HeroInfo info={props.sheet.hero}/>
+                            <br/>
+                            <HeroDescription description={props.sheet.description}/>
+                            <br/>
+                            <HeroTraits traits={props.sheet.traits} profession={props.sheet.hero.currentProfession}/>
+                            <br/>
+                            <HeroWeapon weapons={props.sheet.weapon}/>
+                            <br/>
+                            <HeroArmor armors={props.sheet.armor}/>
 
-                                    {/*<Grid item xs={1}/>*/}
-                                    <Grid item xs={6}>
+                        </Grid>
 
-                                        <HeroGameInfo/>
-                                        <br/>
-                                        <HeroExperiencePoints/>
-                                        <br/>
-                                        <HeroMovement/>
-                                        <br/>
-                                        <HeroArmorPoints/>
-                                        <br/>
-                                        <HeroActionSheet/>
-                                    </Grid>
-                                </Grid>
-                            </ExpansionPanelDetails>
+                        {/*<Grid item xs={1}/>*/}
+                        <Grid item xs={6}>
 
-                        </Panel>
-
+                            <HeroGameInfo gameInfo={props.sheet.player}/>
+                            <br/>
+                            <HeroExperiencePoints exp={props.sheet.experiencePoints}/>
+                            <br/>
+                            <HeroMovement move={props.sheet.movement}/>
+                            <br/>
+                            <HeroArmorPoints ap={props.sheet.armorPoints}/>
+                            <br/>
+                            <HeroActionSheet/>
+                        </Grid>
                     </Grid>
-                ))}
+
+
+                </Grid>
+
             </Grid>
 
         </>

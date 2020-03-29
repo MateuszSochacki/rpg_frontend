@@ -9,7 +9,7 @@ import {
 } from "../../../../styles/expansionPanel/Panel";
 import Grid from "@material-ui/core/Grid";
 
-export default function HeroGameInfo() {
+export default function HeroGameInfo(props) {
 
     return(
         <>
@@ -24,13 +24,13 @@ export default function HeroGameInfo() {
                         <>
                             <Grid container>
                                 <Grid item xs={6} style={{borderRight:"1px solid",}}>
-                                    <HeroTextField id="gameMasterName" label="Imię:" value={"Mateusz"} style={{borderBottom:"1px solid",}}/>
-                                    <HeroTextField id="campaign" label="Kampania:" value={"Wrzesniowa"} />
+                                    <HeroTextField id="plaeyrName" label="Imię:" value={props.gameInfo.name} style={{borderBottom:"1px solid",}}/>
+                                    <HeroTextField id="campaign" label="Kampania:" value={props.gameInfo.campaign} />
 
                                 </Grid>
                                 <Grid item xs={6} style={{borderLeft:"1px solid",}}>
-                                    <HeroTextField id="gameMaster" label="Mistrz gry:" value={"Sochacki"} style={{borderBottom:"1px solid",}}/>
-                                    <HeroTextField id="yearOfCampaign" label="Rok kampanii:" value={"2020"} />
+                                    <HeroTextField id="gameMaster" label="Mistrz gry:" value={props.gameInfo.gameMaster} style={{borderBottom:"1px solid",}}/>
+                                    <HeroTextField id="yearOfCampaign" label="Rok kampanii:" value={props.gameInfo.yearOfCampaign} />
                                 </Grid>
                             </Grid>
 

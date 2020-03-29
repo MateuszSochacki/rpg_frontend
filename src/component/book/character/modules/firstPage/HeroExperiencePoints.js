@@ -9,7 +9,7 @@ import {
 import Grid from "@material-ui/core/Grid";
 import {Paper} from "@material-ui/core";
 
-export default function HeroExperiencePoints() {
+export default function HeroExperiencePoints(props) {
 
     return(
         <>
@@ -24,11 +24,11 @@ export default function HeroExperiencePoints() {
                         <>
                             <Grid container>
                                 <Grid item xs={3} style={{borderRight:"1px solid",}}>
-                                    <HeroTextField id="currentExp" label="Obecne:" value={"150"} />
+                                    <HeroTextField id="currentExp" label="Obecne:" value={props.exp.current} />
 
                                 </Grid>
                                 <Grid item xs={9} style={{borderLeft:"1px solid",}}>
-                                    <HeroTextField id="sumExp" label="Razem:" value={"350"} />
+                                    <HeroTextField id="sumExp" label="Razem:" value={props.exp.sum} />
                                 </Grid>
                             </Grid>
 
