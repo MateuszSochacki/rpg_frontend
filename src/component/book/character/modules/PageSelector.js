@@ -8,14 +8,20 @@ import {makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
-import FirstPage from "./FirstPage";
-import SecondPage from "./SecondPage";
-import ThirdPage from "./ThirdPage";
-import FourthPage from "./ForuthPage";
+import FirstPagePreview from "./preview/FirstPagePreview";
+import SecondPagePreview from "./preview/SecondPagePreview";
+import ThirdPagePreview from "./preview/ThirdPagePreview";
+import FourthPagePreview from "./preview/ForuthPagePreview";
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FirstPageEdit from "./edit/FirstPageEdit";
+import SecondPageEdit from "./edit/SecondPageEdit";
+import ThirdPageEdit from "./edit/ThirdPageEdit";
+import FourthPageEdit from "./edit/ForuthPageEdit";
 
 
 function TabPanel(props) {
-    const { children, value, index, ...other } = props;
+    const {children, value, index, ...other} = props;
 
     return (
         <Typography
@@ -36,61 +42,92 @@ TabPanel.propTypes = {
     index: PropTypes.any.isRequired,
     value: PropTypes.any.isRequired,
 };
+
 function a11yProps(index) {
     return {
         id: `scrollable-prevent-tab-${index}`,
         'aria-controls': `scrollable-prevent-tabpanel-${index}`,
     };
 }
+
 export default function PageSelector(props) {
     const [value, setValue] = useState(0);
 
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
+    };
+    const [checked, setChecked] = React.useState(false);
+
+    const toggleChecked = () => {
+        setChecked((prev) => !prev);
     };
 
     return (
         <>
 
-                <Grid container spacing={4}>
-                    <Grid item xs={12}>
+            <Grid container spacing={4}>
+                <Grid item xs={12}>
 
+                    <Grid container item xs={2} alignItems={"flex-start"}>
+                        <FormControlLabel
+                            value="bottom"
+                            control={<Switch size="small" checked={checked} onChange={toggleChecked}/>}
+                            label="Edytuj"
+                            labelPlacement="bottom"
+                        />
 
-                            <>
-                                <Tabs
-                                    value={value}
-                                    onChange={handleChange}
-                                    indicatorColor="primary"
-                                    textColor="primary"
-                                    centered
-                                >
-                                    <Tab label="Postać" icon={<FavoriteIcon/>} {...a11yProps(0)}/>
-                                    <Tab label="Umiejętności/Zdolności" icon={<FavoriteIcon/>} {...a11yProps(1)}/>
-                                    <Tab label="Zaklęcia" icon={<FavoriteIcon/>} {...a11yProps(2)}/>
-                                    <Tab label="Mutacje" icon={<FavoriteIcon/>} {...a11yProps(3)}/>
-
-                                </Tabs>
-                                < TabPanel value = {value} index={0}>
-                                    {/*    <div style={{ display: value === 0? 'block': 'none'}}>*/}
-                                    <FirstPage sheet={props.sheet}/>
-                                    {/*</div>*/}
-
-
-                                </TabPanel>
-                                <TabPanel  value={value} index={1}>
-
-                                    <SecondPage sheet={props.sheet}/>
-                                </TabPanel>
-                                <TabPanel value={value} index={2}>
-                                    <ThirdPage/>
-                                </TabPanel>
-                                <TabPanel value={value} index={3}>
-                                    <FourthPage/>
-                                </TabPanel>
-                            </>
 
                     </Grid>
+                    <>
+                        <Tabs
+                            value={value}
+                            onChange={handleChange}
+                            indicatorColor="primary"
+                            textColor="primary"
+                            centered
+                        >
+                            <Tab label="Postać" icon={<FavoriteIcon/>} {...a11yProps(0)}/>
+                            <Tab label="Umiejętności/Zdolności" icon={<FavoriteIcon/>} {...a11yProps(1)}/>
+                            <Tab label="Zaklęcia" icon={<FavoriteIcon/>} {...a11yProps(2)}/>
+                            <Tab label="Mutacje" icon={<FavoriteIcon/>} {...a11yProps(3)}/>
+
+                        </Tabs>
+                        {!checked ?
+                            <>
+                                < TabPanel value={value} index={0}>
+                                    <FirstPagePreview sheet={props.sheet}/>
+                                </TabPanel>
+                                <TabPanel value={value} index={1}>
+
+                                    <SecondPagePreview sheet={props.sheet}/>
+                                </TabPanel>
+                                <TabPanel value={value} index={2}>
+                                    <ThirdPagePreview sheet={props.sheet}/>
+                                </TabPanel>
+                                <TabPanel value={value} index={3}>
+                                    <FourthPagePreview sheet={props.sheet}/>
+                                </TabPanel>
+                            </> :
+                            <>
+                                < TabPanel value={value} index={0}>
+                                    <FirstPageEdit character={props.character}/>
+                                </TabPanel>
+                                <TabPanel value={value} index={1}>
+                                    <SecondPageEdit character={props.character}/>
+                                </TabPanel>
+                                <TabPanel value={value} index={2}>
+                                    <ThirdPageEdit character={props.character}/>
+                                </TabPanel>
+                                <TabPanel value={value} index={3}>
+                                    <FourthPageEdit character={props.character}/>
+                                </TabPanel>
+                            </>
+                        }
+                    </>
+
                 </Grid>
+            </Grid>
 
         </>
     )

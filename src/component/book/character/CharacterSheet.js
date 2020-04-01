@@ -17,6 +17,7 @@ const useStyles = makeStyles({
 });
 export default function CharacterSheet() {
     const [charSheet, setCharSheet] = useState(0);
+    const [character, setCharacter] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const classes=useStyles();
 
@@ -33,6 +34,7 @@ export default function CharacterSheet() {
                 if (!didCancel) {
                     const sheets = response.data;
                     setCharSheet(sheets.characterSheetsDtos);
+                    setCharacter(sheets.characterSheetsDtos);
 
                     setIsLoading(false);
                 }
@@ -64,7 +66,7 @@ export default function CharacterSheet() {
                                         </Typography>
                                     </PanelSummary>
                                     <ExpansionPanelDetails style={{padding:"0 0 24px"}} key={key}>
-                                            <PageSelector sheet={character}/>
+                                            <PageSelector sheet={character} character={character}/>
                                     </ExpansionPanelDetails>
 
                                 </Panel>
