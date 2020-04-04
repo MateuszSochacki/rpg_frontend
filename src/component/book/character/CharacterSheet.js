@@ -22,30 +22,33 @@ export default function CharacterSheet() {
     const classes=useStyles();
 
 
+    const handleUpdate=()=>{
+        fetchSheets();
+    };
+    async function fetchSheets(didCancel) {
 
+        await API.get("user/sheet/owner").then(async (response) => {
+
+            if (!didCancel) {
+                const sheets = response.data;
+                setCharSheet(sheets.characterSheetsDtos);
+                setCharacter(sheets.characterSheetsDtos);
+
+                setIsLoading(false);
+            }
+        }).catch(error => {
+            console.log(error)
+        });
+
+    }
     useEffect(() => {
 
         let didCancel = false;
 
-        async function fetchSheets() {
-
-            await API.get("user/sheet/owner").then(async (response) => {
-
-                if (!didCancel) {
-                    const sheets = response.data;
-                    setCharSheet(sheets.characterSheetsDtos);
-                    setCharacter(sheets.characterSheetsDtos);
-
-                    setIsLoading(false);
-                }
-            }).catch(error => {
-                console.log(error)
-            });
-
-        };
 
 
-        fetchSheets();
+
+        fetchSheets(didCancel);
         return () => {
             didCancel = true;
         };
@@ -66,7 +69,7 @@ export default function CharacterSheet() {
                                         </Typography>
                                     </PanelSummary>
                                     <ExpansionPanelDetails style={{padding:"0 0 24px"}} key={key}>
-                                            <PageSelector sheet={character} character={character}/>
+                                            <PageSelector sheet={character} update={handleUpdate}/>
                                     </ExpansionPanelDetails>
 
                                 </Panel>

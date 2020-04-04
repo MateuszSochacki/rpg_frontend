@@ -17,7 +17,7 @@ export default function HeroEditTraits(props) {
 
         async function fetchProfession() {
             let name={
-                name:props.profession
+                name:props.character.hero.currentProfession
             };
 
 
@@ -57,8 +57,8 @@ export default function HeroEditTraits(props) {
                     <HeroPanelDetails>
                         <Grid container>
                             <Grid item xs={12}>
-                                <HeroMainTraitTable mainTraits={props.traits.mainTraits} prof={profession.mainTraits}/>
-                                <HeroSecondaryTraitTable secondaryTraits={props.traits.secondaryTraits}
+                                <HeroMainTraitTable mainTraits={props.character.traits.mainTraits} prof={profession.mainTraits}/>
+                                <HeroSecondaryTraitTable secondaryTraits={props.character.traits.secondaryTraits}
                                                          prof={profession.secondaryTraits}/>
                             </Grid>
                         </Grid>

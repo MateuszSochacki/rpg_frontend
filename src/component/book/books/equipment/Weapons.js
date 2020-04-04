@@ -53,10 +53,10 @@ export default function Weapons(props) {
                                 <StyledTableCell align="center">{weapon.rangeMax}</StyledTableCell>
                                 <StyledTableCell align="center">{weapon.reload!==null? weapon.reload : "Brak"}</StyledTableCell>
                                 <StyledTableCell align="center">{weapon.strength}</StyledTableCell>
-                                <StyledTableCell align="center" >{weapon.weaponTrait.map(currentTrait=> {
+                                <StyledTableCell align="center" >{weapon.weaponTrait.map((currentTrait,keyTrait)=> {
                                     return(
-                                        <Tooltip title={currentTrait.description} key={key}>
-                                            <Typography key={key}>
+                                        <Tooltip title={currentTrait.description} key={keyTrait}>
+                                            <Typography >
                                                 <i>{currentTrait.name}</i>
                                             </Typography>
 

@@ -52,3 +52,16 @@ export const HeroSkillsLetters = withStyles({
     }
 
 })(Typography);
+
+export const SaveButton = withStyles({
+    root:{
+        margin:15
+
+
+
+    },
+
+    text:{
+        padding:2
+    }
+})(Button);
