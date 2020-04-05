@@ -3,51 +3,34 @@ import {HeroPanel, HeroPanelDetails, HeroPanelSummary, HeroText} from "../../../
 import Grid from "@material-ui/core/Grid";
 import {Paper} from "@material-ui/core";
 
-import HeroMainTraitTable from "./table/HeroMainTraitTable";
-import HeroSecondaryTraitTable from "./table/HeroSecondaryTraitTable";
+import HeroMainTraitTable from "./../../table/HeroMainTraitTable";
+import HeroSecondaryTraitTable from "./../../table/HeroSecondaryTraitTable";
 import API from "../../../../../API/API";
+import {SaveButton} from "../../../../../styles/Styles";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+import EditTraitsDialog from "./util/EditTraitsDialog";
+
 
 export default function HeroEditTraits(props) {
-    const [profession, setProfession] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-
-        let didCancel = false;
-
-        async function fetchProfession() {
-            let name={
-                name:props.character.hero.currentProfession
-            };
+    // const [profession, setProfession] = useState(0);
+    const [open, setOpen] = React.useState(false);
 
 
-            await API.post("book/profession/name",name).then(async (response) => {
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
 
-                if (!didCancel) {
-                    const prof = response.data;
-                    setProfession(prof);
-
-                    setIsLoading(false);
-                }
-            }).catch(error => {
-                console.log(error)
-            });
-
-        }
-
-
-
-
-        fetchProfession();
-        return () => {
-            didCancel = true;
-        };
-
-    }, [isLoading]);
-    return(
+    const handleClose = () => {
+        setOpen(false);
+    };
+    return (
 
         <Paper elevation={8}>
-            {isLoading ? null :
                 <HeroPanel expanded={true}>
                     <HeroPanelSummary>
                         <HeroText>
@@ -57,17 +40,21 @@ export default function HeroEditTraits(props) {
                     <HeroPanelDetails>
                         <Grid container>
                             <Grid item xs={12}>
-                                <HeroMainTraitTable mainTraits={props.character.traits.mainTraits} prof={profession.mainTraits}/>
-                                <HeroSecondaryTraitTable secondaryTraits={props.character.traits.secondaryTraits}
-                                                         prof={profession.secondaryTraits}/>
+                                <HeroMainTraitTable mainTraits={props.character.traits}/>
+                                <HeroSecondaryTraitTable secondaryTraits={props.character.traits}/>
                             </Grid>
+                            <SaveButton variant="contained" color="primary" onClick={handleClickOpen}>
+                                Edytuj
+                            </SaveButton>
                         </Grid>
                     </HeroPanelDetails>
                 </HeroPanel>
-            }
+            {open ?
+                <EditTraitsDialog open={open} close={handleClose} mainTraits={props.character.traits} secondaryTraits={props.character.traits}/>
+            :null}
         </Paper>
 
 
-            )
+    )
 
 }

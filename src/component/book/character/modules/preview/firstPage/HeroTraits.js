@@ -3,48 +3,48 @@ import {HeroPanel, HeroPanelDetails, HeroPanelSummary, HeroText} from "../../../
 import Grid from "@material-ui/core/Grid";
 import {Paper} from "@material-ui/core";
 
-import HeroMainTraitTable from "./table/HeroMainTraitTable";
-import HeroSecondaryTraitTable from "./table/HeroSecondaryTraitTable";
+import HeroMainTraitTable from "./../../table/HeroMainTraitTable";
+import HeroSecondaryTraitTable from "./../../table/HeroSecondaryTraitTable";
 import API from "../../../../../API/API";
 
 export default function HeroTraits(props) {
-    const [profession, setProfession] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
+    // const [profession, setProfession] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
 
         let didCancel = false;
 
-        async function fetchProfession() {
-            let name={
-                name:props.profession
-            };
-
-
-            await API.post("book/profession/name",name).then(async (response) => {
-
-                if (!didCancel) {
-                    const prof = response.data;
-                    setProfession(prof);
-
-                    setIsLoading(false);
-                }
-            }).catch(error => {
-                console.log(error)
-            });
-
-        }
-
-
-
-
-        fetchProfession();
+        // async function fetchProfession() {
+        //     let name={
+        //         name:props.profession
+        //     };
+        //
+        //
+        //     await API.post("book/profession/name",name).then(async (response) => {
+        //
+        //         if (!didCancel) {
+        //             const prof = response.data;
+        //             setProfession(prof);
+        //
+        //             setIsLoading(false);
+        //         }
+        //     }).catch(error => {
+        //         console.log(error)
+        //     });
+        //
+        // }
+        //
+        //
+        //
+        //
+        // fetchProfession();
         return () => {
             didCancel = true;
         };
 
     }, [isLoading]);
-    return(
+    return (
 
         <Paper elevation={8}>
             {isLoading ? null :
@@ -57,9 +57,8 @@ export default function HeroTraits(props) {
                     <HeroPanelDetails>
                         <Grid container>
                             <Grid item xs={12}>
-                                <HeroMainTraitTable mainTraits={props.traits.mainTraits} prof={profession.mainTraits}/>
-                                <HeroSecondaryTraitTable secondaryTraits={props.traits.secondaryTraits}
-                                                         prof={profession.secondaryTraits}/>
+                                <HeroMainTraitTable mainTraits={props.traits}/>
+                                <HeroSecondaryTraitTable secondaryTraits={props.traits}/>
                             </Grid>
                         </Grid>
                     </HeroPanelDetails>
@@ -68,6 +67,6 @@ export default function HeroTraits(props) {
         </Paper>
 
 
-            )
+    )
 
 }
