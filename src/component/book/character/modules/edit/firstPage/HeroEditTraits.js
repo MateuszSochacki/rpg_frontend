@@ -40,8 +40,8 @@ export default function HeroEditTraits(props) {
                     <HeroPanelDetails>
                         <Grid container>
                             <Grid item xs={12}>
-                                <HeroMainTraitTable mainTraits={props.character.traits}/>
-                                <HeroSecondaryTraitTable secondaryTraits={props.character.traits}/>
+                                <HeroMainTraitTable mainTraits={props.character}/>
+                                <HeroSecondaryTraitTable secondaryTraits={props.character}/>
                             </Grid>
                             <SaveButton variant="contained" color="primary" onClick={handleClickOpen}>
                                 Edytuj
@@ -50,7 +50,7 @@ export default function HeroEditTraits(props) {
                     </HeroPanelDetails>
                 </HeroPanel>
             {open ?
-                <EditTraitsDialog open={open} close={handleClose} mainTraits={props.character.traits} secondaryTraits={props.character.traits}/>
+                <EditTraitsDialog open={open} close={handleClose} character={props.character}/>
             :null}
         </Paper>
 

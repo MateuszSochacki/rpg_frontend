@@ -42,39 +42,38 @@ export default function HeroMainTraitTable(props) {
 
                             <HeroTableRow key={props.key}>
                                 <HeroTableCell component="th" scope="row" align={"center"} className={classes.borderless}> Początkowa: </HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.mainTraits.fighting} </HeroTableCell>
-                                <HeroTableCell align="center">{props.mainTraits.mainTraits.shooting}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.mainTraits.vigor}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.mainTraits.resistance}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.mainTraits.agility}</HeroTableCell>
-                                <HeroTableCell align="center">{props.mainTraits.mainTraits.intelligence}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.mainTraits.willpower}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.mainTraits.charisma}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.traits.mainTraits.fighting} </HeroTableCell>
+                                <HeroTableCell align="center">{props.mainTraits.traits.mainTraits.shooting}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.traits.mainTraits.vigor}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.traits.mainTraits.resistance}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.traits.mainTraits.agility}</HeroTableCell>
+                                <HeroTableCell align="center">{props.mainTraits.traits.mainTraits.intelligence}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.traits.mainTraits.willpower}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.traits.mainTraits.charisma}</HeroTableCell>
 
                             </HeroTableRow>
                             <HeroTableRow key={2}>
                                 <HeroTableCell component="th" scope="row" align={"center"} className={classes.borderless}>Schemat rozwoju:</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.professionMainTraits.fighting!==null? props.mainTraits.professionMainTraits.fighting:0} </HeroTableCell>
-                                <HeroTableCell align="center">{props.mainTraits.professionMainTraits.shooting!==null? props.mainTraits.professionMainTraits.shooting:0}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.professionMainTraits.vigor!==null? props.mainTraits.professionMainTraits.vigor:0}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.professionMainTraits.resistance!==null?props.mainTraits.professionMainTraits.resistance :0}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.professionMainTraits.agility!==null? props.mainTraits.professionMainTraits.agility:0}</HeroTableCell>
-                                <HeroTableCell align="center">{props.mainTraits.professionMainTraits.intelligence!==null? props.mainTraits.professionMainTraits.intelligence:0}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.professionMainTraits.willpower!==null? props.mainTraits.professionMainTraits.willpower:0}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.professionMainTraits.charisma!==null? props.mainTraits.professionMainTraits.charisma:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.heroProfession.mainTraits.fighting!==null? "+"+props.mainTraits.heroProfession.mainTraits.fighting:0} </HeroTableCell>
+                                <HeroTableCell align="center">{props.mainTraits.heroProfession.mainTraits.shooting!==null? "+"+props.mainTraits.heroProfession.mainTraits.shooting:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.heroProfession.mainTraits.vigor!==null? "+"+props.mainTraits.heroProfession.mainTraits.vigor:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.heroProfession.mainTraits.resistance!==null? "+"+props.mainTraits.heroProfession.mainTraits.resistance :0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.heroProfession.mainTraits.agility!==null? "+"+props.mainTraits.heroProfession.mainTraits.agility:0}</HeroTableCell>
+                                <HeroTableCell align="center">{props.mainTraits.heroProfession.mainTraits.intelligence!==null? "+"+props.mainTraits.heroProfession.mainTraits.intelligence:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.heroProfession.mainTraits.willpower!==null? "+"+props.mainTraits.heroProfession.mainTraits.willpower:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.heroProfession.mainTraits.charisma!==null? "+"+props.mainTraits.heroProfession.mainTraits.charisma:0}</HeroTableCell>
 
                             </HeroTableRow>
-                            {console.log(props.mainTraits)}
                             <HeroTableRow key={3}>
                                 <HeroTableCell component="th" scope="row" align={"center"} className={classes.borderless} >Aktualna: </HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.currentCharacterMainTraits.fighting} </HeroTableCell>
-                                <HeroTableCell align="center">{props.mainTraits.currentCharacterMainTraits.shooting}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.currentCharacterMainTraits.vigor}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.currentCharacterMainTraits.resistance}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.currentCharacterMainTraits.agility}</HeroTableCell>
-                                <HeroTableCell align="center">{props.mainTraits.currentCharacterMainTraits.intelligence}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.currentCharacterMainTraits.willpower}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.mainTraits.currentCharacterMainTraits.charisma}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.traits.currentMainTraits.fighting} </HeroTableCell>
+                                <HeroTableCell align="center">{props.mainTraits.traits.currentMainTraits.shooting}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.traits.currentMainTraits.vigor}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.traits.currentMainTraits.resistance}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.traits.currentMainTraits.agility}</HeroTableCell>
+                                <HeroTableCell align="center">{props.mainTraits.traits.currentMainTraits.intelligence}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.traits.currentMainTraits.willpower}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.mainTraits.traits.currentMainTraits.charisma}</HeroTableCell>
 
                             </HeroTableRow>
 

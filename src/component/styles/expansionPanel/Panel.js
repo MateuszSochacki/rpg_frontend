@@ -104,6 +104,7 @@ export const HeroTextField = withStyles({
     },
 })(TextField);
 
+
 export const HeroMiniField = withStyles({
     root: {
         border:"1px solid",

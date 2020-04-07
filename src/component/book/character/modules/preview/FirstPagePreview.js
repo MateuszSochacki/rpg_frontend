@@ -26,7 +26,7 @@ export default function FirstPagePreview(props) {
                             <br/>
                             <HeroDescription description={props.sheet.description}/>
                             <br/>
-                            <HeroTraits traits={props.sheet.traits} />
+                            <HeroTraits traits={props.sheet} />
                             <br/>
                             <HeroWeapon weapons={props.sheet.weapon}/>
                             <br/>

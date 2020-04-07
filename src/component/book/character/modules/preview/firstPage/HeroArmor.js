@@ -48,12 +48,17 @@ export default function HeroArmor(props) {
         };
 
         async function getAll() {
-            return await Promise.all(props.armors.map(async (armor) => await (await (fetchArmor(armor.name, armor.type)))));
+            if (!didCancel) {
+                return await Promise.all(props.armors.map(async (armor) => await (await (fetchArmor(armor.name, armor.type)))));
+            }
         }
 
+
         getAll().then(data => {
-            setArmors(data);
-            setIsLoadingArmor(false);
+            if (!didCancel) {
+                setArmors(data);
+                setIsLoadingArmor(false);
+            }
 
 
         });

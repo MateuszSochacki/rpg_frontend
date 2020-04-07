@@ -21,10 +21,12 @@ export default function CharacterSheet() {
     const [isLoading, setIsLoading] = useState(true);
     const classes=useStyles();
 
-
     const handleUpdate=()=>{
-        fetchSheets();
+        let didCancel = false;
+        fetchSheets(didCancel);
+
     };
+
     async function fetchSheets(didCancel) {
 
         await API.get("user/sheet/owner").then(async (response) => {
@@ -41,6 +43,7 @@ export default function CharacterSheet() {
         });
 
     }
+
     useEffect(() => {
 
         let didCancel = false;

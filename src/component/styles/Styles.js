@@ -65,3 +65,17 @@ export const SaveButton = withStyles({
         padding:2
     }
 })(Button);
+export const AddButton = withStyles({
+    root:{
+        margin:0,
+        padding:0,
+        minWidth:16,
+        minHeight:16
+
+    },
+
+    text:{
+        padding:0
+    }
+})(Button);
+

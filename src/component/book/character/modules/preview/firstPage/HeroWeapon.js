@@ -56,13 +56,16 @@ export default function HeroWeapon(props) {
         };
 
         async function getAll() {
-            return (await Promise.all(props.weapons.map(async (weapon) => await (await (fetchWeapon(weapon))))));
+            if (!didCancel) {
+                return (await Promise.all(props.weapons.map(async (weapon) => await (await (fetchWeapon(weapon))))));
+            }
         }
 
         getAll().then(data => {
-            setWeapons(data);
-            setIsLoadingWeapon(false);
-
+            if (!didCancel) {
+                setWeapons(data);
+                setIsLoadingWeapon(false);
+            }
 
         });
 

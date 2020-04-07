@@ -42,38 +42,38 @@ export default function HeroSecondaryTraitTable(props) {
 
                             <HeroTableRow key={1}>
                                 <HeroTableCell component="th" scope="row" align={"center"} className={classes.borderless}> Początkowa: </HeroTableCell>
-                                <HeroTableCell align="center"> {props.secondaryTraits.secondaryTraits.attack} </HeroTableCell>
-                                <HeroTableCell align="center">{props.secondaryTraits.secondaryTraits.health}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.secondaryTraits.secondaryTraits.strength}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.secondaryTraits.secondaryTraits.endurance}</HeroTableCell>
-                                <HeroTableCell align="center">{props.secondaryTraits.secondaryTraits.speed}</HeroTableCell>
-                                <HeroTableCell align="center">{props.secondaryTraits.secondaryTraits.magic}</HeroTableCell>
-                                <HeroTableCell align="center">{props.secondaryTraits.secondaryTraits.insanity}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.secondaryTraits.secondaryTraits.fatePoints}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.traits.secondaryTraits.attack} </HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.traits.secondaryTraits.health}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.traits.secondaryTraits.strength}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.traits.secondaryTraits.endurance}</HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.traits.secondaryTraits.speed}</HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.traits.secondaryTraits.magic}</HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.traits.secondaryTraits.insanity}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.traits.secondaryTraits.fatePoints}</HeroTableCell>
 
                             </HeroTableRow>
                             <HeroTableRow key={2}>
                                 <HeroTableCell component="th" scope="row" align={"center"} className={classes.borderless}>Schemat rozwoju:</HeroTableCell>
-                                <HeroTableCell align="center"> {props.secondaryTraits.professionSecondaryTraits.attack!==null? props.secondaryTraits.professionSecondaryTraits.attack:0} </HeroTableCell>
-                                <HeroTableCell align="center">{props.secondaryTraits.professionSecondaryTraits.health!==null? props.secondaryTraits.professionSecondaryTraits.health:0}</HeroTableCell>
-                                <HeroTableCell align="center">{props.secondaryTraits.professionSecondaryTraits.strength!==null? props.secondaryTraits.professionSecondaryTraits.strength:0}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.secondaryTraits.professionSecondaryTraits.endurance!==null? props.secondaryTraits.professionSecondaryTraits.endurance:0}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.secondaryTraits.professionSecondaryTraits.speed!==null? props.secondaryTraits.professionSecondaryTraits.speed:0}</HeroTableCell>
-                                <HeroTableCell align="center">{props.secondaryTraits.professionSecondaryTraits.magic!==null? props.secondaryTraits.professionSecondaryTraits.magic:0}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.secondaryTraits.professionSecondaryTraits.insanity!==null? props.secondaryTraits.professionSecondaryTraits.insanity:0}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.secondaryTraits.professionSecondaryTraits.fatePoints!==null? props.secondaryTraits.professionSecondaryTraits.fatePoints:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.heroProfession.secondaryTraits.attack!==null? "+"+props.secondaryTraits.heroProfession.secondaryTraits.attack:0} </HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.heroProfession.secondaryTraits.health!==null? "+"+props.secondaryTraits.heroProfession.secondaryTraits.health:0}</HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.heroProfession.secondaryTraits.strength!==null? "+"+props.secondaryTraits.heroProfession.secondaryTraits.strength:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.heroProfession.secondaryTraits.endurance!==null? "+"+props.secondaryTraits.heroProfession.secondaryTraits.endurance:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.heroProfession.secondaryTraits.speed!==null? "+"+props.secondaryTraits.heroProfession.secondaryTraits.speed:0}</HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.heroProfession.secondaryTraits.magic!==null? "+"+props.secondaryTraits.heroProfession.secondaryTraits.magic:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.heroProfession.secondaryTraits.insanity!==null? "+"+props.secondaryTraits.heroProfession.secondaryTraits.insanity:0}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.heroProfession.secondaryTraits.fatePoints!==null? "+"+props.secondaryTraits.heroProfession.secondaryTraits.fatePoints:0}</HeroTableCell>
 
                             </HeroTableRow>
                             <HeroTableRow key={3}>
                                 <HeroTableCell component="th" scope="row" align={"center"} className={classes.borderless} >Aktualna: </HeroTableCell>
-                                <HeroTableCell align="center"> {props.secondaryTraits.currentCharacterSecondaryTraits.attack} </HeroTableCell>
-                                <HeroTableCell align="center">{props.secondaryTraits.currentCharacterSecondaryTraits.health}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.secondaryTraits.currentCharacterSecondaryTraits.strength}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.secondaryTraits.currentCharacterSecondaryTraits.endurance}</HeroTableCell>
-                                <HeroTableCell align="center">{props.secondaryTraits.currentCharacterSecondaryTraits.speed}</HeroTableCell>
-                                <HeroTableCell align="center">{props.secondaryTraits.currentCharacterSecondaryTraits.magic}</HeroTableCell>
-                                <HeroTableCell align="center">{props.secondaryTraits.currentCharacterSecondaryTraits.insanity}</HeroTableCell>
-                                <HeroTableCell align="center"> {props.secondaryTraits.currentCharacterSecondaryTraits.fatePoints}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.traits.currentSecondaryTraits.attack} </HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.traits.currentSecondaryTraits.health}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.traits.currentSecondaryTraits.strength}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.traits.currentSecondaryTraits.endurance}</HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.traits.currentSecondaryTraits.speed}</HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.traits.currentSecondaryTraits.magic}</HeroTableCell>
+                                <HeroTableCell align="center">{props.secondaryTraits.traits.currentSecondaryTraits.insanity}</HeroTableCell>
+                                <HeroTableCell align="center"> {props.secondaryTraits.traits.currentSecondaryTraits.fatePoints}</HeroTableCell>
 
                             </HeroTableRow>
 
