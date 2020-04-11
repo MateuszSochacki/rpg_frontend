@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -17,6 +17,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 export default function EditTraitsDialog(props) {
 
+    useEffect(() => {
+
+    }, []);
+    const [currentExp,setCurrentExp] = useState(props.character.experiencePoints.current)
+    const handleCurrentExp = (exp) =>{
+        setCurrentExp(exp);
+    };
+
     return (
         <Dialog
             open={props.open}
@@ -31,13 +39,13 @@ export default function EditTraitsDialog(props) {
             <DialogContent>
                 <Grid container>
                     <Grid container item xs={12} justify={"center"} alignItems={"center"}>
-                        <HeroTextField id="exp" label="Dostępne doświadczenie:" value={props.character.experiencePoints.current} style={{marginBottom:50}} inputProps={{min: 0, style: {textAlign: "center"}}}/>
+                        <HeroTextField id="exp" label="Dostępne doświadczenie:" value={currentExp} style={{marginBottom:50}} inputProps={{min: 0, style: {textAlign: "center"}}}/>
 
                         <Grid item xs={6}>
-                            <EditMainTraits mainTraits={props.character}/>
+                            <EditMainTraits mainTraits={props.character} current={currentExp} onExpChange={handleCurrentExp} />
                         </Grid>
                         <Grid item xs={6}>
-                            <EditSecondTraits secondaryTraits={props.character}/>
+                            <EditSecondTraits secondaryTraits={props.character} current={currentExp} onExpChange={handleCurrentExp} />
                         </Grid>
                     </Grid>
                 </Grid>

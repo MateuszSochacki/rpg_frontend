@@ -27,7 +27,8 @@ export default function EditTraitsDialog(props) {
         charismaMinus: true,
         charismaPlus: false
     });
-    const [currentExp, setCurrentExp] = useState(props.mainTraits.experiencePoints.current)
+    const [currentExp, setCurrentExp] = useState(props.current);
+
 
 
     useEffect(() => {
@@ -35,7 +36,7 @@ export default function EditTraitsDialog(props) {
         const baseTraits = props.mainTraits.heroProfession.mainTraits;
 
 
-        if (parseInt(props.mainTraits.experiencePoints.current) !== 0) {
+        if (parseInt(props.mainTraits.experiencePoints.current) >= 100) {
             if (baseTraits.fighting === "0" || baseTraits.fighting === 0)
                 btn = {...btn, fightingPlus: true};
             if (baseTraits.shooting === "0" || baseTraits.shooting === 0) {
@@ -81,7 +82,7 @@ export default function EditTraitsDialog(props) {
     }, []);
 
     const blockAllbutton = (exp, btn) => {
-        if (parseInt(exp) === 0) {
+        if (parseInt(exp) < 100) {
             const buttton = {
                 ...btn,
                 fightingPlus: true,
@@ -109,6 +110,8 @@ export default function EditTraitsDialog(props) {
             btn = {...btn, [name]: false};
         }
         const exp = currentExp + 100;
+        props.onExpChange(exp);
+
         const baseTraits = changedTraits;
 
         if ((baseTraits.fighting === "0" || baseTraits.fighting === 0)) {
@@ -169,6 +172,7 @@ export default function EditTraitsDialog(props) {
             btn = {...btn, [name]: false};
         }
         const exp = currentExp - 100;
+        props.onExpChange(exp);
 
         setButtons(btn);
         blockAllbutton(exp, btn, trait);
@@ -384,7 +388,8 @@ export default function EditTraitsDialog(props) {
                     </Grid>
                 </Grid>
                 <Grid item xs={1}>
-                    <AddButton variant="contained" color="primary" disabled={buttons.resistancePlus}
+                    <AddButton variant="contained" color="primary"
+                               disabled={buttons.resistancePlus}
                                onClick={() => handleButton("+",
                                    "resistance",
                                    changedProfessionTraitsState.resistance,
@@ -433,7 +438,8 @@ export default function EditTraitsDialog(props) {
                     </Grid>
                 </Grid>
                 <Grid item xs={1}>
-                    <AddButton variant="contained" color="primary" disabled={buttons.agilityPlus}
+                    <AddButton variant="contained" color="primary"
+                               disabled={buttons.agilityPlus}
                                onClick={() => handleButton("+",
                                    "agility",
                                    changedProfessionTraitsState.agility,
