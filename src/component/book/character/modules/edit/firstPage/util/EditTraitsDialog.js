@@ -21,7 +21,12 @@ export default function EditTraitsDialog(props) {
 
     }, []);
     const [currentExp,setCurrentExp] = useState(props.character.experiencePoints.current)
-    const handleCurrentExp = (exp) =>{
+    const handleCurrentExpAdd = () =>{
+        let exp = parseInt(currentExp) - 100;
+        setCurrentExp(exp);
+    };
+    const handleCurrentExpSubtract = () =>{
+        let exp = parseInt(currentExp) + 100;
         setCurrentExp(exp);
     };
 
@@ -42,10 +47,10 @@ export default function EditTraitsDialog(props) {
                         <HeroTextField id="exp" label="Dostępne doświadczenie:" value={currentExp} style={{marginBottom:50}} inputProps={{min: 0, style: {textAlign: "center"}}}/>
 
                         <Grid item xs={6}>
-                            <EditMainTraits mainTraits={props.character} current={currentExp} onExpChange={handleCurrentExp} />
+                            <EditMainTraits mainTraits={props.character} current={currentExp} expChangeAdd={handleCurrentExpAdd} expChangeSubsract={handleCurrentExpSubtract} />
                         </Grid>
                         <Grid item xs={6}>
-                            <EditSecondTraits secondaryTraits={props.character} current={currentExp} onExpChange={handleCurrentExp} />
+                            <EditSecondTraits secondaryTraits={props.character} current={currentExp}  onExpChange={setCurrentExp} expChangeAdd={handleCurrentExpAdd} expChangeSubsract={handleCurrentExpSubtract} />
                         </Grid>
                     </Grid>
                 </Grid>

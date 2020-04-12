@@ -33,53 +33,70 @@ export default function EditTraitsDialog(props) {
 
     useEffect(() => {
         let btn = buttons;
-        const baseTraits = props.mainTraits.heroProfession.mainTraits;
+        const baseTraits = changedProfessionTraitsState;
 
 
-        if (parseInt(props.mainTraits.experiencePoints.current) >= 100) {
-            if (baseTraits.fighting === "0" || baseTraits.fighting === 0)
+        if (parseInt(props.current) >= 100) {
+            if ((baseTraits.fighting === "0" || baseTraits.fighting === 0)) {
                 btn = {...btn, fightingPlus: true};
+
+            } else {
+                btn = {...btn, fightingPlus: false};
+            }
             if (baseTraits.shooting === "0" || baseTraits.shooting === 0) {
                 btn = {...btn, shootingPlus: true};
+            } else {
+                btn = {...btn, shootingPlus: false};
             }
-            if (baseTraits.vigor === "0" || baseTraits.vigor === 0)
+            if (baseTraits.vigor === "0" || baseTraits.vigor === 0) {
                 btn = {...btn, vigorPlus: true};
-            if (baseTraits.resistance === "0" || baseTraits.resistance === 0)
+            } else {
+                btn = {...btn, vigorPlus: false};
+            }
+            if (baseTraits.resistance === "0" || baseTraits.resistance === 0) {
                 btn = {...btn, resistancePlus: true};
-            if (baseTraits.agility === "0" || baseTraits.agility === 0)
+            } else {
+                btn = {...btn, resistancePlus: false};
+            }
+            if (baseTraits.agility === "0" || baseTraits.agility === 0) {
                 btn = {...btn, agilityPlus: true};
-            if (baseTraits.intelligence === "0" || baseTraits.intelligence === 0)
+            } else {
+                btn = {...btn, agilityPlus: false};
+            }
+            if (baseTraits.intelligence === "0" || baseTraits.intelligence === 0) {
                 btn = {...btn, intelligencePlus: true};
-            if (baseTraits.willpower === "0" || baseTraits.willpower === 0)
+            } else {
+                btn = {...btn, intelligencePlus: false};
+            }
+            if (baseTraits.willpower === "0" || baseTraits.willpower === 0) {
                 btn = {...btn, willpowerPlus: true};
-            if (baseTraits.charisma === "0" || baseTraits.charisma === 0)
+            } else {
+                btn = {...btn, willpowerPlus: false};
+            }
+            if (baseTraits.charisma === "0" || baseTraits.charisma === 0) {
                 btn = {...btn, charismaPlus: true};
+            } else {
+                btn = {...btn, charismaPlus: false};
+            }
 
             setButtons(btn);
         } else {
-            const btn = {
-                fightingMinus: true,
+            btn = {
+                ...btn,
                 fightingPlus: true,
-                shootingMinus: true,
                 shootingPlus: true,
-                vigorMinus: true,
                 vigorPlus: true,
-                resistanceMinus: true,
                 resistancePlus: true,
-                agilityMinus: true,
                 agilityPlus: true,
-                intelligenceMinus: true,
                 intelligencePlus: true,
-                willpowerMinus: true,
                 willpowerPlus: true,
-                charismaMinus: true,
                 charismaPlus: true
             };
             setButtons(btn);
         }
 
 
-    }, []);
+    }, [props.current]);
 
     const blockAllbutton = (exp, btn) => {
         if (parseInt(exp) < 100) {
@@ -110,51 +127,51 @@ export default function EditTraitsDialog(props) {
             btn = {...btn, [name]: false};
         }
         const exp = currentExp + 100;
-        props.onExpChange(exp);
+        props.expChangeSubsract();
 
-        const baseTraits = changedTraits;
-
-        if ((baseTraits.fighting === "0" || baseTraits.fighting === 0)) {
-            btn = {...btn, fightingPlus: true};
-
-        } else {
-            btn = {...btn, fightingPlus: false};
-        }
-        if (baseTraits.shooting === "0" || baseTraits.shooting === 0) {
-            btn = {...btn, shootingPlus: true};
-        } else {
-            btn = {...btn, shootingPlus: false};
-        }
-        if (baseTraits.vigor === "0" || baseTraits.vigor === 0) {
-            btn = {...btn, vigorPlus: true};
-        } else {
-            btn = {...btn, vigorPlus: false};
-        }
-        if (baseTraits.resistance === "0" || baseTraits.resistance === 0) {
-            btn = {...btn, resistancePlus: true};
-        } else {
-            btn = {...btn, resistancePlus: false};
-        }
-        if (baseTraits.agility === "0" || baseTraits.agility === 0) {
-            btn = {...btn, agilityPlus: true};
-        } else {
-            btn = {...btn, agilityPlus: false};
-        }
-        if (baseTraits.intelligence === "0" || baseTraits.intelligence === 0) {
-            btn = {...btn, intelligencePlus: true};
-        } else {
-            btn = {...btn, intelligencePlus: false};
-        }
-        if (baseTraits.willpower === "0" || baseTraits.willpower === 0) {
-            btn = {...btn, willpowerPlus: true};
-        } else {
-            btn = {...btn, willpowerPlus: false};
-        }
-        if (baseTraits.charisma === "0" || baseTraits.charisma === 0) {
-            btn = {...btn, charismaPlus: true};
-        } else {
-            btn = {...btn, charismaPlus: false};
-        }
+        // const baseTraits = changedTraits;
+        //
+        // if ((baseTraits.fighting === "0" || baseTraits.fighting === 0)) {
+        //     btn = {...btn, fightingPlus: true};
+        //
+        // } else {
+        //     btn = {...btn, fightingPlus: false};
+        // }
+        // if (baseTraits.shooting === "0" || baseTraits.shooting === 0) {
+        //     btn = {...btn, shootingPlus: true};
+        // } else {
+        //     btn = {...btn, shootingPlus: false};
+        // }
+        // if (baseTraits.vigor === "0" || baseTraits.vigor === 0) {
+        //     btn = {...btn, vigorPlus: true};
+        // } else {
+        //     btn = {...btn, vigorPlus: false};
+        // }
+        // if (baseTraits.resistance === "0" || baseTraits.resistance === 0) {
+        //     btn = {...btn, resistancePlus: true};
+        // } else {
+        //     btn = {...btn, resistancePlus: false};
+        // }
+        // if (baseTraits.agility === "0" || baseTraits.agility === 0) {
+        //     btn = {...btn, agilityPlus: true};
+        // } else {
+        //     btn = {...btn, agilityPlus: false};
+        // }
+        // if (baseTraits.intelligence === "0" || baseTraits.intelligence === 0) {
+        //     btn = {...btn, intelligencePlus: true};
+        // } else {
+        //     btn = {...btn, intelligencePlus: false};
+        // }
+        // if (baseTraits.willpower === "0" || baseTraits.willpower === 0) {
+        //     btn = {...btn, willpowerPlus: true};
+        // } else {
+        //     btn = {...btn, willpowerPlus: false};
+        // }
+        // if (baseTraits.charisma === "0" || baseTraits.charisma === 0) {
+        //     btn = {...btn, charismaPlus: true};
+        // } else {
+        //     btn = {...btn, charismaPlus: false};
+        // }
 
 
         setButtons(btn);
@@ -172,7 +189,7 @@ export default function EditTraitsDialog(props) {
             btn = {...btn, [name]: false};
         }
         const exp = currentExp - 100;
-        props.onExpChange(exp);
+        props.expChangeAdd();
 
         setButtons(btn);
         blockAllbutton(exp, btn, trait);

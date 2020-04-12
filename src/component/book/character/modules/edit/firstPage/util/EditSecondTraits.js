@@ -20,51 +20,79 @@ export default function EditSecondTraits(props) {
         speedPlus: false,
         magicMinus: true,
         magicPlus: false,
+        insanityMinus:true,
+        insanityPlus:false,
+        fatePointsMinus:true,
+        fatePointsPlus:false
     });
 
     const [currentExp, setCurrentExp] = useState(props.current);
 
     useEffect(() => {
         let btn = buttons;
-        const baseTraits = props.secondaryTraits.heroProfession.secondaryTraits;
+        const baseTraits = changedProfessionTraitsState;
 
+        if (parseInt(currentHeroTraitsState.insanity) === 0) {
+            btn = {...btn, insanityMinus: true};
+        } else {
+            btn = {...btn, insanityMinus: false};
+        }
+        if (parseInt(currentHeroTraitsState.fatePoints) === 0) {
+            btn = {...btn, fatePointsMinus: true};
+        } else {
+            btn = {...btn, fatePointsMinus: false};
+        }
+        setButtons(btn);
 
-        if (parseInt(props.secondaryTraits.experiencePoints.current) >= 100) {
-            if (parseInt(baseTraits.attack) === 0)
+        if (parseInt(props.current) >= 100) {
+            if (parseInt(baseTraits.attack) === 0) {
                 btn = {...btn, attackPlus: true};
-            if (parseInt(baseTraits.health) === 0)
+            } else {
+                btn = {...btn, attackPlus: false};
+            }
+            if (parseInt(baseTraits.health) === 0) {
                 btn = {...btn, healthPlus: true};
-            if (parseInt(baseTraits.strength) === 0)
+            } else {
+                btn = {...btn, healthPlus: false};
+            }
+            if (parseInt(baseTraits.strength) === 0) {
                 btn = {...btn, strengthPlus: true};
-            if (parseInt(baseTraits.endurance) === 0)
+            } else {
+                btn = {...btn, strengthPlus: false};
+            }
+            if (parseInt(baseTraits.endurance) === 0) {
                 btn = {...btn, endurancePlus: true};
-            if (parseInt(baseTraits.speed) === 0)
+            } else {
+                btn = {...btn, endurancePlus: false};
+            }
+            if (parseInt(baseTraits.speed) === 0) {
                 btn = {...btn, speedPlus: true};
-            if (parseInt(baseTraits.magic) === 0)
+            } else {
+                btn = {...btn, speedPlus: false};
+            }
+            if (parseInt(baseTraits.magic) === 0) {
                 btn = {...btn, magicPlus: true};
+            } else {
+                btn = {...btn, magicPlus: false};
+            }
+
 
 
             setButtons(btn);
         } else {
-            const btn = {
-                attackMinus: true,
+            btn = {...btn,
                 attackPlus: true,
-                healthMinus: true,
                 healthPlus: true,
-                strengthMinus: true,
                 strengthPlus: true,
-                enduranceMinus: true,
                 endurancePlus: true,
-                speedMinus: true,
                 speedPlus: true,
-                magicMinus: true,
                 magicPlus: true,
             };
             setButtons(btn);
         }
 
 
-    }, []);
+    }, [props.current]);
 
     const blockAllbutton = (exp, btn) => {
         if (parseInt(exp) < 100) {
@@ -83,6 +111,30 @@ export default function EditSecondTraits(props) {
 
     };
 
+    const handleButtonsOthers = (name,trait,action)=>{
+        // let btn = buttons;
+        //
+        // if (parseInt(trait) === 0) {
+        //     btn = {...btn, [name]: true};
+        // } else {
+        //     btn = {...btn, [name]: false};
+        // }
+        // if(name==="insanity"){
+        //     if (parseInt(trait)+1===6){
+        //         btn={...btn, insanityPlus:true}
+        //     }
+        // }
+        // setButtons(btn);
+        // if (action==="+"){
+        //     let heroStats = currentHeroTraitsState;
+        //     heroStats={...heroStats,[name]:parseInt(trait)+1};
+        //     setCurrentHeroTraitsState(heroStats)
+        // }else if(action==="-"){
+        //     let heroStats = currentHeroTraitsState;
+        //     heroStats={...heroStats,[name]:parseInt(trait)-1};
+        //     setCurrentHeroTraitsState(heroStats)
+        // }
+    }
     const handleButtonsMinus = (name, counterBtn, baseT, changedT, changedTraits) => {
         let btn = buttons;
         if (parseInt(baseT + 1) === parseInt(changedT)) {
@@ -91,38 +143,38 @@ export default function EditSecondTraits(props) {
             btn = {...btn, [name]: false};
         }
         const exp = currentExp + 100;
-        props.onExpChange(exp);
-        const baseTraits = changedTraits;
-        if (parseInt(baseTraits.attack) === 0) {
-            btn = {...btn, attackPlus: true};
-        } else {
-            btn = {...btn, attackPlus: false};
-        }
-        if (parseInt(baseTraits.health) === 0) {
-            btn = {...btn, healthPlus: true};
-        } else {
-            btn = {...btn, healthPlus: false};
-        }
-        if (parseInt(baseTraits.strength) === 0) {
-            btn = {...btn, strengthPlus: true};
-        } else {
-            btn = {...btn, strengthPlus: false};
-        }
-        if (parseInt(baseTraits.endurance) === 0) {
-            btn = {...btn, endurancePlus: true};
-        } else {
-            btn = {...btn, endurancePlus: false};
-        }
-        if (parseInt(baseTraits.speed) === 0) {
-            btn = {...btn, speedPlus: true};
-        } else {
-            btn = {...btn, speedPlus: false};
-        }
-        if (parseInt(baseTraits.magic) === 0) {
-            btn = {...btn, magicPlus: true};
-        } else {
-            btn = {...btn, magicPlus: false};
-        }
+        props.expChangeSubsract();
+        // const baseTraits = changedTraits;
+        // if (parseInt(baseTraits.attack) === 0) {
+        //     btn = {...btn, attackPlus: true};
+        // } else {
+        //     btn = {...btn, attackPlus: false};
+        // }
+        // if (parseInt(baseTraits.health) === 0) {
+        //     btn = {...btn, healthPlus: true};
+        // } else {
+        //     btn = {...btn, healthPlus: false};
+        // }
+        // if (parseInt(baseTraits.strength) === 0) {
+        //     btn = {...btn, strengthPlus: true};
+        // } else {
+        //     btn = {...btn, strengthPlus: false};
+        // }
+        // if (parseInt(baseTraits.endurance) === 0) {
+        //     btn = {...btn, endurancePlus: true};
+        // } else {
+        //     btn = {...btn, endurancePlus: false};
+        // }
+        // if (parseInt(baseTraits.speed) === 0) {
+        //     btn = {...btn, speedPlus: true};
+        // } else {
+        //     btn = {...btn, speedPlus: false};
+        // }
+        // if (parseInt(baseTraits.magic) === 0) {
+        //     btn = {...btn, magicPlus: true};
+        // } else {
+        //     btn = {...btn, magicPlus: false};
+        // }
 
         setButtons(btn);
         blockAllbutton(exp, btn);
@@ -139,7 +191,7 @@ export default function EditSecondTraits(props) {
             btn = {...btn, [name]: false};
         }
         const exp = currentExp - 100;
-        props.onExpChange(exp);
+        props.expChangeAdd();
 
         setButtons(btn);
         blockAllbutton(exp, btn, trait);
@@ -470,17 +522,17 @@ export default function EditSecondTraits(props) {
 
                 </Grid>
                 <Grid item xs={1}>
-                    <AddButton variant="contained" color="primary">
+                    <AddButton variant="contained" color="primary"  disabled={buttons.insanityMinus}  onClick={()=>handleButtonsOthers("insanity",currentHeroTraitsState.insanity,"-")}>
                         -
                     </AddButton>
                 </Grid>
                 <Grid item xs={4}>
                     <Grid container item xs={12} direction={"column"}>
-                        <HeroTextField id="heroInsanity" label="Obłęd:" defaultValue={props.secondaryTraits.traits.secondaryTraits.insanity} inputProps={{min: 0, style: {textAlign: "center"}}}/>
+                        <HeroTextField id="heroInsanity" label="Obłęd:" value={currentHeroTraitsState.insanity} inputProps={{min: 0, style: {textAlign: "center"}}}/>
                     </Grid>
                 </Grid>
                 <Grid item xs={1}>
-                    <AddButton variant="contained" color="primary">
+                    <AddButton variant="contained" color="primary" disabled={buttons.insanityPlus} onClick={()=>handleButtonsOthers("insanity",currentHeroTraitsState.insanity,"+")}>
                         +
                     </AddButton>
                 </Grid>
@@ -495,17 +547,17 @@ export default function EditSecondTraits(props) {
 
                 </Grid>
                 <Grid item xs={1}>
-                    <AddButton variant="contained" color="primary">
+                    <AddButton variant="contained" color="primary" disabled={buttons.fatePointsMinus} onClick={()=>handleButtonsOthers("fatePoints",currentHeroTraitsState.fatePoints,"-")}>
                         -
                     </AddButton>
                 </Grid>
                 <Grid item xs={4}>
                     <Grid container item xs={12} direction={"column"}>
-                        <HeroTextField id="heroFatePoints" label="Przeznaczenie:" defaultValue={props.secondaryTraits.traits.secondaryTraits.fatePoints} inputProps={{min: 0, style: {textAlign: "center"}}}/>
+                        <HeroTextField id="heroFatePoints" label="Przeznaczenie:" value={currentHeroTraitsState.fatePoints} inputProps={{min: 0, style: {textAlign: "center"}}}/>
                     </Grid>
                 </Grid>
                 <Grid item xs={1}>
-                    <AddButton variant="contained" color="primary">
+                    <AddButton variant="contained" color="primary" disabled={buttons.fatePointsPlus} onClick={()=>handleButtonsOthers("fatePoints",currentHeroTraitsState.fatePoints,"+")}>
                         +
                     </AddButton>
                 </Grid>
