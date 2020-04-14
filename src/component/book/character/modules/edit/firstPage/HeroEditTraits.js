@@ -26,8 +26,6 @@ export default function HeroEditTraits(props) {
     };
 
     const handleClose = () => {
-        props.update()
-
         setOpen(false);
     };
     return (

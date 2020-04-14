@@ -219,17 +219,6 @@ export default function EditTraitsDialog(props) {
             handleButtonsPlus(name + "Plus", name + "Minus", afterBtnTrait);
 
         }
-        // let character=props.mainTraits;
-        // character={
-        //     ...character,
-        //     traits:{...character.traits,
-        //         currentMainTraits: changedProfessionTraitsState,
-        //         heroProfession: currentHeroTraitsState
-        //     }
-        //
-        // }
-
-        props.editedCharacter(changedTraits,currentHeroTraits)
 
     };
     return (
