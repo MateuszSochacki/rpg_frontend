@@ -16,6 +16,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import {makeStyles} from "@material-ui/core/styles";
 import API from "../../../../../API/API";
 import Typography from "@material-ui/core/Typography";
+import {SaveButton} from "../../../../../styles/Styles";
+import EditWeaponDialog from "./util/weapon/EditWeaponDialog";
 
 const useStyles = makeStyles((theme) => ({
     borderless: {
@@ -32,6 +34,18 @@ export default function HeroEditWeapon(props) {
     const [weapons, setWeapons] = useState([]);
     const [isLoadingWeapon, setIsLoadingWeapon] = useState(true);
 
+    const [open, setOpen] = React.useState(false);
+
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        props.update()
+
+        setOpen(false);
+    };
 
     useEffect(() => {
 
@@ -141,11 +155,17 @@ export default function HeroEditWeapon(props) {
 
                                     </Table>
                                 </TableContainer>
-
+                                <SaveButton variant="contained" color="primary" onClick={handleClickOpen}>
+                                    Edytuj
+                                </SaveButton>
                             </Grid>
                         </Grid>
                     </HeroPanelDetails>
+                    {open ?
+                        <EditWeaponDialog open={open} close={handleClose} character={props.character}/>
+                        :null}
                 </HeroPanel>
+
             }
         </Paper>
     )
