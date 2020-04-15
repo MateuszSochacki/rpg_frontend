@@ -31,7 +31,7 @@ export default function EditWeaponDialog(props) {
             <DialogContent>
                 <Grid container>
                     <Grid container item xs={12} justify={"center"} alignItems={"center"}>
-                        <HeroTextField id="exp" label="Dostępne doświadczenie:" value={currentExp} style={{marginBottom:50}} inputProps={{min: 0, style: {textAlign: "center"}}}/>
+                        <HeroTextField id="exp" label="Dostępne doświadczenie:" value={""} style={{marginBottom:50}} inputProps={{min: 0, style: {textAlign: "center"}}}/>
 
 
                     </Grid>

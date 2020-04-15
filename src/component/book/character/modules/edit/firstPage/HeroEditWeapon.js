@@ -42,7 +42,6 @@ export default function HeroEditWeapon(props) {
     };
 
     const handleClose = () => {
-        props.update()
 
         setOpen(false);
     };
@@ -155,10 +154,11 @@ export default function HeroEditWeapon(props) {
 
                                     </Table>
                                 </TableContainer>
-                                <SaveButton variant="contained" color="primary" onClick={handleClickOpen}>
-                                    Edytuj
-                                </SaveButton>
+
                             </Grid>
+                            <SaveButton variant="contained" color="primary" onClick={handleClickOpen}>
+                                Edytuj
+                            </SaveButton>
                         </Grid>
                     </HeroPanelDetails>
                     {open ?

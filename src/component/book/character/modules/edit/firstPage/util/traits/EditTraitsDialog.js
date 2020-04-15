@@ -3,15 +3,13 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import EditMainTraits from "./EditMainTraits";
-import HeroSecondaryTraitTable from "../../../table/HeroSecondaryTraitTable";
 import DialogActions from "@material-ui/core/DialogActions";
-import {SaveButton} from "../../../../../../styles/Styles";
-import {Paper} from "@material-ui/core";
+import {SaveButton} from "../../../../../../../styles/Styles";
 import Slide from "@material-ui/core/Slide";
 import Grid from "@material-ui/core/Grid";
 import EditSecondTraits from "./EditSecondTraits";
-import {HeroTextField} from "../../../../../../styles/expansionPanel/Panel";
-import API from "../../../../../../API/API";
+import {HeroTextField} from "../../../../../../../styles/expansionPanel/Panel";
+import API from "../../../../../../../API/API";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;

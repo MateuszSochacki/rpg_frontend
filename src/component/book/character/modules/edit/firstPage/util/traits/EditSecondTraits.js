@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Grid from "@material-ui/core/Grid";
-import {HeroTextField} from "../../../../../../styles/expansionPanel/Panel";
-import {AddButton} from "../../../../../../styles/Styles";
+import {HeroTextField} from "../../../../../../../styles/expansionPanel/Panel";
+import {AddButton} from "../../../../../../../styles/Styles";
 
 export default function EditSecondTraits(props) {
 

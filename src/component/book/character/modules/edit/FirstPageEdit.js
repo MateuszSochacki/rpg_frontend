@@ -1,7 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 
-import HeroWeapon from "./../preview/firstPage/HeroWeapon";
 import HeroArmor from "./../preview/firstPage/HeroArmor";
 import HeroGameInfo from "./../preview/firstPage/HeroGameInfo";
 import HeroExperiencePoints from "./../preview/firstPage/HeroExperiencePoints";
@@ -11,6 +10,7 @@ import HeroActionSheet from "./../preview/firstPage/HeroActionSheet";
 import HeroEditInfo from "./firstPage/HeroEditInfo";
 import HeroEditDescription from "./firstPage/HeroEditDescription";
 import HeroEditTraits from "./firstPage/HeroEditTraits";
+import HeroEditWeapon from "./firstPage/HeroEditWeapon";
 
 
 export default function FirstPageEdit(props) {
@@ -29,7 +29,7 @@ export default function FirstPageEdit(props) {
                             <br/>
                             <HeroEditTraits character={props.character} update={props.update}/>
                             <br/>
-                            <HeroWeapon weapons={props.character.weapon}/>
+                            <HeroEditWeapon weapons={props.character.weapon}/>
                             <br/>
                             <HeroArmor armors={props.character.armor}/>
 
