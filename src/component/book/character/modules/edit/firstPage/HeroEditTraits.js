@@ -13,7 +13,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
-import EditTraitsDialog from "./util/EditTraitsDialog";
+import EditTraitsDialog from "./util/traits/EditTraitsDialog";
 
 
 export default function HeroEditTraits(props) {
@@ -26,34 +26,34 @@ export default function HeroEditTraits(props) {
     };
 
     const handleClose = () => {
-        props.update();
+        props.update()
 
         setOpen(false);
     };
     return (
 
         <Paper elevation={8}>
-                <HeroPanel expanded={true}>
-                    <HeroPanelSummary>
-                        <HeroText>
-                            Cechy
-                        </HeroText>
-                    </HeroPanelSummary>
-                    <HeroPanelDetails>
-                        <Grid container>
-                            <Grid item xs={12}>
-                                <HeroMainTraitTable mainTraits={props.character}/>
-                                <HeroSecondaryTraitTable secondaryTraits={props.character}/>
-                            </Grid>
-                            <SaveButton variant="contained" color="primary" onClick={handleClickOpen}>
-                                Edytuj
-                            </SaveButton>
+            <HeroPanel expanded={true}>
+                <HeroPanelSummary>
+                    <HeroText>
+                        Cechy
+                    </HeroText>
+                </HeroPanelSummary>
+                <HeroPanelDetails>
+                    <Grid container>
+                        <Grid item xs={12}>
+                            <HeroMainTraitTable mainTraits={props.character}/>
+                            <HeroSecondaryTraitTable secondaryTraits={props.character}/>
                         </Grid>
-                    </HeroPanelDetails>
-                </HeroPanel>
+                        <SaveButton variant="contained" color="primary" onClick={handleClickOpen}>
+                            Edytuj
+                        </SaveButton>
+                    </Grid>
+                </HeroPanelDetails>
+            </HeroPanel>
             {open ?
                 <EditTraitsDialog open={open} close={handleClose} character={props.character}/>
-            :null}
+                :null}
         </Paper>
 
 

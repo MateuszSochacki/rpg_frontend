@@ -1,5 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
+
 import HeroWeapon from "./../preview/firstPage/HeroWeapon";
 import HeroArmor from "./../preview/firstPage/HeroArmor";
 import HeroGameInfo from "./../preview/firstPage/HeroGameInfo";
@@ -26,7 +27,7 @@ export default function FirstPageEdit(props) {
                             <br/>
                             <HeroEditDescription character={props.character} update={props.update}/>
                             <br/>
-                            <HeroEditTraits character={props.character} />
+                            <HeroEditTraits character={props.character} update={props.update}/>
                             <br/>
                             <HeroWeapon weapons={props.character.weapon}/>
                             <br/>

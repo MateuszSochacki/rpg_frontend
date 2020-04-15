@@ -129,7 +129,6 @@ export default function EditSecondTraits(props) {
             btn = {...btn, insanityMinus: false};
         }
 
-
         if (parseInt(heroStats.insanity) === 6) {
             btn = {...btn, insanityPlus: true}
         } else {
@@ -578,28 +577,28 @@ export default function EditSecondTraits(props) {
                 </Grid>
             </Grid>
 
-             <Grid container direction={"row"} justify="center"
-                   alignItems="center">
-                 <Grid item xs={3}>
+            <Grid container direction={"row"} justify="center"
+                  alignItems="center">
+                <Grid item xs={3}>
 
-                 </Grid>
-                 <Grid item xs={1}>
-                     <AddButton variant="contained" color="primary" disabled={buttons.fatePointsMinus}
-                                onClick={() => handleFatePoints( "-")}>
-                         -
-                     </AddButton>
-                 </Grid>
-                 <Grid item xs={4}>
-                     <Grid container item xs={12} direction={"column"}>
-                         <HeroTextField id="heroFatePoints" label="Przeznaczenie:"
-                                        value={currentHeroTraitsState.fatePoints}
+                </Grid>
+                <Grid item xs={1}>
+                    <AddButton variant="contained" color="primary" disabled={buttons.fatePointsMinus}
+                               onClick={() => handleFatePoints( "-")}>
+                        -
+                    </AddButton>
+                </Grid>
+                <Grid item xs={4}>
+                    <Grid container item xs={12} direction={"column"}>
+                        <HeroTextField id="heroFatePoints" label="Przeznaczenie:"
+                                       value={currentHeroTraitsState.fatePoints}
                                        inputProps={{min: 0, style: {textAlign: "center"}}}/>
-                     </Grid>
-                 </Grid>
-                 <Grid item xs={1}>
-                     <AddButton variant="contained" color="primary" disabled={buttons.fatePointsPlus}
-                                onClick={() => handleFatePoints( "+")}>
-                         +
+                    </Grid>
+                </Grid>
+                <Grid item xs={1}>
+                    <AddButton variant="contained" color="primary" disabled={buttons.fatePointsPlus}
+                               onClick={() => handleFatePoints( "+")}>
+                        +
                     </AddButton>
                 </Grid>
                 <Grid item xs={3}>
