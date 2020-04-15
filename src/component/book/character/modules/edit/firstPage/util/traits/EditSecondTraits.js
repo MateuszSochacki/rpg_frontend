@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Grid from "@material-ui/core/Grid";
-import {HeroTextField} from "../../../../../../../styles/expansionPanel/Panel";
-import {AddButton} from "../../../../../../../styles/Styles";
+import {HeroTextField} from "../../../../../../styles/expansionPanel/Panel";
+import {AddButton} from "../../../../../../styles/Styles";
 
 export default function EditSecondTraits(props) {
 
@@ -20,10 +20,10 @@ export default function EditSecondTraits(props) {
         speedPlus: false,
         magicMinus: true,
         magicPlus: false,
-        insanityMinus:true,
-        insanityPlus:false,
-        fatePointsMinus:true,
-        fatePointsPlus:false
+        insanityMinus: true,
+        insanityPlus: false,
+        fatePointsMinus: true,
+        fatePointsPlus: false
     });
 
     const [currentExp, setCurrentExp] = useState(props.current);
@@ -77,10 +77,10 @@ export default function EditSecondTraits(props) {
             }
 
 
-
             setButtons(btn);
         } else {
-            btn = {...btn,
+            btn = {
+                ...btn,
                 attackPlus: true,
                 healthPlus: true,
                 strengthPlus: true,
@@ -111,30 +111,60 @@ export default function EditSecondTraits(props) {
 
     };
 
-    const handleButtonsOthers = (name,trait,action)=>{
-        // let btn = buttons;
-        //
-        // if (parseInt(trait) === 0) {
-        //     btn = {...btn, [name]: true};
-        // } else {
-        //     btn = {...btn, [name]: false};
-        // }
-        // if(name==="insanity"){
-        //     if (parseInt(trait)+1===6){
-        //         btn={...btn, insanityPlus:true}
-        //     }
-        // }
-        // setButtons(btn);
-        // if (action==="+"){
-        //     let heroStats = currentHeroTraitsState;
-        //     heroStats={...heroStats,[name]:parseInt(trait)+1};
-        //     setCurrentHeroTraitsState(heroStats)
-        // }else if(action==="-"){
-        //     let heroStats = currentHeroTraitsState;
-        //     heroStats={...heroStats,[name]:parseInt(trait)-1};
-        //     setCurrentHeroTraitsState(heroStats)
-        // }
-    }
+
+    const handleInsanity = (action) => {
+        let btn = buttons;
+        let trait = currentHeroTraitsState.insanity;
+        let heroStats = currentHeroTraitsState;
+
+        if (action === "+") {
+            heroStats = {...heroStats, insanity: parseInt(trait) + 1};
+        } else if (action === "-") {
+            heroStats = {...heroStats, insanity: parseInt(trait) - 1};
+        }
+
+        if (parseInt(heroStats.insanity) <= 0) {
+            btn = {...btn, insanityMinus: true};
+        } else {
+            btn = {...btn, insanityMinus: false};
+        }
+
+
+        if (parseInt(heroStats.insanity) === 6) {
+            btn = {...btn, insanityPlus: true}
+        } else {
+            btn = {...btn, insanityPlus: false}
+
+        }
+
+        setCurrentHeroTraitsState(heroStats);
+        setButtons(btn);
+        props.editedCharacter(changedProfessionTraitsState,heroStats)
+
+    };
+    const handleFatePoints= (action) => {
+        let btn = buttons;
+        let trait = currentHeroTraitsState.fatePoints;
+        let heroStats = currentHeroTraitsState;
+
+        if (action === "+") {
+            heroStats = {...heroStats, fatePoints: parseInt(trait) + 1};
+        } else if (action === "-") {
+            heroStats = {...heroStats, fatePoints: parseInt(trait) - 1};
+        }
+
+        if (parseInt(heroStats.fatePoints) <= 0) {
+            btn = {...btn, fatePointsMinus: true};
+        } else {
+            btn = {...btn, fatePointsMinus: false};
+        }
+
+        setCurrentHeroTraitsState(heroStats);
+        setButtons(btn);
+        props.editedCharacter(changedProfessionTraitsState,heroStats)
+
+    };
+
     const handleButtonsMinus = (name, counterBtn, baseT, changedT, changedTraits) => {
         let btn = buttons;
         if (parseInt(baseT + 1) === parseInt(changedT)) {
@@ -222,6 +252,8 @@ export default function EditSecondTraits(props) {
             handleButtonsPlus(name + "Plus", name + "Minus", afterBtnTrait);
 
         }
+        props.editedCharacter(changedTraits,currentHeroTraits)
+
 
     };
 
@@ -377,7 +409,9 @@ export default function EditSecondTraits(props) {
                   alignItems="center">
                 <Grid item xs={3}>
                     <Grid container item xs={12} direction={"column"}>
-                        <HeroTextField id="heroEndurance" label="Wytrzymałość:" defaultValue={props.secondaryTraits.traits.secondaryTraits.endurance} inputProps={{min: 0, style: {textAlign: "center"}}}/>
+                        <HeroTextField id="heroEndurance" label="Wytrzymałość:"
+                                       defaultValue={props.secondaryTraits.traits.secondaryTraits.endurance}
+                                       inputProps={{min: 0, style: {textAlign: "center"}}}/>
                     </Grid>
                 </Grid>
                 <Grid item xs={1}>
@@ -522,17 +556,20 @@ export default function EditSecondTraits(props) {
 
                 </Grid>
                 <Grid item xs={1}>
-                    <AddButton variant="contained" color="primary"  disabled={buttons.insanityMinus}  onClick={()=>handleButtonsOthers("insanity",currentHeroTraitsState.insanity,"-")}>
+                    <AddButton variant="contained" color="primary" disabled={buttons.insanityMinus}
+                               onClick={() => handleInsanity( "-")}>
                         -
                     </AddButton>
                 </Grid>
                 <Grid item xs={4}>
                     <Grid container item xs={12} direction={"column"}>
-                        <HeroTextField id="heroInsanity" label="Obłęd:" value={currentHeroTraitsState.insanity} inputProps={{min: 0, style: {textAlign: "center"}}}/>
+                        <HeroTextField id="heroInsanity" label="Obłęd:" value={currentHeroTraitsState.insanity}
+                                       inputProps={{min: 0, style: {textAlign: "center"}}}/>
                     </Grid>
                 </Grid>
                 <Grid item xs={1}>
-                    <AddButton variant="contained" color="primary" disabled={buttons.insanityPlus} onClick={()=>handleButtonsOthers("insanity",currentHeroTraitsState.insanity,"+")}>
+                    <AddButton variant="contained" color="primary" disabled={buttons.insanityPlus}
+                               onClick={() => handleInsanity( "+")}>
                         +
                     </AddButton>
                 </Grid>
@@ -541,24 +578,28 @@ export default function EditSecondTraits(props) {
                 </Grid>
             </Grid>
 
-            <Grid container direction={"row"} justify="center"
-                  alignItems="center">
-                <Grid item xs={3}>
+             <Grid container direction={"row"} justify="center"
+                   alignItems="center">
+                 <Grid item xs={3}>
 
-                </Grid>
-                <Grid item xs={1}>
-                    <AddButton variant="contained" color="primary" disabled={buttons.fatePointsMinus} onClick={()=>handleButtonsOthers("fatePoints",currentHeroTraitsState.fatePoints,"-")}>
-                        -
-                    </AddButton>
-                </Grid>
-                <Grid item xs={4}>
-                    <Grid container item xs={12} direction={"column"}>
-                        <HeroTextField id="heroFatePoints" label="Przeznaczenie:" value={currentHeroTraitsState.fatePoints} inputProps={{min: 0, style: {textAlign: "center"}}}/>
-                    </Grid>
-                </Grid>
-                <Grid item xs={1}>
-                    <AddButton variant="contained" color="primary" disabled={buttons.fatePointsPlus} onClick={()=>handleButtonsOthers("fatePoints",currentHeroTraitsState.fatePoints,"+")}>
-                        +
+                 </Grid>
+                 <Grid item xs={1}>
+                     <AddButton variant="contained" color="primary" disabled={buttons.fatePointsMinus}
+                                onClick={() => handleFatePoints( "-")}>
+                         -
+                     </AddButton>
+                 </Grid>
+                 <Grid item xs={4}>
+                     <Grid container item xs={12} direction={"column"}>
+                         <HeroTextField id="heroFatePoints" label="Przeznaczenie:"
+                                        value={currentHeroTraitsState.fatePoints}
+                                       inputProps={{min: 0, style: {textAlign: "center"}}}/>
+                     </Grid>
+                 </Grid>
+                 <Grid item xs={1}>
+                     <AddButton variant="contained" color="primary" disabled={buttons.fatePointsPlus}
+                                onClick={() => handleFatePoints( "+")}>
+                         +
                     </AddButton>
                 </Grid>
                 <Grid item xs={3}>

@@ -27,7 +27,7 @@ export default function EditTraitsDialog(props) {
                 ...character.experiencePoints,
                 current: exp
             },
-        })
+        });
         setCurrentExp(exp);
 
     };
