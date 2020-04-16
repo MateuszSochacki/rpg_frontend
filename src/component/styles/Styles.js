@@ -78,4 +78,19 @@ export const AddButton = withStyles({
         padding:0
     }
 })(Button);
+export const ArmoryButton = withStyles({
+    root:{
+        margin:0,
+        padding:0,
+        paddingLeft:6,
+        paddingRight:6,
+        minWidth:16,
+        minHeight:16
+
+    },
+
+    text:{
+        padding:0
+    }
+})(Button);
 

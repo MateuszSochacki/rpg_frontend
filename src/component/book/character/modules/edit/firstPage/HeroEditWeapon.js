@@ -69,7 +69,7 @@ export default function HeroEditWeapon(props) {
         };
 
         async function getAll() {
-            return (await Promise.all(props.weapons.map(async (weapon) => await (await (fetchWeapon(weapon))))));
+            return (await Promise.all(props.character.weapon.map(async (weapon) => await (await (fetchWeapon(weapon))))));
         }
 
         getAll().then(data => {
@@ -162,7 +162,7 @@ export default function HeroEditWeapon(props) {
                         </Grid>
                     </HeroPanelDetails>
                     {open ?
-                        <EditWeaponDialog open={open} close={handleClose} character={props.character}/>
+                        <EditWeaponDialog open={open} close={handleClose} character={props.character} weapons={weapons} />
                         :null}
                 </HeroPanel>
 
