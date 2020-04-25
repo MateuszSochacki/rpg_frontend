@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import AddNewWeapon from "./AddNewWeapon";
 import AddLootedWeapon from "./AddLootedWeapon";
 import NegotationWeapoon from "./NegotationWeapon";
+import API from "../../../../../../../API/API";
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -18,6 +19,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 export default function EditWeaponDialog(props) {
 
+    const [weapon, setWeapon] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [open, setOpen] = React.useState({
         buy:false,
         loot:false,
@@ -44,6 +47,24 @@ export default function EditWeaponDialog(props) {
     };
 
     useEffect(() => {
+        let didCancel = false;
+
+        async function fetchWeapons() {
+            await API.get("book/weapon/all").then(async (response) => {
+
+                if (!didCancel) {
+                    const weapons = response.data;
+                    setWeapon(weapons.weapons);
+                    setIsLoading(false);
+                }
+            }).catch(error => {
+                console.log(error)
+            });
+        }
+        fetchWeapons();
+        return () => {
+            didCancel = true;
+        };
     }, []);
 
     return (
@@ -131,7 +152,7 @@ export default function EditWeaponDialog(props) {
                 </SaveButton>
             </DialogActions>
             {open.buy ?
-                <AddNewWeapon open={open.buy} close={()=>handleClose("buy")} character={props.character}/>
+                <AddNewWeapon open={open.buy} close={()=>handleClose("buy")} character={props.character} weapons={weapon} />
                 : null}
             {open.loot ?
                 <AddLootedWeapon open={open.loot} close={()=>handleClose("loot")} character={props.character}/>
