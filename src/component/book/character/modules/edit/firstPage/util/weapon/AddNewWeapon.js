@@ -16,11 +16,62 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 export default function AddNewWeapon(props) {
 
-    const [basket, setBasket] = useState([{name: "srututut", price: "5k"}, {name: "trolool", price: "2k"}]);
+    const handleAddToCart=(name,price)=>{
+
+        let bas=[];
+        if (price.includes("p")){
+            let p =price.substring(0,price.indexOf("p"));
+            p=parseInt(copper) - parseInt(p);
+            setCopper(p);
+            bas.push(...basket,{name:name,price:price});
+            console.log(p)
+
+        }else if (price.includes("s")){
+            let s =price.substring(0,price.indexOf("s"));
+            s=parseInt(silver) - parseInt(s);
+            setSilver(s);
+            bas.push(...basket,{name:name,price:price});
+        }else if (price.includes("k")){
+            let k =price.substring(0,price.indexOf("k"));
+            k=parseInt(crown) - parseInt(k);
+            setCrown(k);
+            bas.push(...basket,{name:name,price:price});
+        }
+        setBasket(bas);
+        console.log(basket)
+
+
+    };
+    const handleRemoveFromCart = (key,price)=>{
+
+        let bas = basket;
+        // bas.splice(key,1);
+        delete bas[key];
+        if (price.includes("p")){
+            let p =price.substring(0,price.indexOf("p"));
+            p=parseInt(copper) + parseInt(p);
+            setCopper(p);
+        }else if (price.includes("s")){
+            let s =price.substring(0,price.indexOf("s"));
+            s=parseInt(silver) + parseInt(s);
+            setSilver(s);
+        }else if (price.includes("k")){
+            let k =price.substring(0,price.indexOf("k"));
+            k=parseInt(crown) + parseInt(k);
+            setCrown(k);
+        }
+        bas =bas.filter(x=>x!==undefined);
+        setBasket(bas);
+    };
+
+    const [crown,setCrown] = useState(props.character.money.gold);
+    const [silver,setSilver] = useState(props.character.money.silver);
+    const [copper,setCopper] = useState(props.character.money.copper);
+    const [basket, setBasket] = useState([]);
 
     useEffect(() => {
 
-    }, []);
+    }, [copper]);
 
     return (
         <Dialog
@@ -38,19 +89,19 @@ export default function AddNewWeapon(props) {
                 <Grid container>
                     <Grid container item xs={12} justify={"center"} alignItems={"center"} spacing={2}>
                         <Grid item xs={4}>
-                            <HeroTextField id="gold" label="Złote korony:" value={props.character.money.gold}
+                            <HeroTextField id="gold" label="Złote korony:" value={crown}
                                            style={{marginBottom: 50}}
                                            inputProps={{min: 0, style: {textAlign: "center"}}}/>
 
                         </Grid>
                         <Grid item xs={4}>
-                            <HeroTextField id="silver" label="Srebrne szylingi:" value={props.character.money.silver}
+                            <HeroTextField id="silver" label="Srebrne szylingi:" value={silver}
                                            style={{marginBottom: 50}}
                                            inputProps={{min: 0, style: {textAlign: "center"}}}/>
 
                         </Grid>
                         <Grid item xs={4}>
-                            <HeroTextField id="copper" label="Mosiężne pensy:" value={props.character.money.copper}
+                            <HeroTextField id="copper" label="Mosiężne pensy:" value={copper}
                                            style={{marginBottom: 50}}
                                            inputProps={{min: 0, style: {textAlign: "center"}}}/>
 
@@ -85,7 +136,7 @@ export default function AddNewWeapon(props) {
 
                                     </Grid>
                                     <Grid item xs={2}>
-                                        <ArmoryButton variant="contained" color="primary">Kup</ArmoryButton>
+                                        <ArmoryButton variant="contained" color="primary" onClick={()=>handleAddToCart(weapon.name,weapon.price)}>Kup</ArmoryButton>
 
                                     </Grid>
 
@@ -106,7 +157,7 @@ export default function AddNewWeapon(props) {
                                                        inputProps={{min: 0, style: {textAlign: "center"}}}/>
                                     </Grid>
                                     <Grid item xs={3}>
-                                        <ArmoryButton variant="contained" color="primary">Odłóż</ArmoryButton>
+                                        <ArmoryButton variant="contained" color="primary" onClick={()=>handleRemoveFromCart(key,item.price)}>Odłóż</ArmoryButton>
                                     </Grid>
                                 </Grid>
                             ))}
