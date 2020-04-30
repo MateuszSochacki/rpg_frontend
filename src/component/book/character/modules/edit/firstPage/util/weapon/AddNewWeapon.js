@@ -9,69 +9,124 @@ import Grid from "@material-ui/core/Grid";
 import {HeroPanel, HeroTextField} from "../../../../../../../styles/expansionPanel/Panel";
 import Button from '@material-ui/core/Button';
 import API from "../../../../../../../API/API";
-
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
+const Alert=(props)=> {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+};
 export default function AddNewWeapon(props) {
+    const [crown, setCrown] = useState(props.character.money.gold);
+    const [silver, setSilver] = useState(props.character.money.silver);
+    const [copper, setCopper] = useState(props.character.money.copper);
+    const [basket, setBasket] = useState([]);
+    const [alert,setAlert] = useState(false);
+    const [message,setMessage] =useState();
+    const [character,setCharacter]= useState(props.character);
 
-    const handleAddToCart=(name,price)=>{
+    const handleAddToCart = (name, price) => {
 
-        let bas=[];
-        if (price.includes("p")){
-            let p =price.substring(0,price.indexOf("p"));
-            p=parseInt(copper) - parseInt(p);
-            setCopper(p);
-            bas.push(...basket,{name:name,price:price});
-            console.log(p)
 
-        }else if (price.includes("s")){
-            let s =price.substring(0,price.indexOf("s"));
-            s=parseInt(silver) - parseInt(s);
-            setSilver(s);
-            bas.push(...basket,{name:name,price:price});
-        }else if (price.includes("k")){
-            let k =price.substring(0,price.indexOf("k"));
-            k=parseInt(crown) - parseInt(k);
-            setCrown(k);
-            bas.push(...basket,{name:name,price:price});
+        let bas = [];
+        if (price.includes("p")) {
+            let p = price.substring(0, price.indexOf("p"));
+            if (parseInt(p) <= copper) {
+
+                p = parseInt(copper) - parseInt(p);
+                setCopper(p);
+                bas.push(...basket, {name: name, price: price});
+                setBasket(bas);
+
+            } else {
+                setMessage("Brak pensów")
+                setAlert(true);
+
+            }
+
+        } else if (price.includes("s")) {
+            let s = price.substring(0, price.indexOf("s"));
+            if (parseInt(s) <= silver) {
+                s = parseInt(silver) - parseInt(s);
+                setSilver(s);
+                bas.push(...basket, {name: name, price: price});
+                setBasket(bas);
+
+            }else {
+                setMessage("Brak srebra")
+                setAlert(true);
+
+            }
+        } else if (price.includes("k")) {
+            let k = price.substring(0, price.indexOf("k"));
+            if (parseInt(k) <= crown) {
+                k = parseInt(crown) - parseInt(k);
+                setCrown(k);
+                bas.push(...basket, {name: name, price: price});
+                setBasket(bas);
+
+            }else {
+                setMessage("Brak koron")
+                setAlert(true);
+
+            }
         }
-        setBasket(bas);
-        console.log(basket)
 
 
     };
-    const handleRemoveFromCart = (key,price)=>{
+    const handleRemoveFromCart = (key, price) => {
 
         let bas = basket;
         // bas.splice(key,1);
         delete bas[key];
-        if (price.includes("p")){
-            let p =price.substring(0,price.indexOf("p"));
-            p=parseInt(copper) + parseInt(p);
+        if (price.includes("p")) {
+            let p = price.substring(0, price.indexOf("p"));
+            p = parseInt(copper) + parseInt(p);
             setCopper(p);
-        }else if (price.includes("s")){
-            let s =price.substring(0,price.indexOf("s"));
-            s=parseInt(silver) + parseInt(s);
+        } else if (price.includes("s")) {
+            let s = price.substring(0, price.indexOf("s"));
+            s = parseInt(silver) + parseInt(s);
             setSilver(s);
-        }else if (price.includes("k")){
-            let k =price.substring(0,price.indexOf("k"));
-            k=parseInt(crown) + parseInt(k);
+        } else if (price.includes("k")) {
+            let k = price.substring(0, price.indexOf("k"));
+            k = parseInt(crown) + parseInt(k);
             setCrown(k);
         }
-        bas =bas.filter(x=>x!==undefined);
+        bas = bas.filter(x => x !== undefined);
         setBasket(bas);
     };
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
 
-    const [crown,setCrown] = useState(props.character.money.gold);
-    const [silver,setSilver] = useState(props.character.money.silver);
-    const [copper,setCopper] = useState(props.character.money.copper);
-    const [basket, setBasket] = useState([]);
+        setAlert(false);
+    };
+    const saveWeapons = ()=>{
+        let char=character;
+        let weaponTable=char.weapon;
 
+        basket.forEach((item)=>weaponTable.push(item.name));
+        char={...char,weapon:weaponTable,money:{
+            gold:crown,
+                silver:silver,
+                copper:copper
+            }};
+
+        saveButton(char);
+        props.update();
+        props.close();
+    }
+    const saveButton= async (chara)=>{
+        await API.post("/user/sheet/add",chara).then((response)=>{
+            const res =response.data;
+        });
+    };
     useEffect(() => {
 
-    }, [copper]);
+    }, [crown,silver,copper]);
 
     return (
         <Dialog
@@ -136,7 +191,8 @@ export default function AddNewWeapon(props) {
 
                                     </Grid>
                                     <Grid item xs={2}>
-                                        <ArmoryButton variant="contained" color="primary" onClick={()=>handleAddToCart(weapon.name,weapon.price)}>Kup</ArmoryButton>
+                                        <ArmoryButton variant="contained" color="primary"
+                                                      onClick={() => handleAddToCart(weapon.name, weapon.price)}>Kup</ArmoryButton>
 
                                     </Grid>
 
@@ -157,12 +213,17 @@ export default function AddNewWeapon(props) {
                                                        inputProps={{min: 0, style: {textAlign: "center"}}}/>
                                     </Grid>
                                     <Grid item xs={3}>
-                                        <ArmoryButton variant="contained" color="primary" onClick={()=>handleRemoveFromCart(key,item.price)}>Odłóż</ArmoryButton>
+                                        <ArmoryButton variant="contained" color="primary"
+                                                      onClick={() => handleRemoveFromCart(key, item.price)}>Odłóż</ArmoryButton>
                                     </Grid>
                                 </Grid>
                             ))}
                         </Grid>
-
+                        <Snackbar open={alert} autoHideDuration={6000} onClose={handleClose}>
+                            <Alert onClose={handleClose} severity="error">
+                                {message}
+                            </Alert>
+                        </Snackbar>
                     </Grid>
 
 
@@ -172,7 +233,7 @@ export default function AddNewWeapon(props) {
                 <SaveButton onClick={props.close} color="primary">
                     Trzasnij drzwiami
                 </SaveButton>
-                <SaveButton onClick={props.close} color="primary">
+                <SaveButton onClick={saveWeapons} color="primary">
                     Kup
                 </SaveButton>
             </DialogActions>

@@ -29,7 +29,7 @@ export default function FirstPageEdit(props) {
                             <br/>
                             <HeroEditTraits character={props.character} update={props.update}/>
                             <br/>
-                            <HeroEditWeapon character={props.character} />
+                            <HeroEditWeapon character={props.character} update={props.update} />
                             <br/>
                             <HeroArmor armors={props.character.armor}/>
 

@@ -152,13 +152,13 @@ export default function EditWeaponDialog(props) {
                 </SaveButton>
             </DialogActions>
             {open.buy ?
-                <AddNewWeapon open={open.buy} close={()=>handleClose("buy")} character={props.character} weapons={weapon} />
+                <AddNewWeapon open={open.buy} close={()=>handleClose("buy")} character={props.character} weapons={weapon} update={props.update}/>
                 : null}
             {open.loot ?
-                <AddLootedWeapon open={open.loot} close={()=>handleClose("loot")} character={props.character}/>
+                <AddLootedWeapon open={open.loot} close={()=>handleClose("loot")} character={props.character} update={props.update}/>
                 : null}
             {open.negotation ?
-                <NegotationWeapoon open={open.negotation} close={()=>handleClose("negotation")} howMuch={money}/>
+                <NegotationWeapoon open={open.negotation} close={()=>handleClose("negotation")} howMuch={money} update={props.update}/>
                 : null}
         </Dialog>
     )

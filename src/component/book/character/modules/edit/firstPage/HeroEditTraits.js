@@ -16,6 +16,8 @@ import Slide from '@material-ui/core/Slide';
 import EditTraitsDialog from "./util/traits/EditTraitsDialog";
 
 
+//TODO new professions shouldnt be able to over added traits e.g +5 to str should be only +5 in +10 next profession
+
 export default function HeroEditTraits(props) {
     // const [profession, setProfession] = useState(0);
     const [open, setOpen] = React.useState(false);

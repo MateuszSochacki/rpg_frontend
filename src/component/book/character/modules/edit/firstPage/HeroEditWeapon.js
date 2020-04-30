@@ -162,7 +162,7 @@ export default function HeroEditWeapon(props) {
                         </Grid>
                     </HeroPanelDetails>
                     {open ?
-                        <EditWeaponDialog open={open} close={handleClose} character={props.character} weapons={weapons} />
+                        <EditWeaponDialog open={open} close={handleClose} character={props.character} weapons={weapons} update={props.update}/>
                         :null}
                 </HeroPanel>
 
