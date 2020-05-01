@@ -12,6 +12,7 @@ import AddNewWeapon from "./AddNewWeapon";
 import AddLootedWeapon from "./AddLootedWeapon";
 import NegotationWeapoon from "./NegotationWeapon";
 import API from "../../../../../../../API/API";
+import DiscardItem from "./DiscardItem";
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -24,17 +25,26 @@ export default function EditWeaponDialog(props) {
     const [open, setOpen] = React.useState({
         buy:false,
         loot:false,
-        negotation:false
+        negotation:false,
+        discard:false
     });
-    const [money, setMoney] = React.useState(null);
+    const [item, setItem] = React.useState({
+        key:null,
+        name:null,
+        price:null
+    });
 
 
 
-        const handleClickOpen = (name,price) => {
+        const handleClickOpen = (name,key,wpnName,price) => {
         if (price!==null){
-            setMoney(price);
+            setItem({
+                key:key,
+                name:wpnName,
+                price:price
+            });
         }else{
-            setMoney(null)
+            setItem(null)
         }
         setOpen({[name]:true});
 
@@ -64,7 +74,7 @@ export default function EditWeaponDialog(props) {
         return () => {
             didCancel = true;
         };
-    }, []);
+    }, [props.character]);
 
     return (
         <Dialog
@@ -119,11 +129,11 @@ export default function EditWeaponDialog(props) {
                             </Grid>
                             <Grid item xs={2}/>
                             <Grid item xs={2}>
-                                <ArmoryButton variant="contained" color="primary" onClick={()=>handleClickOpen("negotation",weapon.price)}>Sprzedaj</ArmoryButton>
+                                <ArmoryButton variant="contained" color="primary" onClick={()=>handleClickOpen("negotation",key,weapon.name,weapon.price)}>Sprzedaj</ArmoryButton>
 
                             </Grid>
                             <Grid item xs={2}>
-                                <ArmoryButton variant="contained" color="secondary">Wyrzuć</ArmoryButton>
+                                <ArmoryButton variant="contained" color="secondary" onClick={()=>handleClickOpen("discard",key,weapon.name)}>Wyrzuć</ArmoryButton>
 
                             </Grid>
 
@@ -144,11 +154,9 @@ export default function EditWeaponDialog(props) {
             </DialogContent>
             <DialogActions>
                 <SaveButton onClick={props.close} color="primary">
-                    Anuluj
+                    Zamknij
                 </SaveButton>
-                <SaveButton onClick={props.close} color="primary">
-                    Zapisz
-                </SaveButton>
+
             </DialogActions>
             {open.buy ?
                 <AddNewWeapon open={open.buy} close={()=>handleClose("buy")} character={props.character} weapons={weapon} update={props.update}/>
@@ -157,7 +165,10 @@ export default function EditWeaponDialog(props) {
                 <AddLootedWeapon open={open.loot} close={()=>handleClose("loot")} character={props.character} weapons={weapon} update={props.update}/>
                 : null}
             {open.negotation ?
-                <NegotationWeapoon open={open.negotation} close={()=>handleClose("negotation")} howMuch={money} update={props.update}/>
+                <NegotationWeapoon open={open.negotation} close={()=>handleClose("negotation")} character={props.character} item={item} update={props.update}/>
+                : null}
+            {open.discard ?
+                <DiscardItem open={open.discard} close={()=>handleClose("discard")} character={props.character} item={item} update={props.update}/>
                 : null}
         </Dialog>
     )

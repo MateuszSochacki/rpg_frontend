@@ -118,13 +118,14 @@ export default function AddNewWeapon(props) {
         };
 
         saveButton(char);
-        props.update();
-        props.close();
+
     };
 
     const saveButton = async (chara) => {
         await API.post("/user/sheet/add", chara).then((response) => {
             const res = response.data;
+            props.update();
+            props.close();
         });
     };
 
