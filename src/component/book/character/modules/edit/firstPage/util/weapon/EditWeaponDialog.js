@@ -41,7 +41,6 @@ export default function EditWeaponDialog(props) {
         };
 
     const handleClose= (name) => {
-
         setOpen({[name]:false});
 
     };
@@ -155,7 +154,7 @@ export default function EditWeaponDialog(props) {
                 <AddNewWeapon open={open.buy} close={()=>handleClose("buy")} character={props.character} weapons={weapon} update={props.update}/>
                 : null}
             {open.loot ?
-                <AddLootedWeapon open={open.loot} close={()=>handleClose("loot")} character={props.character} update={props.update}/>
+                <AddLootedWeapon open={open.loot} close={()=>handleClose("loot")} character={props.character} weapons={weapon} update={props.update}/>
                 : null}
             {open.negotation ?
                 <NegotationWeapoon open={open.negotation} close={()=>handleClose("negotation")} howMuch={money} update={props.update}/>

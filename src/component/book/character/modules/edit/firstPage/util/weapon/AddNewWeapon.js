@@ -15,7 +15,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
-const Alert=(props)=> {
+const Alert = (props) => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 };
 export default function AddNewWeapon(props) {
@@ -23,9 +23,9 @@ export default function AddNewWeapon(props) {
     const [silver, setSilver] = useState(props.character.money.silver);
     const [copper, setCopper] = useState(props.character.money.copper);
     const [basket, setBasket] = useState([]);
-    const [alert,setAlert] = useState(false);
-    const [message,setMessage] =useState();
-    const [character,setCharacter]= useState(props.character);
+    const [alert, setAlert] = useState(false);
+    const [message, setMessage] = useState();
+    const [character, setCharacter] = useState(props.character);
 
     const handleAddToCart = (name, price) => {
 
@@ -54,7 +54,7 @@ export default function AddNewWeapon(props) {
                 bas.push(...basket, {name: name, price: price});
                 setBasket(bas);
 
-            }else {
+            } else {
                 setMessage("Brak srebra")
                 setAlert(true);
 
@@ -67,7 +67,7 @@ export default function AddNewWeapon(props) {
                 bas.push(...basket, {name: name, price: price});
                 setBasket(bas);
 
-            }else {
+            } else {
                 setMessage("Brak koron")
                 setAlert(true);
 
@@ -104,29 +104,33 @@ export default function AddNewWeapon(props) {
 
         setAlert(false);
     };
-    const saveWeapons = ()=>{
-        let char=character;
-        let weaponTable=char.weapon;
+    const saveWeapons = () => {
+        let char = character;
+        let weaponTable = char.weapon;
 
-        basket.forEach((item)=>weaponTable.push(item.name));
-        char={...char,weapon:weaponTable,money:{
-            gold:crown,
-                silver:silver,
-                copper:copper
-            }};
+        basket.forEach((item) => weaponTable.push(item.name));
+        char = {
+            ...char, weapon: weaponTable, money: {
+                gold: crown,
+                silver: silver,
+                copper: copper
+            }
+        };
 
         saveButton(char);
         props.update();
         props.close();
-    }
-    const saveButton= async (chara)=>{
-        await API.post("/user/sheet/add",chara).then((response)=>{
-            const res =response.data;
+    };
+
+    const saveButton = async (chara) => {
+        await API.post("/user/sheet/add", chara).then((response) => {
+            const res = response.data;
         });
     };
+
     useEffect(() => {
 
-    }, [crown,silver,copper]);
+    }, [crown, silver, copper]);
 
     return (
         <Dialog
