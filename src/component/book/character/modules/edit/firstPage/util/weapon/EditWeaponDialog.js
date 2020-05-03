@@ -21,7 +21,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function EditWeaponDialog(props) {
 
     const [weapon, setWeapon] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [open, setOpen] = React.useState({
         buy:false,
         loot:false,
@@ -64,7 +63,6 @@ export default function EditWeaponDialog(props) {
                 if (!didCancel) {
                     const weapons = response.data;
                     setWeapon(weapons.weapons);
-                    setIsLoading(false);
                 }
             }).catch(error => {
                 console.log(error)
@@ -72,9 +70,11 @@ export default function EditWeaponDialog(props) {
         }
         fetchWeapons();
         return () => {
+
             didCancel = true;
         };
-    }, [props.character]);
+    }, []);
+    useEffect(()=>{},[props.character.weapon]);
 
     return (
         <Dialog

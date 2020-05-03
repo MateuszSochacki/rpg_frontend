@@ -16,6 +16,9 @@ import {HeroTableCell, HeroTableRow} from "../../../../../styles/expansionPanel/
 import TableBody from "@material-ui/core/TableBody";
 import TableContainer from "@material-ui/core/TableContainer";
 import API from "../../../../../API/API";
+import {SaveButton} from "../../../../../styles/Styles";
+import EditWeaponDialog from "./util/weapon/EditWeaponDialog";
+import EditArmorDialog from "./util/armor/EditArmorDialog";
 
 
 export default function HeroEditArmor(props) {
@@ -23,7 +26,17 @@ export default function HeroEditArmor(props) {
     const [armors, setArmors] = useState([]);
     const [isLoadingArmor, setIsLoadingArmor] = useState(true);
 
+    const [open, setOpen] = React.useState(false);
 
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+
+        setOpen(false);
+    };
     useEffect(() => {
 
 
@@ -48,7 +61,7 @@ export default function HeroEditArmor(props) {
         };
 
         async function getAll() {
-            return await Promise.all(props.armors.map(async (armor) => await (await (fetchArmor(armor.name, armor.type)))));
+            return await Promise.all(props.character.armor.map(async (armor) => await (await (fetchArmor(armor.name, armor.type)))));
         }
 
         getAll().then(data => {
@@ -63,7 +76,7 @@ export default function HeroEditArmor(props) {
             didCancel = true;
         };
 
-    }, [isLoadingArmor]);
+    }, [isLoadingArmor,props.character.armor]);
 
     return (
         <Paper elevation={8}>
@@ -149,8 +162,14 @@ export default function HeroEditArmor(props) {
                                             </>
                                         }</>}
                             </Grid>
+                            <SaveButton variant="contained" color="primary" onClick={handleClickOpen}>
+                                Edytuj
+                            </SaveButton>
                         </Grid>
                     </HeroPanelDetails>
+                    {open ?
+                        <EditArmorDialog open={open} close={handleClose} character={props.character} armors={armors} update={props.update}/>
+                        :null}
                 </HeroPanel>
             }
         </Paper>

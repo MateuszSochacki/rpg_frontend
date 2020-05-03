@@ -42,8 +42,6 @@ export default function HeroEditWeapon(props) {
     };
 
     const handleClose = () => {
-        props.update();
-
         setOpen(false);
     };
 
@@ -85,7 +83,7 @@ export default function HeroEditWeapon(props) {
             didCancel = true;
         };
 
-    }, [isLoadingWeapon,props.character]);
+    }, [isLoadingWeapon,props.character.weapon]);
     return (
         <Paper elevation={8}>
             {isLoadingWeapon ? null :

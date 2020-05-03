@@ -11,6 +11,7 @@ import HeroEditInfo from "./firstPage/HeroEditInfo";
 import HeroEditDescription from "./firstPage/HeroEditDescription";
 import HeroEditTraits from "./firstPage/HeroEditTraits";
 import HeroEditWeapon from "./firstPage/HeroEditWeapon";
+import HeroEditArmor from "./firstPage/HeroEditArmor";
 
 
 export default function FirstPageEdit(props) {
@@ -31,7 +32,7 @@ export default function FirstPageEdit(props) {
                             <br/>
                             <HeroEditWeapon character={props.character} update={props.update} />
                             <br/>
-                            <HeroArmor armors={props.character.armor}/>
+                            <HeroEditArmor character={props.character} update={props.update}/>
 
                         </Grid>
 
