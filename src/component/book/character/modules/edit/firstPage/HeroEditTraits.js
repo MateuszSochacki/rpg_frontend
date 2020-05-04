@@ -28,8 +28,6 @@ export default function HeroEditTraits(props) {
     };
 
     const handleClose = () => {
-        props.update();
-
         setOpen(false);
     };
     return (
@@ -54,7 +52,7 @@ export default function HeroEditTraits(props) {
                 </HeroPanelDetails>
             </HeroPanel>
             {open ?
-                <EditTraitsDialog open={open} close={handleClose} character={props.character}/>
+                <EditTraitsDialog open={open} close={handleClose} character={props.character} update={props.update}/>
                 :null}
         </Paper>
 

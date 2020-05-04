@@ -12,6 +12,8 @@ import HeroEditDescription from "./firstPage/HeroEditDescription";
 import HeroEditTraits from "./firstPage/HeroEditTraits";
 import HeroEditWeapon from "./firstPage/HeroEditWeapon";
 import HeroEditArmor from "./firstPage/HeroEditArmor";
+import HeroEditGameInfo from "./firstPage/HeroEditGameInfo";
+import HeroEditExperiencePoints from "./firstPage/HeroEditExperiencePoints";
 
 
 export default function FirstPageEdit(props) {
@@ -39,9 +41,9 @@ export default function FirstPageEdit(props) {
                         {/*<Grid item xs={1}/>*/}
                         <Grid item xs={6}>
 
-                            <HeroGameInfo gameInfo={props.character.player}/>
+                            <HeroEditGameInfo character={props.character} update={props.update}/>
                             <br/>
-                            <HeroExperiencePoints exp={props.character.experiencePoints}/>
+                            <HeroEditExperiencePoints character={props.character} update={props.update}/>
                             <br/>
                             <HeroMovement move={props.character.movement}/>
                             <br/>

@@ -14,11 +14,14 @@ import API from "../../../../../../../API/API";
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
+
+//TODO further testing need apparently current exp was taken from previous step from state
+// consider it as broken for now
 export default function EditTraitsDialog(props) {
 
 
-    const [currentExp,setCurrentExp] = useState(props.character.experiencePoints.current)
-    const [character,setCharacter] = useState(props.character)
+    const [currentExp,setCurrentExp] = useState(props.character.experiencePoints.current);
+    const [character,setCharacter] = useState(props.character);
     const handleCurrentExpAdd = () =>{
         let exp = parseInt(currentExp) - 100;
         setCharacter({
@@ -27,7 +30,7 @@ export default function EditTraitsDialog(props) {
                 ...character.experiencePoints,
                 current: exp
             },
-        })
+        });
         setCurrentExp(exp);
 
     };
@@ -106,16 +109,22 @@ export default function EditTraitsDialog(props) {
 
     const saveButton= async ()=>{
 
+        let char = character;
+        char.experiencePoints = {
+            ...char.experiencePoints,
+            current:currentExp
+        };
         await API.post("/user/sheet/add",character).then((response)=>{
             const res =response.data;
         });
-        props.close()
+        props.update();
+        props.close();
     };
 
 
     useEffect(() => {
-        setCharacter(character)
-    }, [character]);
+        setCharacter(props.character)
+    }, [props.character,currentExp,character]);
 
     return (
         <Dialog
