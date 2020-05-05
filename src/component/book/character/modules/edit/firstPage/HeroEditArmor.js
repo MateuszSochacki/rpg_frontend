@@ -17,7 +17,6 @@ import TableBody from "@material-ui/core/TableBody";
 import TableContainer from "@material-ui/core/TableContainer";
 import API from "../../../../../API/API";
 import {SaveButton} from "../../../../../styles/Styles";
-import EditWeaponDialog from "./util/weapon/EditWeaponDialog";
 import EditArmorDialog from "./util/armor/EditArmorDialog";
 
 

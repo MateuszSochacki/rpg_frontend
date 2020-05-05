@@ -63,11 +63,11 @@ export default function HeroEditExperiencePoints(props) {
                         <>
                             <Grid container>
                                 <Grid item xs={3} style={{borderRight:"1px solid",}}>
-                                    <HeroTextField id="currentExp" label="Obecne:" value={info.current} onChange={handleChange("current")}/>
+                                    <HeroTextField id="currentExp" label="Obecne:" value={info.current} onChange={handleChange("current")} type={"number"}/>
 
                                 </Grid>
                                 <Grid item xs={9} style={{borderLeft:"1px solid",}}>
-                                    <HeroTextField id="sumExp" label="Razem:" value={info.sum} onChange={handleChange("sum")}/>
+                                    <HeroTextField id="sumExp" label="Razem:" value={info.sum} onChange={handleChange("sum")} type={"number"}/>
                                 </Grid>
                                 {saveButton ?
                                     <>

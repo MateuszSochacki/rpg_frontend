@@ -58,7 +58,7 @@ export default function HeroArmorPoints(props) {
 
                                         </Grid>
                                         <Grid  item xs={6}>
-                                            <img src={Silhouette} alt={""}/>
+                                            <img src={Silhouette} alt={""} width={"100%"}/>
                                         </Grid>
                                         <Grid item xs={3} style={{height:"100%"}}>
                                             <Grid container direction={"column"} justify={"space-between"} alignItems={"center"} style={{height:"100%"}}>

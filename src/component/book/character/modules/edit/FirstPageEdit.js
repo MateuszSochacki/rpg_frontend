@@ -1,11 +1,5 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-
-import HeroArmor from "./../preview/firstPage/HeroArmor";
-import HeroGameInfo from "./../preview/firstPage/HeroGameInfo";
-import HeroExperiencePoints from "./../preview/firstPage/HeroExperiencePoints";
-import HeroMovement from "./../preview/firstPage/HeroMovement";
-import HeroArmorPoints from "./../preview/firstPage/HeroArmorPoints";
 import HeroActionSheet from "./../preview/firstPage/HeroActionSheet";
 import HeroEditInfo from "./firstPage/HeroEditInfo";
 import HeroEditDescription from "./firstPage/HeroEditDescription";
@@ -14,6 +8,8 @@ import HeroEditWeapon from "./firstPage/HeroEditWeapon";
 import HeroEditArmor from "./firstPage/HeroEditArmor";
 import HeroEditGameInfo from "./firstPage/HeroEditGameInfo";
 import HeroEditExperiencePoints from "./firstPage/HeroEditExperiencePoints";
+import HeroEditMovement from "./firstPage/HeroEditMovement";
+import HeroEditArmorPoints from "./firstPage/HeroEditArmorPoints";
 
 
 export default function FirstPageEdit(props) {
@@ -45,9 +41,9 @@ export default function FirstPageEdit(props) {
                             <br/>
                             <HeroEditExperiencePoints character={props.character} update={props.update}/>
                             <br/>
-                            <HeroMovement move={props.character.movement}/>
+                            <HeroEditMovement character={props.character} update={props.update}/>
                             <br/>
-                            <HeroArmorPoints ap={props.character.armorPoints}/>
+                            <HeroEditArmorPoints character={props.character} update={props.update}/>
                             <br/>
                             <HeroActionSheet/>
                         </Grid>
