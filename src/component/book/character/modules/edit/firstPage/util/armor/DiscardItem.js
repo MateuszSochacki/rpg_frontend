@@ -3,7 +3,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
-import {AddButton, ArmoryButton, SaveButton} from "../../../../../../../styles/Styles";
+import {SaveButton} from "../../../../../../../styles/Styles";
 import Slide from "@material-ui/core/Slide";
 import Grid from "@material-ui/core/Grid";
 
@@ -33,7 +33,7 @@ export default function DiscardItem(props) {
 
     const saveButton = async (chara) => {
         await API.post("/user/sheet/add", chara).then((response) => {
-            const res = response.data;
+            // const res = response.data;
             props.update();
             props.close();
 

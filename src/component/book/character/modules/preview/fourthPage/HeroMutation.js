@@ -1,5 +1,4 @@
 import React from "react";
-
 import Grid from "@material-ui/core/Grid";
 import {HeroSkillsLetters} from "../../../../../styles/Styles";
 import {HeroTextField} from "../../../../../styles/expansionPanel/Panel";

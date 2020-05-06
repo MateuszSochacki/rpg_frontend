@@ -1,5 +1,4 @@
 import React from "react";
-import {Paper} from "@material-ui/core";
 import {HeroTextField,
 } from "../../../../../styles/expansionPanel/Panel";
 import Grid from "@material-ui/core/Grid";

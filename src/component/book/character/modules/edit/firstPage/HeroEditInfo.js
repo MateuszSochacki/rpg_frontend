@@ -15,6 +15,12 @@ import API from "../../../../../API/API";
 import {SaveButton} from "../../../../../styles/Styles";
 
 
+//TODO moved from traits(since traits have nothing to do with this its based on profession):
+// new professions shouldnt be able to over added traits e.g +5 to str should be only +5 in +10 next profession
+// also changing profession should eat 100exp
+// have to add some cycle in profession to DB to check if everything is oke
+
+
 export default function HeroEditInfo(props) {
     const [info, setInfo] = useState({
         name: props.character.hero.name,

@@ -17,7 +17,6 @@ const useStyles = makeStyles({
 });
 export default function CharacterSheet() {
     const [charSheet, setCharSheet] = useState(0);
-    const [character, setCharacter] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const classes=useStyles();
 
@@ -34,7 +33,6 @@ export default function CharacterSheet() {
             if (!didCancel) {
                 const sheets = response.data;
                 setCharSheet(sheets.characterSheetsDtos);
-                setCharacter(sheets.characterSheetsDtos);
 
                 setIsLoading(false);
             }

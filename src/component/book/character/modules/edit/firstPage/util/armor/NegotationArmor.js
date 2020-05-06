@@ -3,11 +3,10 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
-import {AddButton, ArmoryButton, SaveButton} from "../../../../../../../styles/Styles";
+import {SaveButton} from "../../../../../../../styles/Styles";
 import Slide from "@material-ui/core/Slide";
 import Grid from "@material-ui/core/Grid";
-import {HeroPanel, HeroTextField} from "../../../../../../../styles/expansionPanel/Panel";
-import Button from '@material-ui/core/Button';
+import {HeroTextField} from "../../../../../../../styles/expansionPanel/Panel";
 import API from "../../../../../../../API/API";
 
 

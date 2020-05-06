@@ -11,7 +11,7 @@ import Beasts from "../component/book/books/Beasts";
 import Professions from "../component/book/books/Professions";
 import Login from "../component/book/login/Login";
 import Register from "../component/book/login/Register";
-import Logout from "../component/book/login/Logout";
+// import Logout from "../component/book/login/Logout";
 import CharacterSheet from "../component/book/character/CharacterSheet";
 
 

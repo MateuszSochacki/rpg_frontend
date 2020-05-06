@@ -4,7 +4,6 @@ import {
     HeroPanelDetails,
     HeroPanelSummary,
     HeroText,
-    HeroTextField
 } from "../../../../styles/expansionPanel/Panel";
 import {Paper} from "@material-ui/core";
 import HeroSpells from "./../preview/thirdPage/HeroSpells";

@@ -49,7 +49,12 @@ export default function HeroEditExperiencePoints(props) {
         })
 
     };
-    useEffect(()=>{},[props.character.experiencePoints]);
+    useEffect(()=>{
+        setInfo({
+            current: props.character.experiencePoints.current,
+            sum: props.character.experiencePoints.sum,
+        });
+    },[props.character.experiencePoints]);
     return(
         <>
             <Paper elevation={8}>

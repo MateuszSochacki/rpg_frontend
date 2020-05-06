@@ -5,49 +5,48 @@ import {Paper} from "@material-ui/core";
 
 import HeroMainTraitTable from "./../../table/HeroMainTraitTable";
 import HeroSecondaryTraitTable from "./../../table/HeroSecondaryTraitTable";
-import API from "../../../../../API/API";
 
 export default function HeroTraits(props) {
     // const [profession, setProfession] = useState(0);
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
 
-        let didCancel = false;
+        // let didCancel = false;
+        //
+        // // async function fetchProfession() {
+        // //     let name={
+        // //         name:props.profession
+        // //     };
+        // //
+        // //
+        // //     await API.post("book/profession/name",name).then(async (response) => {
+        // //
+        // //         if (!didCancel) {
+        // //             const prof = response.data;
+        // //             setProfession(prof);
+        // //
+        // //             setIsLoading(false);
+        // //         }
+        // //     }).catch(error => {
+        // //         console.log(error)
+        // //     });
+        // //
+        // // }
+        // //
+        // //
+        // //
+        // //
+        // // fetchProfession();
+        // return () => {
+        //     didCancel = true;
+        // };
 
-        // async function fetchProfession() {
-        //     let name={
-        //         name:props.profession
-        //     };
-        //
-        //
-        //     await API.post("book/profession/name",name).then(async (response) => {
-        //
-        //         if (!didCancel) {
-        //             const prof = response.data;
-        //             setProfession(prof);
-        //
-        //             setIsLoading(false);
-        //         }
-        //     }).catch(error => {
-        //         console.log(error)
-        //     });
-        //
-        // }
-        //
-        //
-        //
-        //
-        // fetchProfession();
-        return () => {
-            didCancel = true;
-        };
-
-    }, [isLoading]);
+    }, []);
     return (
 
         <Paper elevation={8}>
-            {isLoading ? null :
+            {/*{isLoading ? null :*/}
                 <HeroPanel expanded={true}>
                     <HeroPanelSummary>
                         <HeroText>
@@ -63,7 +62,7 @@ export default function HeroTraits(props) {
                         </Grid>
                     </HeroPanelDetails>
                 </HeroPanel>
-            }
+            {/*}*/}
         </Paper>
 
 

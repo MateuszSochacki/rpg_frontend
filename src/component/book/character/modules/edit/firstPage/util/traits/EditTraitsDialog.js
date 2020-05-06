@@ -15,57 +15,55 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-//TODO further testing need apparently current exp was taken from previous step from state
-// consider it as broken for now
+// should work now as intended
 export default function EditTraitsDialog(props) {
 
 
-    const [currentExp,setCurrentExp] = useState(props.character.experiencePoints.current);
-    const [character,setCharacter] = useState(props.character);
-    const handleCurrentExpAdd = () =>{
+    const [currentExp, setCurrentExp] = useState(props.character.experiencePoints.current);
+    const [character, setCharacter] = useState(props.character);
+    const handleCurrentExpAdd = () => {
         let exp = parseInt(currentExp) - 100;
-        setCharacter({
-            ...character,
-            experiencePoints: {
-                ...character.experiencePoints,
-                current: exp
-            },
-        });
+        // setCharacter({
+        //     ...character,
+        //     experiencePoints: {
+        //         ...character.experiencePoints,
+        //         current: exp
+        //     },
+        // });
         setCurrentExp(exp);
 
     };
-    const handleCurrentExpSubtract = () =>{
+    const handleCurrentExpSubtract = () => {
         let exp = parseInt(currentExp) + 100;
-        setCharacter({
-            ...character,
-            experiencePoints: {
-                ...character.experiencePoints,
-                current: exp
-            },
-        })
+        // setCharacter({
+        //     ...character,
+        //     experiencePoints: {
+        //         ...character.experiencePoints,
+        //         current: exp
+        //     },
+        // })
         setCurrentExp(exp);
     };
-    const setMainTraits= (profession,hero)=>{
+    const setMainTraits = (profession, hero) => {
         // let character=props.character;
         // character.hero=characterSheetDto;
+        let char;
 
-        setCharacter({...character,
-            experiencePoints:{
-                ...character.experiencePoints,
-                current:currentExp
-            },
-            heroProfession:{
+        char = {
+            ...character,
+            heroProfession: {
                 ...character.heroProfession,
-                mainTraits:profession
+                mainTraits: profession
             },
-            traits:{
+            traits: {
                 ...character.traits,
 
 
-                currentMainTraits:hero
+                currentMainTraits: hero
             }
 
-        });
+        };
+        setCharacter(char);
 
 
         // await API.post("/user/sheet/add",character).then((response)=>{
@@ -76,23 +74,23 @@ export default function EditTraitsDialog(props) {
         // })
 
     };
-    const setSecondaryTraits= (profession,hero)=>{
+    const setSecondaryTraits = (profession, hero) => {
 
-        setCharacter({...character,
-            experiencePoints:{
-                ...character.experiencePoints,
-                current:currentExp
-            },
-            heroProfession:{
+        let char=
+        {
+            ...character,
+            heroProfession: {
                 ...character.heroProfession,
-                secondaryTraits:profession
+                secondaryTraits: profession
             },
-            traits:{
+            traits: {
                 ...character.traits,
-                currentSecondaryTraits:hero
+                currentSecondaryTraits: hero
             }
 
-        });
+        };
+        setCharacter(char)
+
         // let character=props.character;
         // character.hero=characterSheetDto;
 
@@ -107,16 +105,17 @@ export default function EditTraitsDialog(props) {
     };
 
 
-    const saveButton= async ()=>{
+    const saveButton = async () => {
 
         let char = character;
-        char.experiencePoints = {
-            ...char.experiencePoints,
-            current:currentExp
-        };
-        await API.post("/user/sheet/add",character).then((response)=>{
+        // char.experiencePoints = {
+        //     ...char.experiencePoints,
+        //     current: currentExp
+        // };
+        await API.post("/user/sheet/add",char).then((response)=>{
             const res =response.data;
         });
+        console.log(char);
         props.update();
         props.close();
     };
@@ -124,7 +123,23 @@ export default function EditTraitsDialog(props) {
 
     useEffect(() => {
         setCharacter(props.character)
-    }, [props.character,currentExp,character]);
+    }, [props.character]);
+    useEffect(() => {
+        setCharacter(character);
+    }, [character]);
+    useEffect(() => {
+        // setCurrentExp(currentExp);
+        let char=
+            {
+                ...character,
+                experiencePoints: {
+                    ...character.experiencePoints,
+                    current: currentExp
+                },
+
+            };
+        setCharacter(char)
+    }, [currentExp]);
 
     return (
         <Dialog
@@ -140,13 +155,20 @@ export default function EditTraitsDialog(props) {
             <DialogContent>
                 <Grid container>
                     <Grid container item xs={12} justify={"center"} alignItems={"center"}>
-                        <HeroTextField id="exp" label="Dostępne doświadczenie:" value={currentExp} style={{marginBottom:50}} inputProps={{min: 0, style: {textAlign: "center"}}}/>
+                        <HeroTextField id="exp" label="Dostępne doświadczenie:" value={currentExp}
+                                       style={{marginBottom: 50}} inputProps={{min: 0, style: {textAlign: "center"}}}/>
 
                         <Grid item xs={6}>
-                            <EditMainTraits mainTraits={props.character} current={currentExp} expChangeAdd={handleCurrentExpAdd} expChangeSubsract={handleCurrentExpSubtract} editedCharacter={setMainTraits}/>
+                            <EditMainTraits mainTraits={props.character} current={currentExp}
+                                            expChangeAdd={handleCurrentExpAdd}
+                                            expChangeSubsract={handleCurrentExpSubtract}
+                                            editedCharacter={setMainTraits}/>
                         </Grid>
                         <Grid item xs={6}>
-                            <EditSecondTraits secondaryTraits={props.character} current={currentExp} expChangeAdd={handleCurrentExpAdd} expChangeSubsract={handleCurrentExpSubtract} editedCharacter={setSecondaryTraits}/>
+                            <EditSecondTraits secondaryTraits={props.character} current={currentExp}
+                                              expChangeAdd={handleCurrentExpAdd}
+                                              expChangeSubsract={handleCurrentExpSubtract}
+                                              editedCharacter={setSecondaryTraits}/>
                         </Grid>
                     </Grid>
                 </Grid>
