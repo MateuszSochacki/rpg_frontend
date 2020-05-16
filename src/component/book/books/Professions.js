@@ -95,7 +95,8 @@ export default function Professions() {
         let components = [];
         let index = 0;
         for (let i = 0; i < arr.length; i++) {
-            if (arr[i].toLowerCase().includes("albo")) {
+
+                if (arr[i].toLowerCase().includes("albo")) {
                 let temp = arr[i].split(" albo ");
 
                 components[index] = <SlimButton key={"FirstChoice" + i} onClick={()=>{handleClickOpen("ability",temp[0])}}> {temp[0]}</SlimButton>;
@@ -117,21 +118,89 @@ export default function Professions() {
         let components = [];
         let index = 0;
         for (let i = 0; i < arr.length; i++) {
-            if (arr[i].toLowerCase().includes("(")) {
-                let temp = arr[i].substring(0,arr[i].indexOf("("));
 
-                components[index] = <SlimButton key={"FirstChoice" + i} onClick={()=>{handleClickOpen("skill",temp[i])}}> {temp}</SlimButton>;
+            if(arr[i].toLowerCase().indexOf("(")>arr[i].toLowerCase().indexOf("albo") || arr[i].indexOf("(")===-1){
+                if (arr[i].toLowerCase().includes("albo")) {
+                    let temp = arr[i].split(" albo ");
+                    for(let j=0; j<temp.length;j++)
+                    {
+                        if (temp[j].toLowerCase().includes("(")) {
+                            let tempBracket = temp[j].substring(0,temp[j].indexOf("("));
+
+                            components[index] = <SlimButton key={"FirstChoice" + i} onClick={()=>{handleClickOpen("skill",tempBracket[j])}}> {tempBracket}</SlimButton>;
+                            index++;
+                            components[index] = <AlboButton key={"AlboButton" + i} disabled={true}> {temp[j].substr(temp[j].indexOf("("),temp[j].indexOf(")"))}</AlboButton>;
+                            index++;
+                            if (j!==temp.length-1){
+                                components[index] = <AlboButton key={"Albo"+i} disabled={true}>{` albo `}</AlboButton>;
+                                index++;
+                            }
+
+                        }else{
+                            components[index] = <SlimButton key={i} onClick={()=>{handleClickOpen("skill",temp[j])}}> {temp[j]}</SlimButton>;
+                            index++;
+                            if (j!==temp.length-1){
+                                components[index] = <AlboButton key={"Albo"+i} disabled={true}> albo </AlboButton>;
+                                index++;
+                            }
+                        }
+
+
+                    }
+
+                }
+                else {
+                    components[index] = <SlimButton key={i} onClick={()=>{handleClickOpen("skill",arr[i])}}> {arr[i]}</SlimButton>;
+                    index++;
+                }
+
+            }
+            else{
+                let tempBracket = arr[i].substring(0,arr[i].indexOf("("));
+
+                components[index] = <SlimButton key={"FirstChoice" + i} onClick={()=>{handleClickOpen("skill",tempBracket[i])}}> {tempBracket}</SlimButton>;
                 index++;
                 components[index] = <AlboButton key={"AlboButton" + i} disabled={true}> {arr[i].substr(arr[i].indexOf("("),arr[i].indexOf(")"))}</AlboButton>;
                 index++;
-            } else {
-                components[index] = <SlimButton key={i} onClick={()=>{handleClickOpen("skill",arr[i])}}> {arr[i]}</SlimButton>;
-                index++;
+
             }
         }
         return components;
 
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // const lookForSkill = (arr) => {
+    //     let components = [];
+    //     let index = 0;
+    //     for (let i = 0; i < arr.length; i++) {
+    //
+    //         if (arr[i].toLowerCase().includes("(")) {
+    //             let temp = arr[i].substring(0,arr[i].indexOf("("));
+    //
+    //             components[index] = <SlimButton key={"FirstChoice" + i} onClick={()=>{handleClickOpen("skill",temp[i])}}> {temp}</SlimButton>;
+    //             index++;
+    //             components[index] = <AlboButton key={"AlboButton" + i} disabled={true}> {arr[i].substr(arr[i].indexOf("("),arr[i].indexOf(")"))}</AlboButton>;
+    //             index++;
+    //         } else {
+    //             components[index] = <SlimButton key={i} onClick={()=>{handleClickOpen("skill",arr[i])}}> {arr[i]}</SlimButton>;
+    //             index++;
+    //         }
+    //     }
+    //     return components;
+    //
+    // };
 
     async function fetchSkillByName(name) {
 

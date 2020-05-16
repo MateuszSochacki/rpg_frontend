@@ -33,7 +33,7 @@ export const AlboButton = withStyles({
     },
 
     text:{
-        padding:0
+        padding:"0 5px 0 5px"
     }
 })(Button);
 
