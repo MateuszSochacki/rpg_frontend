@@ -114,12 +114,120 @@ export default function Professions() {
 
     };
 
-    const lookForSkill = (arr) => {
+    // const lookForSkill = (arr) => {
+    //     let components = [];
+    //     let index = 0;
+    //     for (let i = 0; i < arr.length; i++) {
+    //
+    //         if(arr[i].toLowerCase().indexOf("(")>arr[i].toLowerCase().indexOf("albo") || arr[i].indexOf("(")===-1){
+    //
+    //             if (arr[i].toLowerCase().includes("albo")) {
+    //                 let temp = arr[i].split(" albo ");
+    //                 for(let j=0; j<temp.length;j++)
+    //                 {
+    //                     if (temp[j].toLowerCase().includes("(")) {
+    //                         let tempBracket = temp[j].substring(0,temp[j].indexOf("("));
+    //
+    //                         components[index] = <SlimButton key={"FirstChoiceWithBracket" + j} onClick={()=>{handleClickOpen("skill",tempBracket[j])}}> {tempBracket}</SlimButton>;
+    //                         index++;
+    //                         components[index] = <AlboButton key={"AlboButtonWithinBracket" + j} disabled={true}> {temp[j].substr(temp[j].indexOf("("),temp[j].indexOf(")"))}</AlboButton>;
+    //                         index++;
+    //                         if (j!==temp.length-1){
+    //                             components[index] = <AlboButton key={"AlboButtonWithBracket"+j} disabled={true}>{` albo `}</AlboButton>;
+    //                             index++;
+    //                         }
+    //
+    //                     }else{
+    //                         components[index] = <SlimButton key={"ChoiceWithoutBracket"+i+j} onClick={()=>{handleClickOpen("skill",temp[j])}}> {temp[j]}</SlimButton>;
+    //                         index++;
+    //                         if (j!==temp.length-1){
+    //                             components[index] = <AlboButton key={"AlboButtonWithoutBracket"+i+j} disabled={true}> albo </AlboButton>;
+    //                             index++;
+    //                         }
+    //                     }
+    //
+    //
+    //                 }
+    //
+    //             }
+    //             else {
+    //                 if (arr[i].toLowerCase().includes("(")){
+    //                     let tempBracket = arr[i].substring(0,arr[i].indexOf("("));
+    //
+    //                     components[index] = <SlimButton key={"SkillWithBracket" + i} onClick={()=>{handleClickOpen("skill",tempBracket[i])}}> {tempBracket}</SlimButton>;
+    //                     index++;
+    //                     components[index] = <AlboButton key={"AlboButtonWithJustBracket" + i} disabled={true}> {arr[i].substr(arr[i].indexOf("("),arr[i].indexOf(")"))}</AlboButton>;
+    //                     index++;
+    //                 }else{
+    //                     if(arr[i].toLowerCase().includes("z:")){
+    //                         let comp = [];
+    //                         let tempIndex = 0;
+    //                         let tempMany = arr[i].split(":");
+    //                         // components[index] = <AlboButton key={"fromMany"+i} disabled={true}> {tempMany[0]}: </AlboButton>;
+    //                         // index++;
+    //                         comp[tempIndex] = <AlboButton key={"fromMany"+i} disabled={true}> {tempMany[0]}: </AlboButton>;
+    //                         tempIndex++;
+    //                         tempMany = tempMany[1].split(", ");
+    //                         for(let j=0;j<tempMany.length;j++){
+    //                             comp[tempIndex]=<SlimButton key={"oneFromMany"+j} onClick={()=>{handleClickOpen("skill",tempMany[j])}}> {tempMany[j]}</SlimButton>;
+    //                             tempIndex++;
+    //                         }
+    //                         components[index]=<Typography key={"typography"+i} component={"article"}>{comp}</Typography>
+    //                         index++
+    //                     }else{
+    //                         components[index] = <SlimButton key={"everyOther"+i} onClick={()=>{handleClickOpen("skill",arr[i])}}> {arr[i]}</SlimButton>;
+    //                         index++;
+    //                     }
+    //                 }
+    //             }
+    //
+    //         }
+    //         else{
+    //
+    //             let tempBracket = arr[i].substring(0,arr[i].indexOf("("));
+    //
+    //             components[index] = <SlimButton key={"FirstChoice" + i} onClick={()=>{handleClickOpen("skill",tempBracket[i])}}> {tempBracket}</SlimButton>;
+    //             index++;
+    //             components[index] = <AlboButton key={"AlboButton" + i} disabled={true}> {arr[i].substr(arr[i].indexOf("("),arr[i].indexOf(")"))}</AlboButton>;
+    //             index++;
+    //
+    //         }
+    //     }
+    //     return components;
+    //
+    // };
+
+
+    const showCorrect = (arr,what)=>{
         let components = [];
         let index = 0;
         for (let i = 0; i < arr.length; i++) {
-
+            if(arr[i].toLowerCase().includes("z:")){
+                let comp = [];
+                let tempIndex = 0;
+                let tempMany = arr[i].split(":");
+                // components[index] = <AlboButton key={"fromMany"+i} disabled={true}> {tempMany[0]}: </AlboButton>;
+                // index++;
+                comp[tempIndex] = <AlboButton key={"fromMany"+i} disabled={true}> {tempMany[0]}: </AlboButton>;
+                tempIndex++;
+                tempMany = tempMany[1].split(", ");
+                for(let j=0;j<tempMany.length;j++){
+                    if(tempMany[j].toLowerCase().includes("(")){
+                        let tempBracket = tempMany[j].substring(0,tempMany[j].indexOf("("));
+                        comp[tempIndex]=<SlimButton key={"oneFromMany"+j} onClick={()=>{handleClickOpen(what,tempBracket[j])}}> {tempBracket}</SlimButton>;
+                        tempIndex++;
+                        comp[tempIndex] = <AlboButton key={"AlboButtonWithinBracketOneFromMany" + j} disabled={true}> {tempMany[j].substr(tempMany[j].indexOf("("),tempMany[j].indexOf(")"))}</AlboButton>;
+                        tempIndex++;
+                    }else{
+                    comp[tempIndex]=<SlimButton key={"oneFromMany"+j} onClick={()=>{handleClickOpen(what,tempMany[j])}}> {tempMany[j]}</SlimButton>;
+                    tempIndex++;
+                    }
+                }
+                components[index]=<Typography key={"typography"+i} component={"article"}>{comp}</Typography>
+                index++
+            }else
             if(arr[i].toLowerCase().indexOf("(")>arr[i].toLowerCase().indexOf("albo") || arr[i].indexOf("(")===-1){
+
                 if (arr[i].toLowerCase().includes("albo")) {
                     let temp = arr[i].split(" albo ");
                     for(let j=0; j<temp.length;j++)
@@ -127,20 +235,20 @@ export default function Professions() {
                         if (temp[j].toLowerCase().includes("(")) {
                             let tempBracket = temp[j].substring(0,temp[j].indexOf("("));
 
-                            components[index] = <SlimButton key={"FirstChoice" + i} onClick={()=>{handleClickOpen("skill",tempBracket[j])}}> {tempBracket}</SlimButton>;
+                            components[index] = <SlimButton key={"FirstChoiceWithBracket" + j} onClick={()=>{handleClickOpen(what,tempBracket[j])}}> {tempBracket}</SlimButton>;
                             index++;
-                            components[index] = <AlboButton key={"AlboButton" + i} disabled={true}> {temp[j].substr(temp[j].indexOf("("),temp[j].indexOf(")"))}</AlboButton>;
+                            components[index] = <AlboButton key={"AlboButtonWithinBracket" + j} disabled={true}> {temp[j].substr(temp[j].indexOf("("),temp[j].indexOf(")"))}</AlboButton>;
                             index++;
                             if (j!==temp.length-1){
-                                components[index] = <AlboButton key={"Albo"+i} disabled={true}>{` albo `}</AlboButton>;
+                                components[index] = <AlboButton key={"AlboButtonWithBracket"+j} disabled={true}>{` albo `}</AlboButton>;
                                 index++;
                             }
 
                         }else{
-                            components[index] = <SlimButton key={i} onClick={()=>{handleClickOpen("skill",temp[j])}}> {temp[j]}</SlimButton>;
+                            components[index] = <SlimButton key={"ChoiceWithoutBracket"+i+j} onClick={()=>{handleClickOpen(what,temp[j])}}> {temp[j]}</SlimButton>;
                             index++;
                             if (j!==temp.length-1){
-                                components[index] = <AlboButton key={"Albo"+i} disabled={true}> albo </AlboButton>;
+                                components[index] = <AlboButton key={"AlboButtonWithoutBracket"+i+j} disabled={true}> albo </AlboButton>;
                                 index++;
                             }
                         }
@@ -150,15 +258,25 @@ export default function Professions() {
 
                 }
                 else {
-                    components[index] = <SlimButton key={i} onClick={()=>{handleClickOpen("skill",arr[i])}}> {arr[i]}</SlimButton>;
-                    index++;
-                }
+                    if (arr[i].toLowerCase().includes("(")){
+                        let tempBracket = arr[i].substring(0,arr[i].indexOf("("));
+                        components[index] = <SlimButton key={"SkillWithBracket" + i} onClick={()=>{handleClickOpen(what,tempBracket[i])}}> {tempBracket}</SlimButton>;
+                        index++;
+                        components[index] = <AlboButton key={"AlboButtonWithJustBracket" + i} disabled={true}> {arr[i].substr(arr[i].indexOf("("),arr[i].indexOf(")"))}</AlboButton>;
+                        index++;
+                    }else{
 
-            }
-            else{
+                            components[index] = <SlimButton key={"everyOther"+i} onClick={()=>{handleClickOpen(what,arr[i])}}> {arr[i]}</SlimButton>;
+                            index++;
+                        }
+                    }
+
+
+            }            else{
+
                 let tempBracket = arr[i].substring(0,arr[i].indexOf("("));
 
-                components[index] = <SlimButton key={"FirstChoice" + i} onClick={()=>{handleClickOpen("skill",tempBracket[i])}}> {tempBracket}</SlimButton>;
+                components[index] = <SlimButton key={"FirstChoice" + i} onClick={()=>{handleClickOpen(what,tempBracket[i])}}> {tempBracket}</SlimButton>;
                 index++;
                 components[index] = <AlboButton key={"AlboButton" + i} disabled={true}> {arr[i].substr(arr[i].indexOf("("),arr[i].indexOf(")"))}</AlboButton>;
                 index++;
@@ -168,9 +286,6 @@ export default function Professions() {
         return components;
 
     };
-
-
-
 
 
 
@@ -341,19 +456,19 @@ export default function Professions() {
                                                                     secondaryTraits={prof.secondaryTraits}/>
 
                                                     <br/>
-                                                    <Typography align={"left"}>
+                                                    <Typography align={"left"} component={"div"}>
                                                         <b>Umiejętności: </b>
-                                                        {lookForSkill(prof.skillList)}
+                                                        {showCorrect(prof.skillList,"skill")}
 
                                                         {/*{prof.skillList.join(", ")}.*/}
 
                                                     </Typography>
                                                     <br/>
 
-                                                    <Typography align={"left"}>
+                                                    <Typography align={"left"} component={"div"}>
                                                         <b>Zdolności: </b>
 
-                                                        {lookForAbility(prof.abilityList)}
+                                                        {showCorrect(prof.abilityList,"ability")}
                                                         {/*{prof.abilityList.join(", ")}.*/}
                                                     </Typography>
 
