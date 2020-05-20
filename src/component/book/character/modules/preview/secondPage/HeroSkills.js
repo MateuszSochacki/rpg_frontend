@@ -25,11 +25,11 @@ export default function HeroSkills(props) {
             let basic=[];
             let advanced=[];
             skills.forEach(skill=>{
-                if (skill.type.toLowerCase()==="podstawowy"){
+                if (skill.type.toLowerCase()==="podstawowa"){
                     basic.push(skill)
 
                 }
-                else if(skill.type.toLowerCase()==="zaawansowany"){
+                else if(skill.type.toLowerCase()==="zaawansowana"){
                     advanced.push(skill)
                 }
 

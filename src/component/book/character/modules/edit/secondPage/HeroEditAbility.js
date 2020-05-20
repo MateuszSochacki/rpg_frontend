@@ -9,7 +9,7 @@ import {
 import Grid from "@material-ui/core/Grid";
 import {HeroSkillsLetters} from "../../../../../styles/Styles";
 
-export default function HeroEquipment(props) {
+export default function HeroEditAbility(props) {
 
     return (
         <>
@@ -17,49 +17,41 @@ export default function HeroEquipment(props) {
                 <HeroPanel expanded={true}>
                     <HeroPanelSummary>
                         <HeroText align={"center"}>
-                            wyposażenie
+                            Zdolności
                         </HeroText>
                     </HeroPanelSummary>
                     <HeroPanelDetails>
                         <>
                             <Grid container direction={"column"}>
                                 <Grid container direction={"row"}>
-                                    <Grid item xs={4}>
+                                    <Grid item xs={6}>
 
-                                        <HeroSkillsLetters><b>Przedmiot</b></HeroSkillsLetters>
+                                        <HeroSkillsLetters><b>Zdolność</b></HeroSkillsLetters>
                                         <br/>
 
-                                    </Grid>
-                                    <Grid item xs={2}>
-                                        <HeroSkillsLetters><b>Obc.</b></HeroSkillsLetters>
-                                        <br/>
                                     </Grid>
                                     <Grid item xs={6}>
                                         <HeroSkillsLetters><b>Opis</b></HeroSkillsLetters>
                                         <br/>
                                     </Grid>
                                 </Grid>
-                                {props.equipment.map((eq, key) => (
+                                {props.character.ability.map((ability, key) => (
 
-                                        <Grid container direction={"row"} key={key} spacing={2} style={{paddingBottom:"26px"}}>
-                                            <Grid item xs={4}>
+                                        <Grid container direction={"row"} spacing={2} key={key} style={{paddingBottom:"26px"}}>
+                                            <Grid item xs={6} >
 
-                                                <HeroTextField inputProps={{min: 0, style: {textAlign: "center"}}}
-                                                               value={eq.name}/>
+                                                <HeroTextField value={ability.name}
+                                                               inputProps={{min: 0, style: {textAlign: "center"}}}/>
 
                                             </Grid>
-                                            <Grid item xs={2}>
-                                                <HeroTextField inputProps={{min: 0, style: {textAlign: "center"}}}
-                                                               value={eq.weight}/>
-                                            </Grid>
-                                            <Grid item xs={6}>
-                                                <HeroTextField inputProps={{min: 0, style: {textAlign: "center"}}}
-                                                               value={eq.description} multiline
+                                            <Grid item xs={6} >
+                                                <HeroTextField value={ability.description}
+                                                               inputProps={{min: 0, style: {textAlign: "center"}}}
+                                                               multiline
                                                 />
                                             </Grid>
-
-
                                         </Grid>
+
 
                                 ))}
 

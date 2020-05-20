@@ -57,15 +57,18 @@ export default function HeroEditArmor(props) {
             });
             return armor;
 
-        };
+        }
 
         async function getAll() {
             return await Promise.all(props.character.armor.map(async (armor) => await (await (fetchArmor(armor.name, armor.type)))));
         }
 
         getAll().then(data => {
-            setArmors(data);
-            setIsLoadingArmor(false);
+            if (!didCancel){
+                setArmors(data);
+                setIsLoadingArmor(false);
+            }
+
 
 
         });
@@ -75,7 +78,7 @@ export default function HeroEditArmor(props) {
             didCancel = true;
         };
 
-    }, [isLoadingArmor,props.character.armor]);
+    }, [isLoadingArmor, props.character.armor]);
 
     return (
         <Paper elevation={8}>
@@ -167,8 +170,9 @@ export default function HeroEditArmor(props) {
                         </Grid>
                     </HeroPanelDetails>
                     {open ?
-                        <EditArmorDialog open={open} close={handleClose} character={props.character} armors={armors} update={props.update}/>
-                        :null}
+                        <EditArmorDialog open={open} close={handleClose} character={props.character} armors={armors}
+                                         update={props.update}/>
+                        : null}
                 </HeroPanel>
             }
         </Paper>

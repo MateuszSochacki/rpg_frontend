@@ -216,7 +216,7 @@ export default function Professions() {
                         let tempBracket = tempMany[j].substring(0,tempMany[j].indexOf("("));
                         comp[tempIndex]=<SlimButton key={"oneFromMany"+j} onClick={()=>{handleClickOpen(what,tempBracket[j])}}> {tempBracket}</SlimButton>;
                         tempIndex++;
-                        comp[tempIndex] = <AlboButton key={"AlboButtonWithinBracketOneFromMany" + j} disabled={true}> {tempMany[j].substr(tempMany[j].indexOf("("),tempMany[j].indexOf(")"))}</AlboButton>;
+                        comp[tempIndex] = <AlboButton key={"alboButtonWithinBracketOneFromMany" + j} disabled={true}> {tempMany[j].substr(tempMany[j].indexOf("("),tempMany[j].indexOf(")"))}</AlboButton>;
                         tempIndex++;
                     }else{
                     comp[tempIndex]=<SlimButton key={"oneFromMany"+j} onClick={()=>{handleClickOpen(what,tempMany[j])}}> {tempMany[j]}</SlimButton>;
@@ -235,20 +235,20 @@ export default function Professions() {
                         if (temp[j].toLowerCase().includes("(")) {
                             let tempBracket = temp[j].substring(0,temp[j].indexOf("("));
 
-                            components[index] = <SlimButton key={"FirstChoiceWithBracket" + j} onClick={()=>{handleClickOpen(what,tempBracket[j])}}> {tempBracket}</SlimButton>;
+                            components[index] = <SlimButton key={"firstChoiceWithBracket" + j} onClick={()=>{handleClickOpen(what,tempBracket[j])}}> {tempBracket}</SlimButton>;
                             index++;
-                            components[index] = <AlboButton key={"AlboButtonWithinBracket" + j} disabled={true}> {temp[j].substr(temp[j].indexOf("("),temp[j].indexOf(")"))}</AlboButton>;
+                            components[index] = <AlboButton key={"alboButtonWithinBracket" + j} disabled={true}> {temp[j].substr(temp[j].indexOf("("),temp[j].indexOf(")"))}</AlboButton>;
                             index++;
                             if (j!==temp.length-1){
-                                components[index] = <AlboButton key={"AlboButtonWithBracket"+j} disabled={true}>{` albo `}</AlboButton>;
+                                components[index] = <AlboButton key={"alboButtonWithBracket"+j} disabled={true}>{` albo `}</AlboButton>;
                                 index++;
                             }
 
                         }else{
-                            components[index] = <SlimButton key={"ChoiceWithoutBracket"+i+j} onClick={()=>{handleClickOpen(what,temp[j])}}> {temp[j]}</SlimButton>;
+                            components[index] = <SlimButton key={"choiceWithoutBracket"+i+j} onClick={()=>{handleClickOpen(what,temp[j])}}> {temp[j]}</SlimButton>;
                             index++;
                             if (j!==temp.length-1){
-                                components[index] = <AlboButton key={"AlboButtonWithoutBracket"+i+j} disabled={true}> albo </AlboButton>;
+                                components[index] = <AlboButton key={"alboButtonWithoutBracket"+i+j} disabled={true}> albo </AlboButton>;
                                 index++;
                             }
                         }
@@ -260,9 +260,9 @@ export default function Professions() {
                 else {
                     if (arr[i].toLowerCase().includes("(")){
                         let tempBracket = arr[i].substring(0,arr[i].indexOf("("));
-                        components[index] = <SlimButton key={"SkillWithBracket" + i} onClick={()=>{handleClickOpen(what,tempBracket[i])}}> {tempBracket}</SlimButton>;
+                        components[index] = <SlimButton key={"skillWithBracket" + i} onClick={()=>{handleClickOpen(what,tempBracket[i])}}> {tempBracket}</SlimButton>;
                         index++;
-                        components[index] = <AlboButton key={"AlboButtonWithJustBracket" + i} disabled={true}> {arr[i].substr(arr[i].indexOf("("),arr[i].indexOf(")"))}</AlboButton>;
+                        components[index] = <AlboButton key={"alboButtonWithJustBracket" + i} disabled={true}> {arr[i].substr(arr[i].indexOf("("),arr[i].indexOf(")"))}</AlboButton>;
                         index++;
                     }else{
 
@@ -276,9 +276,9 @@ export default function Professions() {
 
                 let tempBracket = arr[i].substring(0,arr[i].indexOf("("));
 
-                components[index] = <SlimButton key={"FirstChoice" + i} onClick={()=>{handleClickOpen(what,tempBracket[i])}}> {tempBracket}</SlimButton>;
+                components[index] = <SlimButton key={"firstChoice" + i} onClick={()=>{handleClickOpen(what,tempBracket[i])}}> {tempBracket}</SlimButton>;
                 index++;
-                components[index] = <AlboButton key={"AlboButton" + i} disabled={true}> {arr[i].substr(arr[i].indexOf("("),arr[i].indexOf(")"))}</AlboButton>;
+                components[index] = <AlboButton key={"alboButton" + i} disabled={true}> {arr[i].substr(arr[i].indexOf("("),arr[i].indexOf(")"))}</AlboButton>;
                 index++;
 
             }

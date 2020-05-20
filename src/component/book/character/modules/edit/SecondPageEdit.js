@@ -1,9 +1,10 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import HeroSkills from "./../preview/secondPage/HeroSkills";
-import HeroAbility from "./../preview/secondPage/HeroAbility";
-import HeroEquipment from "./../preview/secondPage/HeroEquipment";
-import HeroMoney from "./../preview/secondPage/HeroMoney";
+import HeroEditSkills from "./secondPage/HeroEditSkills";
+import HeroEditAbility from "./secondPage/HeroEditAbility";
+import HeroEditEquipment from "./secondPage/HeroEditEquipment";
+import HeroEditMoney from "./secondPage/HeroEditMoney";
+
 
 
 export default function SecondPageEdit(props) {
@@ -12,17 +13,17 @@ export default function SecondPageEdit(props) {
         <>
             <Grid container spacing={4}>
                 <Grid item xs={6}>
-                    <HeroSkills skills={props.character.skill}/>
+                    <HeroEditSkills character={props.character}/>
 
                 </Grid>
 
                 <Grid item xs={6}>
 
-                    <HeroAbility abilities={props.character.ability}/>
+                    <HeroEditAbility character={props.character}/>
                     <br/>
-                    <HeroEquipment equipment={props.character.equipment}/>
+                    <HeroEditEquipment character={props.character}/>
                     <br/>
-                    <HeroMoney money={props.character.money}/>
+                    <HeroEditMoney character={props.character}/>
 
                 </Grid>
             </Grid>

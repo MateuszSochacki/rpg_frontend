@@ -7,15 +7,29 @@ import {
     HeroText, HeroTextField,
 } from "../../../../../styles/expansionPanel/Panel";
 import Grid from "@material-ui/core/Grid";
-import {HeroSkillsLetters} from "../../../../../styles/Styles";
+import {ArmoryButton, HeroSkillsLetters} from "../../../../../styles/Styles";
 import Checkbox from '@material-ui/core/Checkbox';
 
 
-export default function HeroSkills(props) {
+export default function HeroEditSkills(props) {
 
     const [basicSkills,setBasicSkills] = useState([]);
     const [advancedSkills,setAdvancedSkils] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    //TODO have to figure it out what to do with this strings below:
+    // dowolne trzy
+    // dowolne cztery
+    // dowolne dwie, dowolne dwa
+    // dowolny, dowolna
+    // (skill/skill albo skill) have to be more consistent cuz we can't have , and / like wtf
+    // (skill, skill albo skill)
+    // (skill)
+    // (skill albo skill/skill) DAFUQ?
+    // I love how different translator was assigned to do basic profs and advanced profs. Consistency level: tard
+    // jedno z:, jedna z:
+    // dwie z:
+
 
     useEffect(() => {
         let didCancel = false;
@@ -25,11 +39,11 @@ export default function HeroSkills(props) {
             let basic=[];
             let advanced=[];
             skills.forEach(skill=>{
-                if (skill.type.toLowerCase()==="podstawowy"){
+                if (skill.type.toLowerCase()==="podstawowa"){
                     basic.push(skill)
 
                 }
-                else if(skill.type.toLowerCase()==="zaawansowany"){
+                else if(skill.type.toLowerCase()==="zaawansowana"){
                     advanced.push(skill)
                 }
 
@@ -40,7 +54,7 @@ export default function HeroSkills(props) {
 
         };
 
-        sortSkills(props.skills);
+        sortSkills(props.character.skill);
         return () => {
             // setBasicSkils([]);
             // setAdvancedSkils([]);
@@ -62,29 +76,29 @@ export default function HeroSkills(props) {
                             <>
                                 <Grid container direction={"column"}>
 
-                                    <Grid container direction={"row"}>
+                                    <Grid container spacing={1} direction={"row"}>
                                         <Grid item xs={4}>
                                             <HeroSkillsLetters> <b>Podstawowe</b></HeroSkillsLetters>
-                                            <br/>
+
                                         </Grid>
                                         <Grid item xs={2}>
                                             <HeroSkillsLetters> <b>Wykupione</b></HeroSkillsLetters>
-                                            <br/>
+
 
                                         </Grid>
                                         <Grid item xs={1}>
                                             <HeroSkillsLetters> <b>+10</b></HeroSkillsLetters>
-                                            <br/>
+
 
                                         </Grid>
                                         <Grid item xs={1}>
                                             <HeroSkillsLetters> <b>+20</b></HeroSkillsLetters>
-                                            <br/>
+
 
                                         </Grid>
                                         <Grid item xs={4}>
                                             <HeroSkillsLetters> <b>Zdolności pokrewne</b></HeroSkillsLetters>
-                                            <br/>
+
 
                                         </Grid>
                                     </Grid>
@@ -130,32 +144,32 @@ export default function HeroSkills(props) {
                                     )
 
                                     }
-                                    <br/>
 
 
-                                    <Grid container direction={"row"} >
+
+                                    <Grid container spacing={1} direction={"row"} style={{marginTop:15}}>
                                         <Grid item xs={4}>
                                             <HeroSkillsLetters> <b>Zaawansowane</b></HeroSkillsLetters>
-                                            <br/>
+
                                         </Grid>
                                         <Grid item xs={2}>
                                             <HeroSkillsLetters> <b>Wykupione</b></HeroSkillsLetters>
-                                            <br/>
+
 
                                         </Grid>
                                         <Grid item xs={1}>
                                             <HeroSkillsLetters> <b>+10</b></HeroSkillsLetters>
-                                            <br/>
+
 
                                         </Grid>
                                         <Grid item xs={1}>
                                             <HeroSkillsLetters> <b>+10</b></HeroSkillsLetters>
-                                            <br/>
+
 
                                         </Grid>
                                         <Grid item xs={4}>
                                             <HeroSkillsLetters> <b>Zdolności pokrewne</b></HeroSkillsLetters>
-                                            <br/>
+
 
                                         </Grid>
                                     </Grid>
@@ -193,6 +207,31 @@ export default function HeroSkills(props) {
                                                 <Grid item xs={4}>
                                                     <HeroTextField value={skill.relAbility}
                                                                    inputProps={{min: 0, style: {textAlign: "center"}}}/>
+
+
+                                                </Grid>
+                                            </Grid>
+                                        )
+                                    )
+
+                                    }
+
+                                    <Grid container spacing={1} direction={"row"} style={{marginTop:15}} justify={"center"}>
+                                        <Grid item xs={12} >
+                                            <HeroSkillsLetters> <b>Do wykupienia w obecnej profesji</b></HeroSkillsLetters>
+                                        </Grid>
+
+                                    </Grid>
+                                    {props.character.heroProfession.skillList.map((skill, key) => (
+
+                                            <Grid container direction={"row"} key={key} style={{paddingBottom:"26px"}}>
+                                                <Grid item xs={4}>
+                                                    <HeroTextField value={skill}
+                                                                   inputProps={{min: 0, style: {textAlign: "center"}}}/>
+                                                </Grid>
+
+                                                <Grid item xs={4}>
+                                                    <ArmoryButton variant="contained" color="primary">Kup</ArmoryButton>
 
 
                                                 </Grid>

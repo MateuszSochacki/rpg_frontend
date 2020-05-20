@@ -47,8 +47,6 @@ export default function HeroEditWeapon(props) {
 
 
     useEffect(() => {
-
-
         let didCancel = false;
 
         async function fetchWeapon(name) {
@@ -73,14 +71,17 @@ export default function HeroEditWeapon(props) {
         }
 
         getAll().then(data => {
-            setWeapons(data);
-            setIsLoadingWeapon(false);
-
+            if(!didCancel) {
+                setWeapons(data);
+                setIsLoadingWeapon(false);
+            }
 
         });
 
         return () => {
             didCancel = true;
+
+
         };
 
     }, [isLoadingWeapon,props.character.weapon]);
