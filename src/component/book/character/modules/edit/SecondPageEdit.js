@@ -13,17 +13,17 @@ export default function SecondPageEdit(props) {
         <>
             <Grid container spacing={4}>
                 <Grid item xs={6}>
-                    <HeroEditSkills character={props.character}/>
+                    <HeroEditSkills character={props.character} update={props.update}/>
 
                 </Grid>
 
                 <Grid item xs={6}>
 
-                    <HeroEditAbility character={props.character}/>
+                    <HeroEditAbility character={props.character} update={props.update}/>
                     <br/>
-                    <HeroEditEquipment character={props.character}/>
+                    <HeroEditEquipment character={props.character} update={props.update}/>
                     <br/>
-                    <HeroEditMoney character={props.character}/>
+                    <HeroEditMoney character={props.character} update={props.update}/>
 
                 </Grid>
             </Grid>
