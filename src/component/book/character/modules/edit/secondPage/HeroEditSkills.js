@@ -109,7 +109,25 @@ export default function HeroEditSkills(props) {
 
         }
     };
-    const upgradeSkill = async (skill,times)=>{
+    const deleteSkill = (skill) =>{
+        let character = props.character;
+        let tempSkill = character.skill;
+
+        delete tempSkill[skill.id];
+
+        tempSkill = tempSkill.filter(x => x !== undefined);
+        character={
+            ...character,
+            skill:tempSkill
+        }
+        API.post("/user/sheet/add",character).then((response)=>{
+            const res =response.data;
+            props.update();
+        });
+
+
+    }
+    const upgradeSkill = (skill,times)=>{
         let character=props.character;
         if (times==="twice"){
             let uppingSkill = skill.skill;
@@ -153,7 +171,7 @@ export default function HeroEditSkills(props) {
                     }
                 };
         }
-        await API.post("/user/sheet/add",character).then((response)=>{
+        API.post("/user/sheet/add",character).then((response)=>{
             const res =response.data;
             props.update();
         });
@@ -191,6 +209,7 @@ export default function HeroEditSkills(props) {
                 props.update()
             })
         });
+        setBuyButton(true);
 
 
     };
@@ -215,7 +234,7 @@ export default function HeroEditSkills(props) {
 
 
                                     <Grid container spacing={1} direction={"row"} alignItems={"center"} justify={"space-between"}>
-                                        <Grid item xs={4}>
+                                        <Grid item xs={3}>
                                             <HeroSkillsLetters> <b>Podstawowe</b></HeroSkillsLetters>
 
                                         </Grid>
@@ -234,8 +253,13 @@ export default function HeroEditSkills(props) {
 
 
                                         </Grid>
-                                        <Grid item xs={4}>
+                                        <Grid item xs={3}>
                                             <HeroSkillsLetters> <b>Zdolności pokrewne</b></HeroSkillsLetters>
+
+
+                                        </Grid>
+                                        <Grid item xs={2}>
+                                            <HeroSkillsLetters> <b>Usuń</b></HeroSkillsLetters>
 
 
                                         </Grid>
@@ -243,7 +267,7 @@ export default function HeroEditSkills(props) {
                                     {basicSkills.map((skill, key) => (
 
                                         <Grid container spacing={1} direction={"row"} key={key} style={{paddingBottom: "26px"}} alignItems={"center"} justify={"space-between"}>
-                                            <Grid item xs={4}>
+                                            <Grid item xs={3}>
                                                 <HeroTextField value={skill.skill.name}
                                                                inputProps={{min: 0, style: {textAlign: "center"}}}/>
                                             </Grid>
@@ -305,11 +329,15 @@ export default function HeroEditSkills(props) {
 
 
                                             </Grid>
-                                            <Grid item xs={4}>
+                                            <Grid item xs={3}>
                                                 <HeroTextField value={skill.skill.relAbility}
                                                                inputProps={{min: 0, style: {textAlign: "center"}}}/>
 
 
+                                            </Grid>
+                                            <Grid item xs={2}>
+                                                <ArmoryButton variant="contained" color="primary"
+                                                              onClick={()=>{deleteSkill(skill)}}>Usuń</ArmoryButton>
                                             </Grid>
                                         </Grid>
                                         )
@@ -319,7 +347,7 @@ export default function HeroEditSkills(props) {
 
 
                                     <Grid container spacing={1} direction={"row"} style={{marginTop: 15}} alignItems={"center"} justify={"space-between"}>
-                                        <Grid item xs={4}>
+                                        <Grid item xs={3}>
                                             <HeroSkillsLetters> <b>Zaawansowane</b></HeroSkillsLetters>
 
                                         </Grid>
@@ -338,8 +366,13 @@ export default function HeroEditSkills(props) {
 
 
                                         </Grid>
-                                        <Grid item xs={4}>
+                                        <Grid item xs={3}>
                                             <HeroSkillsLetters> <b>Zdolności pokrewne</b></HeroSkillsLetters>
+
+
+                                        </Grid>
+                                        <Grid item xs={2}>
+                                            <HeroSkillsLetters> <b>Usuń</b></HeroSkillsLetters>
 
 
                                         </Grid>
@@ -347,7 +380,7 @@ export default function HeroEditSkills(props) {
                                     {advancedSkills.map((skill, key) => (
 
                                             <Grid container spacing={1} direction={"row"} key={key} style={{paddingBottom: "26px"}} alignItems={"center"} justify={"space-between"}>
-                                                <Grid item xs={4}>
+                                                <Grid item xs={3}>
                                                     <HeroTextField value={skill.skill.name}
                                                                    inputProps={{min: 0, style: {textAlign: "center"}}}/>
                                                 </Grid>
@@ -409,11 +442,15 @@ export default function HeroEditSkills(props) {
 
 
                                                 </Grid>
-                                                <Grid item xs={4}>
+                                                <Grid item xs={3}>
                                                     <HeroTextField value={skill.skill.relAbility}
                                                                    inputProps={{min: 0, style: {textAlign: "center"}}}/>
 
 
+                                                </Grid>
+                                                <Grid item xs={2}>
+                                                    <ArmoryButton variant="contained" color="primary"
+                                                                  onClick={()=>{deleteSkill(skill)}}>Usuń</ArmoryButton>
                                                 </Grid>
                                             </Grid>
                                         )
@@ -486,7 +523,7 @@ export default function HeroEditSkills(props) {
                                             />
                                         </Grid>
                                         <Grid item xs={4}>
-                                            <HeroTextField label={"Opcjonalnie"} placeholder={"np.: Teologia"} disabled={props.character.experiencePoints.current < 100} value={optional.optional}
+                                            <HeroTextField label={"Opcjonalnie"} placeholder={"np.: Teologia"} disabled={props.character.experiencePoints.current < 100} defaultValue={""}
                                                            inputProps={{min: 0, style: {textAlign: "center"}}}  onChange={handleChange("optional")}/>
                                         </Grid>
 
