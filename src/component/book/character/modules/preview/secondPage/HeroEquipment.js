@@ -35,7 +35,7 @@ export default function HeroEquipment(props) {
                                         <br/>
                                     </Grid>
                                     <Grid item xs={6}>
-                                        <HeroSkillsLetters><b>Opis</b></HeroSkillsLetters>
+                                        <HeroSkillsLetters><b>Kategoria</b></HeroSkillsLetters>
                                         <br/>
                                     </Grid>
                                 </Grid>
@@ -54,7 +54,7 @@ export default function HeroEquipment(props) {
                                             </Grid>
                                             <Grid item xs={6}>
                                                 <HeroTextField inputProps={{min: 0, style: {textAlign: "center"}}}
-                                                               value={eq.description} multiline
+                                                               value={eq.type} multiline
                                                 />
                                             </Grid>
 
