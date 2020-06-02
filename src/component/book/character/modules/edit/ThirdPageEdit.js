@@ -6,7 +6,7 @@ import {
     HeroText,
 } from "../../../../styles/expansionPanel/Panel";
 import {Paper} from "@material-ui/core";
-import HeroSpells from "./../preview/thirdPage/HeroSpells";
+import HeroEditSpells from "./thirdPage/HeroEditSpells";
 
 
 export default function ThirdPageEdit(props) {
@@ -23,7 +23,7 @@ export default function ThirdPageEdit(props) {
                     </HeroPanelSummary>
                     <HeroPanelDetails>
                         <>
-                            <HeroSpells spells={props.character.spell}/>
+                            <HeroEditSpells character={props.character} update={props.update}/>
 
 
                         </>

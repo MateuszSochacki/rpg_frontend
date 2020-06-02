@@ -115,10 +115,10 @@ export default function PageSelector(props) {
                                     <SecondPageEdit character={props.sheet} update={props.update}/>
                                 </TabPanel>
                                 <TabPanel value={value} index={2}>
-                                    <ThirdPageEdit character={props.sheet}/>
+                                    <ThirdPageEdit character={props.sheet} update={props.update}/>
                                 </TabPanel>
                                 <TabPanel value={value} index={3}>
-                                    <FourthPageEdit character={props.sheet}/>
+                                    <FourthPageEdit character={props.sheet} update={props.update}/>
                                 </TabPanel>
                             </>
                         }
