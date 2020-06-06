@@ -6,7 +6,7 @@ import {
     HeroText,
 } from "../../../../styles/expansionPanel/Panel";
 import {Paper} from "@material-ui/core";
-import HeroMutation from "./../preview/fourthPage/HeroMutation";
+import HeroEditMutation from "./fourthPage/HeroEditMutation";
 
 
 export default function FourthPageEdit(props) {
@@ -22,7 +22,7 @@ export default function FourthPageEdit(props) {
                         </HeroText>
                     </HeroPanelSummary>
                     <HeroPanelDetails>
-                        <HeroMutation mutations={props.character.mutations}/>
+                        <HeroEditMutation character={props.character} update={props.update}/>
 
 
                     </HeroPanelDetails>

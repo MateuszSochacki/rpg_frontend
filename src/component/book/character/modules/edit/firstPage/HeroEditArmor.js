@@ -16,7 +16,7 @@ import {HeroTableCell, HeroTableRow} from "../../../../../styles/expansionPanel/
 import TableBody from "@material-ui/core/TableBody";
 import TableContainer from "@material-ui/core/TableContainer";
 import API from "../../../../../API/API";
-import {SaveButton} from "../../../../../styles/Styles";
+import {HeroSkillsLetters, SaveButton} from "../../../../../styles/Styles";
 import EditArmorDialog from "./util/armor/EditArmorDialog";
 
 
@@ -164,9 +164,22 @@ export default function HeroEditArmor(props) {
                                             </>
                                         }</>}
                             </Grid>
-                            <SaveButton variant="contained" color="primary" onClick={handleClickOpen}>
-                                Edytuj
-                            </SaveButton>
+                            <Grid item xs={3}>
+                                <SaveButton variant="contained" color="primary" onClick={handleClickOpen}>
+                                    Edytuj
+                                </SaveButton>
+                            </Grid>
+                            <Grid item xs={9}>
+                                <Typography component={"span"}>
+                                    <HeroSkillsLetters component={"span"}>
+                                        {props.character.heroProfession.armorList.join(", ")}
+                                    </HeroSkillsLetters>
+                                    {/*{props.character.heroProfession.weaponList.map((wpn, key) => (*/}
+                                    {/*    <HeroSkillsLetters key={key} component={"span"}> {wpn}</HeroSkillsLetters>*/}
+                                    {/*))}*/}
+                                </Typography>
+                            </Grid>
+
                         </Grid>
                     </HeroPanelDetails>
                     {open ?

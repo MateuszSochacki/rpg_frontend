@@ -87,8 +87,10 @@ export default function AddNewSpell(props) {
         let character=props.character;
         let spellTable = props.character.spell;
 
+        let check = false;
         spells.forEach((sp)=>{
             if (sp.name.indexOf(spellValue)!==-1){
+                check=true;
                 spellTable.push({
                     name:sp.name,
                     magicPower:sp.reqPower,
@@ -103,11 +105,13 @@ export default function AddNewSpell(props) {
             ...character,
             spell:spellTable
         };
-        await API.post("/user/sheet/add", character).then((response) => {
-            const res = response.data;
-            props.update();
-            props.close();
-        });
+        if (check) {
+            await API.post("/user/sheet/add", character).then((response) => {
+                const res = response.data;
+                props.update();
+                props.close();
+            });
+        }
     };
     return (
         <Dialog

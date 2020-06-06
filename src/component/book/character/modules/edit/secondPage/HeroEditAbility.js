@@ -164,9 +164,12 @@ export default function HeroEditAbility(props) {
 
                                         </Grid>
                                         <Typography component={"span"}>
-                                            {props.character.heroProfession.abilityList.map((skill, key) => (
-                                                <HeroSkillsLetters key={key}> {skill}</HeroSkillsLetters>
-                                            ))}
+                                            <HeroSkillsLetters component={"span"}>
+                                            {props.character.heroProfession.abilityList.join(", ")}
+                                            </HeroSkillsLetters>
+                                            {/*{props.character.heroProfession.abilityList.map((abi, key) => (*/}
+                                            {/*    <HeroSkillsLetters key={key} component={"span"}> {abi}</HeroSkillsLetters>*/}
+                                            {/*))}*/}
                                         </Typography>
                                     </Grid>
 

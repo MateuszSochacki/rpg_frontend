@@ -11,6 +11,7 @@ import {HeroSkillsLetters, SaveButton} from "../../../../../styles/Styles";
 import EditWeaponDialog from "../firstPage/util/weapon/EditWeaponDialog";
 import EditEquipmentDialog from "../firstPage/util/eq/EditEquipmentDialog";
 import API from "../../../../../API/API";
+import Typography from "@material-ui/core/Typography";
 
 export default function HeroEditEquipment(props) {
 
@@ -116,9 +117,21 @@ export default function HeroEditEquipment(props) {
                                 ))}
 
                             </Grid>
+                            <Grid item xs={3}>
                             <SaveButton variant="contained" color="primary" onClick={handleClickOpen}>
                                 Edytuj
                             </SaveButton>
+                            </Grid>
+                            <Grid item xs={9}>
+                                <Typography component={"span"}>
+                                    <HeroSkillsLetters component={"span"}>
+                                        {props.character.heroProfession.equipmentList.join(", ")}
+                                    </HeroSkillsLetters>
+                                    {/*{props.character.heroProfession.equipmentList.map((eq, key) => (*/}
+                                    {/*    <HeroSkillsLetters key={key} component={"span"}> {eq}</HeroSkillsLetters>*/}
+                                    {/*))}*/}
+                                </Typography>
+                            </Grid>
 
                         </Grid>
                     </HeroPanelDetails>

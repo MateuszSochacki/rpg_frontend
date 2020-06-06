@@ -267,18 +267,22 @@ export default function HeroEditInfo(props) {
                 heroProfession:{
                     ...char.heroProfession,
                     mainTraits:check.mainTraits,
-                    secondaryTraits:check.secondaryTraits
+                    secondaryTraits:check.secondaryTraits,
+                    skillList: newCharacter.skillList,
+                    abilityList: newCharacter.abilityList,
+                    equipmentList: newCharacter.equipmentList ,
+                    armorList: newCharacter.armorList,
+                    weaponList: newCharacter.weaponList,
                 }
             };
-            console.log(char)
 
             // uncomment
-            // await API.post("/user/sheet/add",character).then((response)=>{
-            //     const res =response.data;
-            //     setInfo(res.hero);
-            //     setSaveButton(false);
-            //     props.update()
-            // })
+            API.post("/user/sheet/add",char).then((response)=>{
+                const res =response.data;
+                setInfo(res.hero);
+                setSaveButton(false);
+                props.update()
+            })
         });
 
 

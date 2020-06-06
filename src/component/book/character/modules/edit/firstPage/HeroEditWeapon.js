@@ -16,7 +16,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import {makeStyles} from "@material-ui/core/styles";
 import API from "../../../../../API/API";
 import Typography from "@material-ui/core/Typography";
-import {SaveButton} from "../../../../../styles/Styles";
+import {HeroSkillsLetters, SaveButton} from "../../../../../styles/Styles";
 import EditWeaponDialog from "./util/weapon/EditWeaponDialog";
 
 const useStyles = makeStyles((theme) => ({
@@ -157,9 +157,22 @@ export default function HeroEditWeapon(props) {
                                 </TableContainer>
 
                             </Grid>
-                            <SaveButton variant="contained" color="primary" onClick={handleClickOpen}>
-                                Edytuj
-                            </SaveButton>
+                            <Grid item xs={3}>
+                                <SaveButton variant="contained" color="primary" onClick={handleClickOpen}>
+                                    Edytuj
+                                </SaveButton>
+                            </Grid>
+                            <Grid item xs={9}>
+                                <Typography component={"span"}>
+                                    <HeroSkillsLetters component={"span"}>
+                                        {props.character.heroProfession.weaponList.join(", ")}
+                                    </HeroSkillsLetters>
+                                    {/*{props.character.heroProfession.weaponList.map((wpn, key) => (*/}
+                                    {/*    <HeroSkillsLetters key={key} component={"span"}> {wpn}</HeroSkillsLetters>*/}
+                                    {/*))}*/}
+                                </Typography>
+                            </Grid>
+
                         </Grid>
                     </HeroPanelDetails>
                     {open ?
