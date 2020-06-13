@@ -1,11 +1,12 @@
 import React from "react";
-import { useHistory } from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import API from "../../API/API";
+import APIAuth from "../../API/APIAuth";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -14,34 +15,34 @@ const useStyles = makeStyles(theme => ({
             width: '25ch',
         },
     },
-    paper:{
-        height:"90vh"
+    paper: {
+        height: "90vh"
     },
-    login:{
-        paddingTop:50,
-        paddingBottom:50
+    login: {
+        paddingTop: 50,
+        paddingBottom: 50
     },
-    button:{
+    button: {
         marginTop: 25
     }
 }));
 
 export default function Login(props) {
-    const history=useHistory();
+    const history = useHistory();
     const classes = useStyles();
     const [cred, setCred] = React.useState({
-        email:"bjarni123@gmail.com",
-        password:"haslo123"
+        email: "bjarni123@gmail.com",
+        password: "haslo123"
     });
-    const signIn = ()=>{
+    const signIn = () => {
 
 
-        API.post("login",cred).then((res)=>{
-            const token= res.headers.authorization;
-            sessionStorage.setItem("jwt",token);
+        API.post("login",cred).then((res) => {
+            const token = res.headers.authorization;
+            sessionStorage.setItem("jwt", token);
             props.setIsAuthenticated(true);
             // history.push("/user/sheet");
-        }).catch((error)=>{
+        }).catch((error) => {
 
         });
 
@@ -50,13 +51,13 @@ export default function Login(props) {
         setCred({...cred, [name]: event.target.value});
 
     };
-    return(
+    return (
         <>
-            <Grid container >
+            <Grid container>
                 <Grid item xs={12}>
                     <Grid container className={classes.paper} justify={"center"} alignItems="center">
                         <Grid item xs={3}/>
-                        <Grid item xs={6}  >
+                        <Grid item xs={6}>
                             <Paper elevation={4} className={classes.login}>
                                 <form className={classes.root} noValidate autoComplete="off">
                                     <TextField
@@ -83,10 +84,9 @@ export default function Login(props) {
                         <Grid item xs={3}/>
 
 
-
                     </Grid>
                 </Grid>
             </Grid>
-            </>
+        </>
     )
 }

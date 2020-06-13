@@ -94,7 +94,7 @@ export default function Equipment() {
 
                 if (!didCancel) {
                     const eq = response.data;
-                    setOther(eq.equipments);
+                    setOther(eq.equipment);
                     setIsLoading(false);
                 }
             }).catch(error => {

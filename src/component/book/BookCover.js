@@ -60,6 +60,13 @@ export default function BookCover(props) {
                                 <ListItemText primary={"Karta Postaci"}/>
                             </ListItem>
                         </Link>
+                        <Link to={"/user/new"} className={classes.link}>
+
+                            <ListItem button key={"Nowa postać"}>
+                                {/*<ListItemIcon></ListItemIcon>*/}
+                                <ListItemText primary={"Nowa Postać"}/>
+                            </ListItem>
+                        </Link>
                         {/*<Link to={"/logout"} className={classes.link}>*/}
 
                         {/*    <ListItem button key={"Wyloguj"}>*/}

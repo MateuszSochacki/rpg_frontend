@@ -8,6 +8,7 @@ import {Panel, PanelSummary} from "../../styles/expansionPanel/Panel";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import PageSelector from "./modules/PageSelector";
 import {makeStyles} from "@material-ui/core/styles";
+import APIAuth from "../../API/APIAuth";
 
 
 const useStyles = makeStyles({
@@ -18,9 +19,9 @@ const useStyles = makeStyles({
 export default function CharacterSheet() {
     const [charSheet, setCharSheet] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
-    const classes=useStyles();
+    const classes = useStyles();
 
-    const handleUpdate=()=>{
+    const handleUpdate = () => {
         let didCancel = false;
         fetchSheets(didCancel);
 
@@ -28,7 +29,11 @@ export default function CharacterSheet() {
 
     async function fetchSheets(didCancel) {
 
-        await API.get("user/sheet/owner").then(async (response) => {
+        await API.get("user/sheet/owner", {
+            headers: {
+                'Authorization': await sessionStorage.jwt
+            }
+        }).then(async (response) => {
 
             if (!didCancel) {
                 const sheets = response.data;
@@ -47,8 +52,6 @@ export default function CharacterSheet() {
         let didCancel = false;
 
 
-
-
         fetchSheets(didCancel);
         return () => {
             didCancel = true;
@@ -59,18 +62,18 @@ export default function CharacterSheet() {
         <>
             <Paper className={classes.root}>
                 {isLoading ? <CircularProgress/> :
-                    <Grid container >
+                    <Grid container>
                         <Grid item xs={12}>
 
                             {charSheet.map((character, key) => (
-                                <Panel key={key} >
+                                <Panel key={key}>
                                     <PanelSummary key={key}>
                                         <Typography variant="h5" component="h5" align={"left"}>
                                             {character.hero.name}
                                         </Typography>
                                     </PanelSummary>
-                                    <ExpansionPanelDetails style={{padding:"0 0 24px"}} key={key}>
-                                            <PageSelector sheet={character} update={handleUpdate}/>
+                                    <ExpansionPanelDetails style={{padding: "0 0 24px"}} key={key}>
+                                        <PageSelector sheet={character} update={handleUpdate}/>
                                     </ExpansionPanelDetails>
 
                                 </Panel>

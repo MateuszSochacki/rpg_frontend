@@ -31,6 +31,7 @@ export default function HeroEditInfo(props) {
     const [saveButton, setSaveButton] = React.useState(false);
     const loading = open && options.length === 0;
     const [character,setCharacter] = useState(0);
+    const [currentExp,setCurrentExp] = useState(parseInt(props.character.experiencePoints.current));
 
 
 
@@ -262,7 +263,7 @@ export default function HeroEditInfo(props) {
                 ...char,
                 experiencePoints:{
                     ...char.experiencePoints,
-                    current: parseInt(char.experiencePoints.current) -100,
+                    current: currentExp,
                 },
                 heroProfession:{
                     ...char.heroProfession,
@@ -298,8 +299,8 @@ export default function HeroEditInfo(props) {
         (async () => {
             let name = info.currentProfession;
             const response = await API.post("/book/profession/name", {name});
-            const professions = await response.data;
-            const temp = professions.outputProf;
+            let professions = await response.data;
+            let temp = professions.outputProf;
             temp.unshift(props.character.hero.currentProfession);
 
 
@@ -318,6 +319,8 @@ export default function HeroEditInfo(props) {
             setOptions([]);
         }
     }, [open]);
+    useEffect(() => {
+    }, [currentExp]);
 
     return (
 
@@ -359,6 +362,7 @@ export default function HeroEditInfo(props) {
                                                 currentProfession: newValue,
                                                 previousProfession: props.character.hero.previousProfession})
                                         } else {
+                                            setCurrentExp( parseInt(props.character.experiencePoints.current) -100);
                                             setInfo({name: props.character.hero.name,
                                                 race: props.character.hero.race,
                                                 currentProfession: newValue,

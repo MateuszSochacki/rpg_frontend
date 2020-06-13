@@ -13,6 +13,7 @@ import Login from "../component/book/login/Login";
 import Register from "../component/book/login/Register";
 // import Logout from "../component/book/login/Logout";
 import CharacterSheet from "../component/book/character/CharacterSheet";
+import NewCharacterSheet from "../component/book/character/modules/new/NewCharacterSheet";
 
 
 function App(props) {
@@ -35,6 +36,7 @@ function App(props) {
                 <BookCover isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}>
 
                     <PrivateRoute path={"/user/sheet"} component={CharacterSheet}/>
+                    <PrivateRoute path={"/user/new"} component={NewCharacterSheet}/>
                     <Route path="/login" render={(props)=><Login {...props} setIsAuthenticated={setIsAuthenticated}/>}/>
                     <Route path="/register" component={Register}/>
                     <Route path="/book/mutation" component={Mutations}/>
